@@ -1,0 +1,26 @@
+<!-- M4 Ant Lab -->
+<!-- 902688982.xml -->
+
+<target name = "init">
+</target>
+
+<target name = "prepare">
+</target>
+
+<target name = "compile">
+</target>
+
+<target name = "javadoc">
+</target>
+
+<target name = "jar">
+</target>
+
+<target name = "run">
+</target>
+
+<target name = "all">
+</target>
+
+<target name = "clean">
+</target>
