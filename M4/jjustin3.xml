@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="jjustin3" default="compile" basedir=".">
+
+	
+	<target name="init">
+		<property name="src.dir" location="src/edu/gatech/oad/antlab/"/>
+		<property name="build.dir" location="build"/>
+		<property name="jar.dir" value="${build.dir}/jar"/>
+		<property name="ant.project.name" value="AntLabRun"/>
+		<property name="library.dir" value="lib"/>
+	</target>
+	
+	<target name="prepare">
+		<mkdir dir="build"/>
+		<mkdir dir="build/jar"/>
+		<mkdir dir="build/docs"/>
+	</target>
+	
+	<target name="compile" depends="prepare">
+		<javac destdir="build">
+			<src path="src/edu/gatech/oad/antlab/pkg1"/>
+			<src path="src/edu/gatech/oad/antlab/pkg2"/>
+			<src path="src/edu/gatech/oad/antlab/person"/>
+			<classpath>
+				<pathelement path="lib/resources.jar"/>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="javadoc" depends="compile">
+		<javadoc sourcepath="src/edu/gatech/oad/antlab/" access="public" destdir="build/docs/javadoc" packagenames="edu.gatech.oad.antlab">
+			<fileset dir="src/edu/gatech/oad/antlab/">
+				<include name="**/*.java"/>
+			</fileset>
+			<bottom>
+				<![CDATA[<i>Copyright &#169; 2012 The Undecided CS2340. All Rights Reserved.</i>]]>
+			</bottom>
+		</javadoc>
+	</target>
+	
+	<target name="jar" depends="javadoc">
+		<jar destfile="build/jar/AntLabRun.jar">
+			<include name="build/edu/gatech/oad/antlab/*.class"/>
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+				<attribute name="Class-Path" value="lib/resources.jar"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run" depends="jar">
+		<java jar="build/jar/AntLabRun.jar" fork="true"/>
+	</target>
+	
+	<target name="all" depends="init, prepare, compile, javadoc, jar, run">
+		
+	</target>
+	
+  	<target name="clean">
+		<delete dir="build"/>
+	</target>
+
+</project>
