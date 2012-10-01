@@ -1,26 +1,37 @@
 <!-- M4 Ant Lab -->
-<!-- 902688982.xml -->
+<!-- bao3.xml -->
 
-<target name = "init">
-</target>
+<project name="name of project" default="compile" basedir=".">
 
-<target name = "prepare">
-</target>
+	<target name = "init">
+		
+	</target>
 
-<target name = "compile">
-</target>
+	<target name = "prepare">
+	</target>
 
-<target name = "javadoc">
-</target>
+	<target name = "compile" depends="prepare" description="Compile Java sources">
+		<javac srcdir="${src.dir} destdir="${build.dir}" classpath="${library.dir}"/>
+	</target>
 
-<target name = "jar">
-</target>
+	<target name = "javadoc">
+	</target>
 
-<target name = "run">
-</target>
+	<target name = "jar">
+		<jar destfile = "AntLabRun.jar">
+			<include name="edu/gtech/cs2340/**/*.class"/>
+		<manifest>
+			<attribute name="Main-Class" value="edu.gatech.cs2340.lab2.LabMain"/>
+			<attribute name="Class-Path" value="resources.jar" />
+		</manifest>
+		</jar>
+	</target>
 
-<target name = "all">
-</target>
+	<target name = "run">
+	</target>
 
-<target name = "clean">
-</target>
+	<target name = "all">
+	</target>
+
+	<target name = "clean">
+	</target>
