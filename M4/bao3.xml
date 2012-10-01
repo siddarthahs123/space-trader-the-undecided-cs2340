@@ -1,17 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- M4 Ant Lab -->
 <!-- bao3.xml -->
 
 <project name="name of project" default="compile" basedir=".">
-
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build"/>
+	<property name="jar.dir" value="${build.dir}/jar"/>
+	
 	<target name = "init">
-		
 	</target>
 
 	<target name = "prepare">
 	</target>
 
 	<target name = "compile" depends="prepare" description="Compile Java sources">
-		<javac srcdir="${src.dir} destdir="${build.dir}" classpath="${library.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpath="${library.dir}"/>
 	</target>
 
 	<target name = "javadoc">
@@ -28,6 +31,7 @@
 	</target>
 
 	<target name = "run">
+		<java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
 	</target>
 
 	<target name = "all">
@@ -35,3 +39,4 @@
 
 	<target name = "clean">
 	</target>
+</project>
