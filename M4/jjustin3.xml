@@ -19,9 +19,7 @@
 	
 	<target name="compile" depends="prepare">
 		<javac destdir="build">
-			<src path="src/edu/gatech/oad/antlab/pkg1"/>
-			<src path="src/edu/gatech/oad/antlab/pkg2"/>
-			<src path="src/edu/gatech/oad/antlab/person"/>
+			<src path="src"/>
 			<classpath>
 				<pathelement path="lib/resources.jar"/>
 			</classpath>
@@ -36,6 +34,7 @@
 			<bottom>
 				<![CDATA[<i>Copyright &#169; 2012 The Undecided CS2340. All Rights Reserved.</i>]]>
 			</bottom>
+			<classpath location="lib/resources.jar"/>
 		</javadoc>
 	</target>
 	
@@ -44,7 +43,7 @@
 			<include name="build/edu/gatech/oad/antlab/*.class"/>
 			<manifest>
 				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
-				<attribute name="Class-Path" value="lib/resources.jar"/>
+				
 			</manifest>
 		</jar>
 	</target>
