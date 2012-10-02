@@ -42,8 +42,7 @@
 		<jar destfile="build/jar/AntLabRun.jar">
 			<include name="build/edu/gatech/oad/antlab/*.class"/>
 			<manifest>
-				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
-				
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>				
 			</manifest>
 		</jar>
 	</target>
@@ -53,7 +52,6 @@
 	</target>
 	
 	<target name="all" depends="init, prepare, compile, javadoc, jar, run">
-		
 	</target>
 	
   	<target name="clean">
