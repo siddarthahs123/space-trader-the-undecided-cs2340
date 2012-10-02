@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- M4 Ant Lab -->
+<!-- jjustin3.xml -->
+
 
 <project name="jjustin3" default="init" basedir=".">
 
@@ -43,14 +46,20 @@
 		<jar destfile="${jar.dir}/AntLabRun.jar">
 			<include name="${build.dir}/edu/gatech/oad/antlab/*.class"/>
 			<manifest>
-				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
-				
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
+				<attribute name="Class-Path" value="resources.jar" />
 			</manifest>
 		</jar>
 	</target>
 	
 	<target name="run" depends="jar">
-		<java jar="${jar.dir}/${jar.name}.jar" fork="true"/>
+		<java classname="edu.gatech.oad.antlab.pkg1.AntLabMain">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<pathelement location="${jar.dir}/AntLabRun.jar" />
+				<pathelement location="${lib.dir}/resources.jar" />
+			</classpath>
+		</java>
 	</target>
 	
 	<target name="all" depends="init, prepare, compile, javadoc, jar, run">
@@ -58,7 +67,7 @@
 	</target>
 	
   	<target name="clean">
-		<delete dir="build"/>
+  		<delete dir="${build.dir}" />
 	</target>
 
 </project>
