@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="sagarwal62" default="all" basedir=".">
+	<target name="init">
+		<property name="src.dir" location="src" />
+		<property name="build.dir" location="build" />
+		<property name="jar.dir" value="${build.dir}/jar" />
+		<property name="docs.dir" value="apidocs" />
+		<property name="jar.name" value="AntLabRun" />
+		<property name="lib.dir" value="lib" />
+	</target>
+
+	<target name="prepare" depends="init">
+		<!-- prepares directories after initialization -->
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${jar.dir}" />
+		<mkdir dir="${docs.dir}" />
+	</target>
+
+	<target name="compile" depends="prepare">
+		<javac destdir="build">
+			<src path="${src.dir}" />
+			<classpath>
+				<pathelement path="${lib.dir}/resources.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="javadoc" depends="compile">
+		<javadoc sourcepath="src" access="public" destdir="apidocs" packagenames="edu.gatech.oad.antlab.">
+			<fileset dir="${src.dir}">
+				<include name="**/*.java" />
+			</fileset>
+			<bottom>
+				<![CDATA[<i>Copyright &#169; 2012 The Undecided CS2340. All Rights Reserved.</i>]]>
+				</bottom>
+		<classpath location="${lib.dir}/resources.jar" />
+		</javadoc>
+	</target>
+
+	<target name="jar" depends="javadoc">
+		<!-- Creates the jar -->
+		<jar destfile="${jar.dir}/AntLabRun.jar">
+			<include name="${build.dir}/edu/gatech/oad/antlab/*.class" />
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
+				<attribute name="Class-Path" value="resources.jar" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<!--<target name="jar" depends="javadoc">
+		<jar destfile="AntLabRun.jar">
+			<include name="src/edu/gatech/oad/antlab/*.class"/>
+			<manifest>
+				<attribute name="Main-Class" value="src/edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+				<attribute name="Class-Path" value="resources.jar"/>
+			</manifest>
+		</jar>
+	</target>
+	-->
+
+	<target name="run" depends="jar">
+		<java classname="edu.gatech.oad.antlab.pkg1.AntLabMain">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<pathelement location="${jar.dir}/AntLabRun.jar" />
+				<pathelement location="${lib.dir}/resources.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="all" depends="init, prepare, compile, javadoc, jar, run">
+	<!-- Use to run all-->
+	</target>
+
+	<target name="clean">
+		<delete dir="build" />
+		<delete dir="apidocs" />
+	</target>
+</project>
