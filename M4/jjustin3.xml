@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="jjustin3" default="compile" basedir=".">
+<project name="jjustin3" default="init" basedir=".">
 
 	
 	<target name="init">
-		<property name="src.dir" location="src/edu/gatech/oad/antlab/"/>
+		<property name="src.dir" location="src"/>
 		<property name="build.dir" location="build"/>
 		<property name="jar.dir" value="${build.dir}/jar"/>
-		<property name="ant.project.name" value="AntLabRun"/>
-		<property name="library.dir" value="lib"/>
+		<property name="docs.dir" value="${build.dir}/docs"/>
+		<property name="jar.name" value="AntLabRun"/>
+		<property name="lib.dir" value="lib"/>
 	</target>
 	
-	<target name="prepare">
-		<mkdir dir="build"/>
-		<mkdir dir="build/jar"/>
-		<mkdir dir="build/docs"/>
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${jar.dir}"/>
+		<mkdir dir="${docs.dir}"/>
 	</target>
 	
 	<target name="compile" depends="prepare">
 		<javac destdir="build">
-			<src path="src"/>
+			<src path="${src.dir}"/>
 			<classpath>
-				<pathelement path="lib/resources.jar"/>
+				<pathelement path="${lib.dir}/resources.jar"/>
 			</classpath>
 		</javac>
 	</target>
 	
 	<target name="javadoc" depends="compile">
-		<javadoc sourcepath="src/edu/gatech/oad/antlab/" access="public" destdir="build/docs/javadoc" packagenames="edu.gatech.oad.antlab">
-			<fileset dir="src/edu/gatech/oad/antlab/">
+		<javadoc sourcepath="${src.dir}" access="public" destdir="build/docs/javadoc" packagenames="edu.gatech.oad.antlab">
+			<fileset dir="${src.dir}">
 				<include name="**/*.java"/>
 			</fileset>
 			<bottom>
 				<![CDATA[<i>Copyright &#169; 2012 The Undecided CS2340. All Rights Reserved.</i>]]>
 			</bottom>
-			<classpath location="lib/resources.jar"/>
+			<classpath location="${lib.dir}/resources.jar"/>
 		</javadoc>
 	</target>
 	
 	<target name="jar" depends="javadoc">
-		<jar destfile="build/jar/AntLabRun.jar">
-			<include name="build/edu/gatech/oad/antlab/*.class"/>
+		<jar destfile="${jar.dir}/AntLabRun.jar">
+			<include name="${build.dir}/edu/gatech/oad/antlab/*.class"/>
 			<manifest>
 				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
 				
@@ -49,7 +50,7 @@
 	</target>
 	
 	<target name="run" depends="jar">
-		<java jar="build/jar/AntLabRun.jar" fork="true"/>
+		<java jar="${jar.dir}/${jar.name}.jar" fork="true"/>
 	</target>
 	
 	<target name="all" depends="init, prepare, compile, javadoc, jar, run">
