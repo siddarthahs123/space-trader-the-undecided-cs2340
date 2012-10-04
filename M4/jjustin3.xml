@@ -3,14 +3,14 @@
 <!-- jjustin3.xml -->
 
 
-<project name="jjustin3" default="init" basedir=".">
+<project name="jjustin3" default="all" basedir=".">
 
 	
 	<target name="init">
 		<property name="src.dir" location="src"/>
 		<property name="build.dir" location="build"/>
 		<property name="jar.dir" value="${build.dir}/jar"/>
-		<property name="docs.dir" value="${build.dir}/docs"/>
+		<property name="docs.dir" value="apidocs"/>
 		<property name="jar.name" value="AntLabRun"/>
 		<property name="lib.dir" value="lib"/>
 	</target>
@@ -67,7 +67,8 @@
 	</target>
 	
   	<target name="clean">
-  		<delete dir="${build.dir}" />
+  		<delete dir="build" />
+		<delete dir="apidocs" />
 	</target>
 
 </project>
