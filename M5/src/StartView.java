@@ -1,24 +1,13 @@
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuBar;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
 import javax.swing.JPanel;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 
 
@@ -29,22 +18,6 @@ public class StartView {
 	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints;
 	private boolean done;
 	private JButton pPlus, fPlus, tPlus, ePlus, pMinus, fMinus, tMinus, eMinus;
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartView window = new StartView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the application.
