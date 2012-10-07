@@ -14,15 +14,21 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
 
 
 public class StartView {
 
-	private JFrame frame;
+	private JFrame frmSpaceTrader;
 	private JTextField textField;
-	private JSpinner pSpinner, fSpinner, tSpinner, eSpinner;
-	private JLabel pointsLabel;
+	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints;
 	private boolean done;
+	private JButton pPlus, fPlus, tPlus, ePlus, pMinus, fMinus, tMinus, eMinus;
 
 	/**
 	 * Launch the application.
@@ -53,20 +59,22 @@ public class StartView {
 	private void initialize() {
 		done = false;
 		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 651, 529);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceTrader = new JFrame();
+		frmSpaceTrader.setTitle("Space Trader");
+		frmSpaceTrader.setBounds(100, 100, 651, 529);
+		frmSpaceTrader.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		frmSpaceTrader.setJMenuBar(menuBar);
 		
 		JMenuItem mntmFile = new JMenuItem("File");
 		menuBar.add(mntmFile);
-		frame.getContentPane().setLayout(null);
+		frmSpaceTrader.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setBounds(6, 6, 639, 473);
-		frame.getContentPane().add(panel);
+		frmSpaceTrader.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblWhatIsYour = new JLabel("What is your name?");
@@ -86,28 +94,12 @@ public class StartView {
 		panel.add(lblFighter);
 		
 		JLabel lblTrader = new JLabel("Trader");
-		lblTrader.setBounds(59, 296, 40, 16);
+		lblTrader.setBounds(59, 300, 40, 16);
 		panel.add(lblTrader);
 		
 		JLabel lblEngineer = new JLabel("Engineer");
-		lblEngineer.setBounds(59, 344, 54, 16);
+		lblEngineer.setBounds(59, 353, 54, 16);
 		panel.add(lblEngineer);
-		
-		eSpinner = new JSpinner();
-		eSpinner.setBounds(162, 332, 57, 28);
-		panel.add(eSpinner);
-		
-		pSpinner = new JSpinner();
-		pSpinner.setBounds(162, 183, 57, 28);
-		panel.add(pSpinner);
-		
-		fSpinner = new JSpinner();
-		fSpinner.setBounds(162, 236, 57, 28);
-		panel.add(fSpinner);
-		
-		tSpinner = new JSpinner();
-		tSpinner.setBounds(162, 284, 57, 28);
-		panel.add(tSpinner);
 		
 		textField = new JTextField();
 		textField.setBounds(28, 38, 191, 28);
@@ -115,17 +107,73 @@ public class StartView {
 		textField.setColumns(10);
 		
 		JLabel lblPointsLeft = new JLabel("Points left:");
-		lblPointsLeft.setBounds(250, 248, 68, 16);
+		lblPointsLeft.setBounds(311, 248, 68, 16);
 		panel.add(lblPointsLeft);
 		
 		pointsLabel = new JLabel("16");
-		pointsLabel.setBounds(277, 273, 16, 16);
+		pointsLabel.setBounds(338, 273, 16, 16);
 		panel.add(pointsLabel);
 		
 		JButton btnDone = new JButton("Done");
-		btnDone.setBounds(85, 397, 77, 29);
+		btnDone.setBounds(103, 408, 77, 29);
 		btnDone.addActionListener(new PressListener());
 		panel.add(btnDone);
+		
+		pPoints = new JLabel("0");
+		pPoints.setBounds(183, 196, 16, 16);
+		panel.add(pPoints);
+		
+		fPoints = new JLabel("0");
+		fPoints.setBounds(183, 248, 16, 16);
+		panel.add(fPoints);
+		
+		tPoints = new JLabel("0");
+		tPoints.setBounds(183, 300, 16, 16);
+		panel.add(tPoints);
+		
+		ePoints = new JLabel("0");
+		ePoints.setBounds(183, 353, 16, 16);
+		panel.add(ePoints);
+		
+		pPlus = new JButton("+");
+		pPlus.setBounds(211, 184, 16, 16);
+		pPlus.addActionListener(new PlusListener(pPoints));
+		panel.add(pPlus);
+		
+		pMinus = new JButton("-");
+		pMinus.setBounds(211, 209, 16, 16);
+		pMinus.addActionListener(new MinusListener(pPoints));
+		panel.add(pMinus);
+		
+		fPlus = new JButton("+");
+		fPlus.setBounds(211, 237, 16, 16);
+		fPlus.addActionListener(new PlusListener(fPoints));
+		panel.add(fPlus);
+		
+		fMinus = new JButton("-");
+		fMinus.setBounds(211, 261, 16, 16);
+		fMinus.addActionListener(new MinusListener(fPoints));
+		panel.add(fMinus);
+		
+		tPlus = new JButton("+");
+		tPlus.setBounds(211, 289, 16, 16);
+		tPlus.addActionListener(new PlusListener(tPoints));
+		panel.add(tPlus);
+		
+		tMinus = new JButton("-");
+		tMinus.setBounds(211, 312, 16, 16);
+		tMinus.addActionListener(new MinusListener(tPoints));
+		panel.add(tMinus);
+		
+		ePlus = new JButton("+");
+		ePlus.setBounds(211, 340, 16, 16);
+		ePlus.addActionListener(new PlusListener(ePoints));
+		panel.add(ePlus);
+		
+		eMinus = new JButton("-");
+		eMinus.setBounds(211, 364, 16, 16);
+		eMinus.addActionListener(new MinusListener(ePoints));
+		panel.add(eMinus);
 	}
 		
 	public class PressListener implements ActionListener {
@@ -135,13 +183,37 @@ public class StartView {
 			}
 		}
 	}
+	
+	public class PlusListener implements ActionListener {
+		JLabel label;
+		
+		public PlusListener(JLabel label) {
+			this.label = label;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			label.setText((Integer.parseInt(label.getText())+1)+"");
+		}
+	}
+	
+	public class MinusListener implements ActionListener {
+		JLabel label;
+		
+		public MinusListener(JLabel label) {
+			this.label = label;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			label.setText((Integer.parseInt(label.getText())-1)+"");
+		}
+	}
 
 	public JFrame getFrame() {
-		return frame;
+		return frmSpaceTrader;
 	}
 
 	public void setFrame(JFrame frame) {
-		this.frame = frame;
+		this.frmSpaceTrader = frame;
 	}
 
 	public String getName() {
@@ -150,54 +222,6 @@ public class StartView {
 
 	public void setTextField(JTextField textField) {
 		this.textField = textField;
-	}
-
-	public int getPilot() {
-		return (Integer) pSpinner.getValue();
-	}
-	
-	public JSpinner getpSpinner() {
-		return pSpinner;
-	}
-	
-	public void setpSpinner(JSpinner pSpinner) {
-		this.pSpinner = pSpinner;
-	}
-
-	public int getFighter() {
-		return (Integer) fSpinner.getValue();
-	}
-	
-	public JSpinner getfSpinner() {
-		return fSpinner;
-	}
-	
-	public void setfSpinner(JSpinner fSpinner) {
-		this.fSpinner = fSpinner;
-	}
-
-	public int getTrader() {
-		return (Integer) tSpinner.getValue();
-	}
-
-	public JSpinner gettSpinner() {
-		return tSpinner;
-	}
-	
-	public void settSpinner(JSpinner tSpinner) {
-		this.tSpinner = tSpinner;
-	}
-
-	public int getEngineer() {
-		return (Integer) eSpinner.getValue();
-	}
-	
-	public JSpinner geteSpinner() {
-		return eSpinner;
-	}
-	
-	public void seteSpinner(JSpinner eSpinner) {
-		this.eSpinner = eSpinner;
 	}
 
 	public JLabel getPointsLabel() {
@@ -215,6 +239,68 @@ public class StartView {
 	public void setDone(boolean done) {
 		this.done = done;
 	}
-	
-	
+
+	public JLabel getpPoints() {
+		return pPoints;
+	}
+
+	public void setpPoints(JLabel pPoints) {
+		this.pPoints = pPoints;
+	}
+
+	public JLabel getfPoints() {
+		return fPoints;
+	}
+
+	public void setfPoints(JLabel fPoints) {
+		this.fPoints = fPoints;
+	}
+
+	public JLabel gettPoints() {
+		return tPoints;
+	}
+
+	public void settPoints(JLabel tPoints) {
+		this.tPoints = tPoints;
+	}
+
+	public JLabel getePoints() {
+		return ePoints;
+	}
+
+	public void setePoints(JLabel ePoints) {
+		this.ePoints = ePoints;
+	}
+
+	public JButton getpPlus() {
+		return pPlus;
+	}
+
+	public JButton getfPlus() {
+		return fPlus;
+	}
+
+	public JButton gettPlus() {
+		return tPlus;
+	}
+
+	public JButton getePlus() {
+		return ePlus;
+	}
+
+	public JButton getpMinus() {
+		return pMinus;
+	}
+
+	public JButton getfMinus() {
+		return fMinus;
+	}
+
+	public JButton gettMinus() {
+		return tMinus;
+	}
+
+	public JButton geteMinus() {
+		return eMinus;
+	}
 }
