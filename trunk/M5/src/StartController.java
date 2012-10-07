@@ -17,25 +17,69 @@ public class StartController {
 	}
 	
 	public boolean update() {
-		int pointsRem;
+		int pointsRem = 16;
+		
+		int pilot = 0;
+		int fighter = 0;
+		int trader = 0;
+		int engineer = 0;
 		
 		while(sView.getDone() == false) {
+			pilot = Integer.parseInt(sView.getpPoints().getText());
+			fighter = Integer.parseInt(sView.getfPoints().getText());
+			trader = Integer.parseInt(sView.gettPoints().getText());
+			engineer = Integer.parseInt(sView.getePoints().getText());
 			
-			pointsRem = 16-(sView.getPilot()+sView.getFighter()+sView.getTrader()+sView.getEngineer());
+			pointsRem = 16-(pilot+fighter+trader+engineer);
+			
+			if(pilot == 0) {
+				sView.getpMinus().setEnabled(false);
+			}
+			else {
+				sView.getpMinus().setEnabled(true);
+			}
+			
+			if(fighter == 0) {
+				sView.getfMinus().setEnabled(false);
+			}
+			else {
+				sView.getfMinus().setEnabled(true);
+			}
+			
+			if(trader == 0) {
+				sView.gettMinus().setEnabled(false);
+			}
+			else {
+				sView.gettMinus().setEnabled(true);
+			}
+			
+			if(engineer == 0) {
+				sView.geteMinus().setEnabled(false);
+			}
+			else {
+				sView.geteMinus().setEnabled(true);
+			}
 			
 			if(pointsRem >= 0) {
-				player.setPilot(sView.getPilot());
-				player.setFighter(sView.getFighter());
-				player.setTrader(sView.getTrader());
-				player.setEngineer(sView.getEngineer());
+				sView.getpPlus().setEnabled(true);
+				sView.getfPlus().setEnabled(true);
+				sView.gettPlus().setEnabled(true);
+				sView.getePlus().setEnabled(true);
+				
+				player.setPilot(pilot);
+				player.setFighter(fighter);
+				player.setTrader(trader);
+				player.setEngineer(engineer);
 				player.setName(sView.getName());
 				
-				sView.setPointsLabel(pointsRem);
+				sView.getPointsLabel().setText(pointsRem+"");
 			}
-			else if(pointsRem == 0) {
-			
+			else {
+				sView.getpPlus().setEnabled(false);
+				sView.getfPlus().setEnabled(false);
+				sView.gettPlus().setEnabled(false);
+				sView.getePlus().setEnabled(false);
 			}
-			
 			
 		}
 		
