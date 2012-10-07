@@ -60,7 +60,7 @@ public class StartController {
 				sView.geteMinus().setEnabled(true);
 			}
 			
-			if(pointsRem >= 0) {
+			if(pointsRem > 0) {
 				sView.getpPlus().setEnabled(true);
 				sView.getfPlus().setEnabled(true);
 				sView.gettPlus().setEnabled(true);
@@ -72,7 +72,7 @@ public class StartController {
 				player.setEngineer(engineer);
 				player.setName(sView.getName());
 				
-				sView.getPointsLabel().setText(pointsRem+"");
+				
 			}
 			else {
 				sView.getpPlus().setEnabled(false);
@@ -80,6 +80,7 @@ public class StartController {
 				sView.gettPlus().setEnabled(false);
 				sView.getePlus().setEnabled(false);
 			}
+			sView.getPointsLabel().setText(pointsRem+"");
 			
 		}
 		
