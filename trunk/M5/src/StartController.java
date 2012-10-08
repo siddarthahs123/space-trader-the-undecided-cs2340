@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+
 import javax.swing.*;
 
 public class StartController {
@@ -7,6 +9,8 @@ public class StartController {
 	public StartController() {
 		sView = new StartView();
 		JFrame frame = sView.getFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(670, 550));
 		frame.pack();
 		frame.setVisible(true);
 		player = new Player();
