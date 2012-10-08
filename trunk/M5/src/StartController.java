@@ -93,3 +93,9 @@ public class StartController {
 		StartController start = new StartController();
 	}
 }
+
+/**
+ * To Do:
+ * INTERFACES!!!
+ * 
+ */

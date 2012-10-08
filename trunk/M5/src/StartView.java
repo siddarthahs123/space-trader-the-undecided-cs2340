@@ -15,7 +15,7 @@ public class StartView {
 
 	private JFrame frmSpaceTrader;
 	private JTextField textField;
-	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints;
+	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints, nameWarning;
 	private boolean done;
 	private JButton pPlus, fPlus, tPlus, ePlus, pMinus, fMinus, tMinus, eMinus;
 
@@ -147,12 +147,22 @@ public class StartView {
 		eMinus.setBounds(211, 364, 16, 16);
 		eMinus.addActionListener(new MinusListener(ePoints));
 		panel.add(eMinus);
+		
+		nameWarning = new JLabel("Please enter a name!");
+		nameWarning.setBounds(59, 66, 128, 16);
+		panel.add(nameWarning);
+		nameWarning.setVisible(false);
+		
+		
 	}
 		
 	public class PressListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(done == false) {
+			if(done == false && !(textField.getText().equals(""))) {
 				done = true;
+			}
+			else {
+				nameWarning.setVisible(true);
 			}
 		}
 	}
