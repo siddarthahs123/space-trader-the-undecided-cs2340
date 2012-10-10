@@ -3,12 +3,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JRadioButton;
 
 
 public class StartView {
@@ -18,6 +20,8 @@ public class StartView {
 	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints, nameWarning;
 	private boolean done;
 	private JButton pPlus, fPlus, tPlus, ePlus, pMinus, fMinus, tMinus, eMinus;
+	private JRadioButton rdbtnEasy, rdbtnMedium, rdbtnHard;
+	private ButtonGroup difficultyGroup;
 
 	/**
 	 * Create the application.
@@ -153,7 +157,26 @@ public class StartView {
 		panel.add(nameWarning);
 		nameWarning.setVisible(false);
 		
+		JPanel difficultyLabel = new JPanel();
+		difficultyLabel.setBounds(431, 113, 95, 112);
+		panel.add(difficultyLabel);
 		
+		JLabel lblDifficulty = new JLabel("Difficulty :");
+		difficultyLabel.add(lblDifficulty);
+		
+		rdbtnEasy = new JRadioButton("Easy");
+		difficultyLabel.add(rdbtnEasy);
+		
+		rdbtnMedium = new JRadioButton("Medium");
+		difficultyLabel.add(rdbtnMedium);
+		
+		rdbtnHard = new JRadioButton("Hard");
+		difficultyLabel.add(rdbtnHard);
+		
+		difficultyGroup = new ButtonGroup();
+		difficultyGroup.add(rdbtnEasy);
+		difficultyGroup.add(rdbtnMedium);
+		difficultyGroup.add(rdbtnHard);
 	}
 		
 	public class PressListener implements ActionListener {
@@ -285,5 +308,21 @@ public class StartView {
 
 	public JButton geteMinus() {
 		return eMinus;
+	}
+	
+	public JRadioButton easy() {
+		return rdbtnEasy;
+	}
+	
+	public JRadioButton medium() {
+		return rdbtnMedium;
+	}
+	
+	public JRadioButton hard() {
+		return rdbtnHard;
+	}
+	
+	public ButtonGroup difficultyGroup() {
+		return difficultyGroup;
 	}
 }
