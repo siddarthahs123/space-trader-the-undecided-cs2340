@@ -68,11 +68,11 @@ public class StartController {
 				sView.gettPlus().setEnabled(true);
 				sView.getePlus().setEnabled(true);
 				
-				player.setPilot(pilot);
+				/*player.setPilot(pilot);
 				player.setFighter(fighter);
 				player.setTrader(trader);
 				player.setEngineer(engineer);
-				player.setName(sView.getName());
+				player.setName(sView.getName());*/
 				
 				
 			}
@@ -84,6 +84,18 @@ public class StartController {
 			}
 			sView.getPointsLabel().setText(pointsRem+"");
 			
+			if (sView.difficultyGroup().getSelection() == sView.easy())
+				player.setDifficulty(1);
+			else if (sView.difficultyGroup().getSelection() == sView.medium())
+				player.setDifficulty(2);
+			else
+				player.setDifficulty(3);
+			
+			player.setEngineer(engineer);
+			player.setFighter(fighter);
+			player.setName(sView.getName());
+			player.setPilot(pilot);
+			player.setTrader(trader);
 		}
 		
 		return true;

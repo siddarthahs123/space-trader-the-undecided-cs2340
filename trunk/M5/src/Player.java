@@ -1,6 +1,6 @@
 
 public class Player {
-	private int pilot, fighter, trader, engineer, karma;
+	private int pilot, fighter, trader, engineer, karma, difficulty;
 	private double credits;
 	private String name;
 	private boolean policeRecord;
@@ -14,6 +14,7 @@ public class Player {
 		credits = 0;
 		name = "";
 		policeRecord = false;
+		difficulty = 0;
 	}
 
 	public int getPilot() {
@@ -80,5 +81,12 @@ public class Player {
 		this.policeRecord = policeRecord;
 	}
 	
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+	
+	public int getDifficulty() {
+		return difficulty;
+	}
 	
 }
