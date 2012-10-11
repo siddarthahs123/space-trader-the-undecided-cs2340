@@ -98,6 +98,8 @@ public class StartController {
 			player.setTrader(trader);
 		}
 		
+		player.printData();
+		
 		return true;
 	}
 	
