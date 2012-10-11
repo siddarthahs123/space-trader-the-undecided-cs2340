@@ -17,7 +17,7 @@ public class StartView {
 
 	private JFrame frmSpaceTrader;
 	private JTextField textField;
-	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints, nameWarning;
+	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints, nameWarning, pointsWarning;
 	private boolean done;
 	private JButton pPlus, fPlus, tPlus, ePlus, pMinus, fMinus, tMinus, eMinus;
 	private JRadioButton rdbtnEasy, rdbtnMedium, rdbtnHard;
@@ -161,7 +161,7 @@ public class StartView {
 		difficultyLabel.setBounds(431, 113, 95, 112);
 		panel.add(difficultyLabel);
 		
-		JLabel lblDifficulty = new JLabel("Difficulty :");
+		JLabel lblDifficulty = new JLabel("Difficulty:");
 		difficultyLabel.add(lblDifficulty);
 		
 		rdbtnEasy = new JRadioButton("Easy");
@@ -177,15 +177,31 @@ public class StartView {
 		difficultyGroup.add(rdbtnEasy);
 		difficultyGroup.add(rdbtnMedium);
 		difficultyGroup.add(rdbtnHard);
+		
+		pointsWarning = new JLabel("Please allocate all points!");
+		pointsWarning.setBounds(59, 381, 159, 16);
+		panel.add(pointsWarning);
+		pointsWarning.setVisible(false);
 	}
 		
 	public class PressListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(done == false && !(textField.getText().equals(""))) {
+			if(done == false && !(textField.getText().equals("")) && Integer.parseInt(pointsLabel.getText()) == 0) {
 				done = true;
+				nameWarning.setVisible(false);
+				pointsWarning.setVisible(false);
 			}
-			else {
+			else if(textField.getText().equals("") && Integer.parseInt(pointsLabel.getText()) > 0) {
 				nameWarning.setVisible(true);
+				pointsWarning.setVisible(true);
+			}
+			else if(!(textField.getText().equals("")) && Integer.parseInt(pointsLabel.getText()) > 0) {
+				nameWarning.setVisible(false);
+				pointsWarning.setVisible(true);
+			}
+			else if(textField.getText().equals("") && Integer.parseInt(pointsLabel.getText()) == 0) {
+				nameWarning.setVisible(true);
+				pointsWarning.setVisible(false);
 			}
 		}
 	}
