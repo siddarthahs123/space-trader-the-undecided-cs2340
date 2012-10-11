@@ -11,12 +11,22 @@ public class Player {
 		trader = 0;
 		engineer = 0;
 		karma = 0;
-		credits = 0;
+		credits = 2000; //default
 		name = "";
 		policeRecord = false;
-		difficulty = 0;
+		difficulty = 2; //default
 	}
-
+	
+	public void printData() {
+		System.out.println("Pilot: "+pilot);
+		System.out.println("Fighter: "+fighter);
+		System.out.println("Trader: "+trader);
+		System.out.println("Engineer: "+engineer);
+		System.out.println("Name: "+name);
+		System.out.println("Credits: "+credits);
+		System.out.println("Difficulty: "+difficulty);
+	}
+	
 	public int getPilot() {
 		return pilot;
 	}
