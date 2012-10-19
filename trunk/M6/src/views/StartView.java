@@ -15,9 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 
-public class StartView {
+public class StartView extends MainView {
 
-	private JFrame frmSpaceTrader;
+	private JFrame frame;
 	private JTextField textField;
 	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints, nameWarning, pointsWarning;
 	private boolean done;
@@ -29,31 +29,27 @@ public class StartView {
 	 * Create the application.
 	 */
 	public StartView() {
+		frame = super.frame;
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		done = false;
 		
-		frmSpaceTrader = new JFrame();
-		frmSpaceTrader.setTitle("Space Trader");
-		frmSpaceTrader.setBounds(100, 100, 651, 529);
-		frmSpaceTrader.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		JMenuBar menuBar = new JMenuBar();
-		frmSpaceTrader.setJMenuBar(menuBar);
+		frame.setJMenuBar(menuBar);
 		
 		JMenuItem mntmFile = new JMenuItem("File");
 		menuBar.add(mntmFile);
-		frmSpaceTrader.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setBounds(6, 6, 639, 473);
-		frmSpaceTrader.getContentPane().add(panel);
+		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblWhatIsYour = new JLabel("What is your name?");
@@ -233,11 +229,11 @@ public class StartView {
 	}
 
 	public JFrame getFrame() {
-		return frmSpaceTrader;
+		return frame;
 	}
 
 	public void setFrame(JFrame frame) {
-		this.frmSpaceTrader = frame;
+		this.frame = frame;
 	}
 
 	public String getName() {

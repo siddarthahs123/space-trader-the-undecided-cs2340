@@ -1,19 +1,18 @@
 package controllers;
 import java.awt.Dimension;
+import views.*;
 
 import javax.swing.JFrame;
 
 public class MainController {
 	private StartController start;
 	JFrame frameSpaceTrader = new JFrame();
+	MainView mView;
 	
 	public MainController() {
 		start = new StartController();
-		frameSpaceTrader = new JFrame();
-		frameSpaceTrader.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frameSpaceTrader.setPreferredSize(new Dimension(1920,1080));
-		frameSpaceTrader.pack();
-		frameSpaceTrader.setVisible(true);
+		
+		mView = new MainView();
 	}
 	
 	public static void main(String[] args) {

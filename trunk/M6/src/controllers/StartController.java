@@ -1,7 +1,7 @@
 package controllers;
 
 import models.Player;
-import views.StartView;
+import views.*;
 
 import java.awt.Dimension;
 
@@ -9,15 +9,11 @@ import javax.swing.*;
 
 public class StartController {
 	private StartView sView;
+	private MainView mView;
 	private Player player;
 	
 	public StartController() {
 		sView = new StartView();
-		JFrame frame = sView.getFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(670, 550));
-		frame.pack();
-		frame.setVisible(true);
 		player = new Player();
 		
 		update();
@@ -108,9 +104,6 @@ public class StartController {
 		return true;
 	}
 	
-//	public static void main(String[] args) {
-//		StartController start = new StartController();
-//	}
 }
 
 /**
