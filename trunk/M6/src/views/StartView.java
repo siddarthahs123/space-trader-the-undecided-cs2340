@@ -17,7 +17,6 @@ import javax.swing.border.EtchedBorder;
 
 public class StartView extends MainView {
 
-	private JFrame frame;
 	private JTextField textField;
 	private JLabel pointsLabel, pPoints, fPoints, tPoints, ePoints, nameWarning, pointsWarning;
 	private boolean done;
@@ -29,7 +28,6 @@ public class StartView extends MainView {
 	 * Create the application.
 	 */
 	public StartView() {
-		frame = super.frame;
 		initialize();
 	}
 	
@@ -39,17 +37,12 @@ public class StartView extends MainView {
 	private void initialize() {
 		done = false;
 		
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		JMenuItem mntmFile = new JMenuItem("File");
-		menuBar.add(mntmFile);
-		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(6, 6, 639, 473);
-		frame.getContentPane().add(panel);
+		panel.setBounds(6, 6, frame.getWidth(), frame.getHeight());
+		frame.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblWhatIsYour = new JLabel("What is your name?");

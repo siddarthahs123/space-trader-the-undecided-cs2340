@@ -9,11 +9,10 @@ public class MainView {
 	JFrame frame;
 	
 	public MainView() {
-		frame = new JFrame();
+		frame = new JFrame("TEST");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(1920,1080));
+		frame.setPreferredSize(new Dimension(639,473));
 		frame.pack();
-		frame.setVisible(true);
 	}
 	
 }

@@ -3,13 +3,8 @@ package controllers;
 import models.Player;
 import views.*;
 
-import java.awt.Dimension;
-
-import javax.swing.*;
-
 public class StartController {
 	private StartView sView;
-	private MainView mView;
 	private Player player;
 	
 	public StartController() {
@@ -68,14 +63,6 @@ public class StartController {
 				sView.getfPlus().setEnabled(true);
 				sView.gettPlus().setEnabled(true);
 				sView.getePlus().setEnabled(true);
-				
-				/*player.setPilot(pilot);
-				player.setFighter(fighter);
-				player.setTrader(trader);
-				player.setEngineer(engineer);
-				player.setName(sView.getName());*/
-				
-				
 			}
 			else {
 				sView.getpPlus().setEnabled(false);
