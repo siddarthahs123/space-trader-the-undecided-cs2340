@@ -6,13 +6,11 @@ import javax.swing.JFrame;
 
 public class MainController {
 	private StartController start;
-	JFrame frameSpaceTrader = new JFrame();
-	MainView mView;
+	private MainView mView;
 	
 	public MainController() {
-		start = new StartController();
-		
 		mView = new MainView();
+		start = new StartController();
 	}
 	
 	public static void main(String[] args) {
