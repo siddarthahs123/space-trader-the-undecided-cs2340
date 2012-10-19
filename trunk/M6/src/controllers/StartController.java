@@ -108,9 +108,9 @@ public class StartController {
 		return true;
 	}
 	
-	public static void main(String[] args) {
-		StartController start = new StartController();
-	}
+//	public static void main(String[] args) {
+//		StartController start = new StartController();
+//	}
 }
 
 /**
