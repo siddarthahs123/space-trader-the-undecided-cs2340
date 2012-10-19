@@ -1,3 +1,4 @@
+package models;
 
 public class SolarSystem {
 	private int techLevel;
