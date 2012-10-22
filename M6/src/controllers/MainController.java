@@ -13,7 +13,7 @@ public class MainController {
 		start = new StartController();
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		MainController main = new MainController();
-	}
+	}*/
 }

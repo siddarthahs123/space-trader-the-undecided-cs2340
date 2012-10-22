@@ -6,6 +6,7 @@ import views.*;
 public class StartController {
 	private StartView sView;
 	private Player player;
+	private boolean done;
 	
 	public StartController() {
 		sView = new StartView();
@@ -89,6 +90,10 @@ public class StartController {
 		player.printData();
 		
 		return true;
+	}
+	
+	public boolean getDone() {
+		return done;
 	}
 	
 }
