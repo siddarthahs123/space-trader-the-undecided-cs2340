@@ -75,6 +75,7 @@ public class MainController extends JFrame {
 	public void nextState(String next) {
 		CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, next);
+        
 	}
 	
 	/**
