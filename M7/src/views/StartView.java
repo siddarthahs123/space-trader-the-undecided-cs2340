@@ -9,6 +9,8 @@ public class StartView extends MainView {
 	private JButton fPlus, tPlus, ePlus, pPlus, fMinus, tMinus, eMinus, pMinus, btnDone;
 	private JLabel fPoints, tPoints, ePoints, pPoints, pointsWarning, nameWarning, pointsLabel;
 	private JTextField textField;
+	private JRadioButton rdbtnEasy, rdbtnMedium, rdbtnHard;
+	private ButtonGroup difficultyGroup;
 	
 	public StartView() {
 		panel = new JPanel();
@@ -129,16 +131,16 @@ public class StartView extends MainView {
 		JLabel lblDifficulty = new JLabel("Difficulty:");
 		difficultyLabel.add(lblDifficulty);
 		
-		JRadioButton rdbtnEasy = new JRadioButton("Easy");
+		rdbtnEasy = new JRadioButton("Easy");
 		difficultyLabel.add(rdbtnEasy);
 		
-		JRadioButton rdbtnMedium = new JRadioButton("Medium");
+		rdbtnMedium = new JRadioButton("Medium");
 		difficultyLabel.add(rdbtnMedium);
 		
-		JRadioButton rdbtnHard = new JRadioButton("Hard");
+		rdbtnHard = new JRadioButton("Hard");
 		difficultyLabel.add(rdbtnHard);
 		
-		ButtonGroup difficultyGroup = new ButtonGroup();
+		difficultyGroup = new ButtonGroup();
 		difficultyGroup.add(rdbtnEasy);
 		difficultyGroup.add(rdbtnMedium);
 		difficultyGroup.add(rdbtnHard);
@@ -313,5 +315,40 @@ public class StartView extends MainView {
 	public JButton getBtnDone() {
 		return btnDone;
 	}
+
+	public int getFPoints() {
+		return Integer.parseInt(fPoints.getText());
+	}
+
+	public int getTPoints() {
+		return Integer.parseInt(tPoints.getText());
+	}
+
+	public int getEPoints() {
+		return Integer.parseInt(ePoints.getText());
+	}
+
+	public int getPPoints() {
+		return Integer.parseInt(pPoints.getText());
+	}
+
+	public String getTextField() {
+		return textField.getText();
+	}
 	
+	public JRadioButton easy() {
+		return rdbtnEasy;
+	}
+	
+	public JRadioButton medium() {
+		return rdbtnMedium;
+	}
+	
+	public JRadioButton hard() {
+		return rdbtnHard;
+	}
+	
+	public ButtonGroup difficultyGroup() {
+		return difficultyGroup;
+	}
 }

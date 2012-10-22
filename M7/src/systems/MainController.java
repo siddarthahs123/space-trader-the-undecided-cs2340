@@ -24,6 +24,7 @@ public class MainController extends JFrame {
 		frame = new JFrame("Space Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(dim);
+		frame.setResizable(false);
 		
 		addViews(frame.getContentPane());
 		
@@ -39,24 +40,30 @@ public class MainController extends JFrame {
 	 * @return If cards were successfully added
 	 */
 	public void addViews(Container pane) {
+		//Generate intro view
 		IntroView introView = new IntroView();
 		JPanel introCard = introView.getPanel();
 		introView.getBtnNewGame().addActionListener(new NewGameListener());
 		introView.getBtnLoadGame().addActionListener(new LoadGameListener());
 		
+		//Generate start view
 		StartView startView = new StartView();
 		JPanel startCard = startView.getPanel();
 		startView.getBtnDone().addActionListener(new PlayerDoneListener(startView));
 		
-		galaxies = new SolarSystem[10];
+		//Generate galaxy map
 		universe = new Universe();
 		generateGalaxies();
+		//FOR DEBUGGIN ONLY
 		for(int i = 0; i < 10; i++) {
 			System.out.println(galaxies[i].toString());
 		}
-		UniverseView universeView = new UniverseView(); //pass in galaxies
+		///////////////////
+		UniverseView universeView = new UniverseView();
+		universeView.drawGalaxies(galaxies);
 		JPanel universeCard = universeView.getPanel();
 		
+		//Add cards to card layout
 		cards = new JPanel(new CardLayout());
 		cards.add(introCard, INTRO);
 		cards.add(startCard, START);
@@ -96,6 +103,7 @@ public class MainController extends JFrame {
 	 */
 	public class PlayerDoneListener implements ActionListener {
 		StartView startView;
+		Player player;
 		
 		public PlayerDoneListener(StartView startView) {
 			this.startView = startView;
@@ -103,6 +111,23 @@ public class MainController extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			if(startView.checkFields()) {
+				int pilot = startView.getPPoints();
+				int fighter = startView.getFPoints();
+				int engineer = startView.getEPoints();
+				int trader = startView.getTPoints();
+				String name = startView.getTextField();
+				int difficulty;
+				if(startView.difficultyGroup().getSelection() == startView.easy()) {
+					difficulty = 1;
+				}
+				else if(startView.difficultyGroup().getSelection() == startView.medium()) {
+					difficulty = 2;
+				}
+				else {
+					difficulty = 3;
+				}
+				
+				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
 				nextState(UNIVERSE);
 			}
 		}
@@ -110,13 +135,14 @@ public class MainController extends JFrame {
 	
 	public SolarSystem[] generateGalaxies() {
 		String[] names = universe.getNames();
+		galaxies = new SolarSystem[names.length];
 		String name = "";
 		int x;
 		int y;
 		int tech;
 		Random rand = new Random();
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < names.length; i++) {
 			x = rand.nextInt(630) + 20;
 			y = rand.nextInt(430) + 20;
 			tech = rand.nextInt(8);

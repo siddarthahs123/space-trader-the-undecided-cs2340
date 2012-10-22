@@ -6,16 +6,20 @@ public class Player {
 	private String name;
 	private boolean policeRecord;
 	
-	public Player() {
-		pilot = 0;
-		fighter = 0;
-		trader = 0;
-		engineer = 0;
+	public Player(int pilot, int fighter, int trader, int engineer, String name) {
+		this(pilot, fighter, trader, engineer, 2, name);
+	}
+	
+	public Player(int pilot, int fighter, int trader, int engineer, int difficulty, String name) {
+		this.pilot = pilot;
+		this.fighter = fighter;
+		this.trader = trader;
+		this.engineer = engineer;
 		karma = 0;
 		credits = 2000; //default
-		name = "";
+		this.name = name;
 		policeRecord = false;
-		difficulty = 2; //default
+		this.difficulty = difficulty;
 	}
 	
 	public void printData() {
