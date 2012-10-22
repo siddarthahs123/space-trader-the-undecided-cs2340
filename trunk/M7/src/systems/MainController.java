@@ -2,8 +2,8 @@ package systems;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
+import java.util.*;
 
 import models.*;
 import views.*;
@@ -15,6 +15,9 @@ public class MainController extends JFrame {
 	private final String INTRO = "Intro Screen";
 	private final String START = "Start Screen";
 	private final String UNIVERSE = "Universe Screen";
+	
+	private Universe universe;
+	private SolarSystem[] galaxies;
 	
 	public MainController() {
 		dim = new Dimension(639, 473);
@@ -45,7 +48,13 @@ public class MainController extends JFrame {
 		JPanel startCard = startView.getPanel();
 		startView.getBtnDone().addActionListener(new PlayerDoneListener(startView));
 		
-		UniverseView universeView = new UniverseView();
+		galaxies = new SolarSystem[10];
+		universe = new Universe();
+		generateGalaxies();
+		for(int i = 0; i < 10; i++) {
+			System.out.println(galaxies[i].toString());
+		}
+		UniverseView universeView = new UniverseView(); //pass in galaxies
 		JPanel universeCard = universeView.getPanel();
 		
 		cards = new JPanel(new CardLayout());
@@ -99,6 +108,26 @@ public class MainController extends JFrame {
 		}
 	}
 	
+	public SolarSystem[] generateGalaxies() {
+		String[] names = universe.getNames();
+		String name = "";
+		int x;
+		int y;
+		int tech;
+		Random rand = new Random();
+		
+		for(int i = 0; i < 10; i++) {
+			x = rand.nextInt(630) + 20;
+			y = rand.nextInt(430) + 20;
+			tech = rand.nextInt(8);
+			name = names[i];
+			SolarSystem galaxy = new SolarSystem(name, x, y);
+			galaxy.setTech(tech);
+			galaxies[i] = galaxy;
+		}
+		
+		return galaxies;
+	}
 	
 	
 	public static void main(String[] args) {
