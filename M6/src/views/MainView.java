@@ -11,7 +11,7 @@ public class MainView {
 	public MainView() {
 		frame = new JFrame("TEST");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(639,473));
+		frame.setPreferredSize(new Dimension(639, 473));
 		frame.pack();
 	}
 	
