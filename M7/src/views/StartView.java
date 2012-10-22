@@ -8,6 +8,7 @@ public class StartView extends MainView {
 	private JPanel panel;
 	private JButton fPlus, tPlus, ePlus, pPlus, fMinus, tMinus, eMinus, pMinus, btnDone;
 	private JLabel fPoints, tPoints, ePoints, pPoints, pointsWarning, nameWarning, pointsLabel;
+	private JTextField textField;
 	
 	public StartView() {
 		panel = new JPanel();
@@ -38,7 +39,7 @@ public class StartView extends MainView {
 		lblEngineer.setBounds(59, 353, 54, 16);
 		panel.add(lblEngineer);
 		
-		JTextField textField = new JTextField();
+		textField = new JTextField();
 		textField.setBounds(42, 38, 191, 28);
 		panel.add(textField);
 		textField.setColumns(10);
@@ -230,6 +231,28 @@ public class StartView extends MainView {
 		
 	}
 	
+	public boolean checkFields() {
+		boolean done = true;
+		
+		if(textField.getText().equals("")) {
+			nameWarning.setVisible(true);
+			done = false;
+		}
+		else {
+			nameWarning.setVisible(false);
+		}
+		
+		if(Integer.parseInt(pointsLabel.getText()) > 0) {
+			pointsWarning.setVisible(true);
+			done = false;
+		}
+		else {
+			pointsWarning.setVisible(false);
+		}
+		
+		return done;
+	}
+	
 	public void enableMinusKeys() {
 		pMinus.setEnabled(true);
 		fMinus.setEnabled(true);
@@ -260,6 +283,10 @@ public class StartView extends MainView {
 	
 	public JPanel getPanel() {
 		return panel;
+	}
+	
+	public JButton getBtnDone() {
+		return btnDone;
 	}
 	
 }
