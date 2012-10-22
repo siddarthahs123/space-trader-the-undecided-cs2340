@@ -37,7 +37,7 @@ public class StartView extends MainView {
 	private void initialize() {
 		done = false;
 		
-		frame.setVisible(true);
+
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -173,6 +173,8 @@ public class StartView extends MainView {
 		pointsWarning.setBounds(59, 381, 159, 16);
 		panel.add(pointsWarning);
 		pointsWarning.setVisible(false);
+		
+		frame.setVisible(true);
 	}
 		
 	public class PressListener implements ActionListener {
