@@ -21,7 +21,6 @@ public class UniverseView extends JPanel { //maybe implement main view
 	public void drawGalaxies(SolarSystem[] galaxies) {
 		this.galaxies = galaxies;
 		System.out.println("drawing");
-		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {
