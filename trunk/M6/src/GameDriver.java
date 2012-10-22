@@ -8,10 +8,10 @@ public class GameDriver {
 		boolean loadGame = false; //set true if load game is selected (IntroController)
 		
 		MainController mCont = new MainController();
-		//IntroController iCont = new IntroController();
+//		IntroController iCont = new IntroController();
 		
 		while(isDone == false) {
-			newGame = true;
+//			newGame = true;
 			if(newGame) {
 				StartController start = new StartController();
 				newGame = false;
