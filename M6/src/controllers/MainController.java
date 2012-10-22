@@ -5,12 +5,12 @@ import views.*;
 import javax.swing.JFrame;
 
 public class MainController {
-	private StartController start;
 	private MainView mView;
+	private IntroController intro;
 	
 	public MainController() {
 		mView = new MainView();
-		start = new StartController();
+		intro = new IntroController();
 	}
 
 }

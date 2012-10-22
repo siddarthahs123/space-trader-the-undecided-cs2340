@@ -8,6 +8,7 @@ public class IntroView extends MainView {
 
 	private JButton btnNewGame, btnLoadGame;
 	private boolean loadGame, newGame;
+	private JPanel panel;
 	
 	public IntroView() {
 		initialize();
@@ -15,7 +16,7 @@ public class IntroView extends MainView {
 	
 	public void initialize() {
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		//panel.setBounds(6, 6, frame.getWidth(), frame.getHeight());
 		panel.setBounds(6, 6, 679, 473);
 		frame.getContentPane().add(panel);
@@ -42,6 +43,7 @@ public class IntroView extends MainView {
 		public void actionPerformed(ActionEvent e) {
 			if(loadGame == false) {
 				newGame = true;
+				panel.setVisible(false);
 			}
 		}
 	}
@@ -51,7 +53,16 @@ public class IntroView extends MainView {
 		public void actionPerformed(ActionEvent e) {
 			if(newGame == false) {
 				loadGame = true;
+				panel.setVisible(false);
 			}
 		}
+	}
+	
+	public boolean getNewGameCondition() {
+		return newGame;
+	}
+	
+	public boolean getLoadGameCondition() {
+		return loadGame;
 	}
 }
