@@ -1,5 +1,9 @@
 package controllers;
 
-public class IntroController {
+import views.*;
 
+public class IntroController {
+	
+	
+	
 }

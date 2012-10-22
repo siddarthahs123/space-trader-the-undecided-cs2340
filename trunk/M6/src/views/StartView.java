@@ -40,7 +40,6 @@ public class StartView extends MainView {
 
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		//panel.setBounds(6, 6, frame.getWidth(), frame.getHeight());
 		panel.setBounds(6, 6, 679, 473);
 		frame.getContentPane().add(panel);
