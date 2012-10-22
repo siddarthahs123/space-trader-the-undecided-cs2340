@@ -105,42 +105,42 @@ public class StartView extends MainView {
 		panel.add(ePoints);
 		
 		pPlus = new JButton("+");
-		pPlus.setBounds(211, 184, 16, 16);
+		pPlus.setBounds(211, 184, 22, 16);
 		pPlus.addActionListener(new PlusListener(pPoints));
 		panel.add(pPlus);
 		
 		pMinus = new JButton("-");
-		pMinus.setBounds(211, 209, 16, 16);
+		pMinus.setBounds(211, 209, 22, 16);
 		pMinus.addActionListener(new MinusListener(pPoints));
 		panel.add(pMinus);
 		
 		fPlus = new JButton("+");
-		fPlus.setBounds(211, 237, 16, 16);
+		fPlus.setBounds(211, 237, 22, 16);
 		fPlus.addActionListener(new PlusListener(fPoints));
 		panel.add(fPlus);
 		
 		fMinus = new JButton("-");
-		fMinus.setBounds(211, 261, 16, 16);
+		fMinus.setBounds(211, 261, 22, 16);
 		fMinus.addActionListener(new MinusListener(fPoints));
 		panel.add(fMinus);
 		
 		tPlus = new JButton("+");
-		tPlus.setBounds(211, 289, 16, 16);
+		tPlus.setBounds(211, 289, 22, 16);
 		tPlus.addActionListener(new PlusListener(tPoints));
 		panel.add(tPlus);
 		
 		tMinus = new JButton("-");
-		tMinus.setBounds(211, 312, 16, 16);
+		tMinus.setBounds(211, 312, 22, 16);
 		tMinus.addActionListener(new MinusListener(tPoints));
 		panel.add(tMinus);
 		
 		ePlus = new JButton("+");
-		ePlus.setBounds(211, 340, 16, 16);
+		ePlus.setBounds(211, 340, 22, 16);
 		ePlus.addActionListener(new PlusListener(ePoints));
 		panel.add(ePlus);
 		
 		eMinus = new JButton("-");
-		eMinus.setBounds(211, 364, 16, 16);
+		eMinus.setBounds(211, 364, 22, 16);
 		eMinus.addActionListener(new MinusListener(ePoints));
 		panel.add(eMinus);
 		
