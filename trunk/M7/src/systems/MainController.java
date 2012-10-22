@@ -26,8 +26,6 @@ public class MainController extends JFrame {
 		
 		
 		
-		
-		
 		frame.setVisible(true);
 		frame.pack();
 	}
@@ -47,10 +45,13 @@ public class MainController extends JFrame {
 		JPanel startCard = startView.getPanel();
 		startView.getBtnDone().addActionListener(new PlayerDoneListener(startView));
 		
+		UniverseView universeView = new UniverseView();
+		JPanel universeCard = universeView.getPanel();
 		
 		cards = new JPanel(new CardLayout());
 		cards.add(introCard, INTRO);
 		cards.add(startCard, START);
+		cards.add(universeCard, UNIVERSE);
 
         pane.add(cards, BorderLayout.CENTER);
 	}
@@ -80,6 +81,10 @@ public class MainController extends JFrame {
 		}
 	}
 	
+	/**
+	 * Listener class for finishing character creation.
+	 * @author Justin
+	 */
 	public class PlayerDoneListener implements ActionListener {
 		StartView startView;
 		
