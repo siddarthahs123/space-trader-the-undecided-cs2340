@@ -41,12 +41,13 @@ public class StartView extends MainView {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(6, 6, frame.getWidth(), frame.getHeight());
-		frame.add(panel);
+		//panel.setBounds(6, 6, frame.getWidth(), frame.getHeight());
+		panel.setBounds(6, 6, 679, 473);
+		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblWhatIsYour = new JLabel("What is your name?");
-		lblWhatIsYour.setBounds(59, 11, 121, 16);
+		lblWhatIsYour.setBounds(78, 20, 121, 16);
 		panel.add(lblWhatIsYour);
 		
 		JLabel lblPleaseAllocatePoints = new JLabel("Please allocate points:");
@@ -70,7 +71,7 @@ public class StartView extends MainView {
 		panel.add(lblEngineer);
 		
 		textField = new JTextField();
-		textField.setBounds(28, 38, 191, 28);
+		textField.setBounds(42, 38, 191, 28);
 		panel.add(textField);
 		textField.setColumns(10);
 		
@@ -144,7 +145,7 @@ public class StartView extends MainView {
 		panel.add(eMinus);
 		
 		nameWarning = new JLabel("Please enter a name!");
-		nameWarning.setBounds(59, 66, 128, 16);
+		nameWarning.setBounds(71, 67, 128, 16);
 		panel.add(nameWarning);
 		nameWarning.setVisible(false);
 		
@@ -170,9 +171,11 @@ public class StartView extends MainView {
 		difficultyGroup.add(rdbtnHard);
 		
 		pointsWarning = new JLabel("Please allocate all points!");
-		pointsWarning.setBounds(59, 381, 159, 16);
+		pointsWarning.setBounds(59, 390, 159, 16);
 		panel.add(pointsWarning);
 		pointsWarning.setVisible(false);
+		
+		
 		
 		frame.setVisible(true);
 	}

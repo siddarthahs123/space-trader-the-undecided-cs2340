@@ -12,8 +12,5 @@ public class MainController {
 		mView = new MainView();
 		start = new StartController();
 	}
-	
-	/*public static void main(String[] args) {
-		MainController main = new MainController();
-	}*/
+
 }
