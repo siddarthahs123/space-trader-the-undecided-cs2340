@@ -14,6 +14,7 @@ public class MainController extends JFrame {
 	private JPanel cards;
 	private final String INTRO = "Intro Screen";
 	private final String START = "Start Screen";
+	private final String UNIVERSE = "Universe Screen";
 	
 	public MainController() {
 		dim = new Dimension(639, 473);
@@ -44,6 +45,7 @@ public class MainController extends JFrame {
 		
 		StartView startView = new StartView();
 		JPanel startCard = startView.getPanel();
+		startView.getBtnDone().addActionListener(new PlayerDoneListener(startView));
 		
 		
 		cards = new JPanel(new CardLayout());
@@ -75,6 +77,20 @@ public class MainController extends JFrame {
 	public class LoadGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
+		}
+	}
+	
+	public class PlayerDoneListener implements ActionListener {
+		StartView startView;
+		
+		public PlayerDoneListener(StartView startView) {
+			this.startView = startView;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			if(startView.checkFields()) {
+				nextState(UNIVERSE);
+			}
 		}
 	}
 	
