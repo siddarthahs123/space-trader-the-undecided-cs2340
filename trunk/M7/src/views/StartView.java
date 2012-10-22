@@ -177,10 +177,36 @@ public class StartView extends MainView {
 					ePoints.setText(""+eScore);
 				}
 				
+				if(pScore > 0) {
+					pMinus.setEnabled(true);
+				}
+				else {
+					pMinus.setEnabled(false);
+				}
+				
+				if(fScore > 0) {
+					fMinus.setEnabled(true);
+				}
+				else {
+					fMinus.setEnabled(false);
+				}
+				
+				if(tScore > 0) {
+					tMinus.setEnabled(true);
+				}
+				else {
+					tMinus.setEnabled(false);
+				}
+				
+				if(eScore > 0) {
+					eMinus.setEnabled(true);
+				}
+				else {
+					eMinus.setEnabled(false);
+				}
+				
 				remPoints--;
 				pointsLabel.setText(""+remPoints);
-				
-				enableMinusKeys();
 			}
 			
 			if(remPoints == 0) {
@@ -200,7 +226,6 @@ public class StartView extends MainView {
 			int remPoints = Integer.parseInt(pointsLabel.getText());
 			
 			if(remPoints < 16) {
-				enableMinusKeys();
 				if(((JButton)e.getSource()) == pMinus) {
 					pScore--;
 					pPoints.setText(""+pScore);
