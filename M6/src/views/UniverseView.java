@@ -1,5 +1,5 @@
 package views;
 
-public class UniverseView {
+public class UniverseView extends MainView {
 
 }
