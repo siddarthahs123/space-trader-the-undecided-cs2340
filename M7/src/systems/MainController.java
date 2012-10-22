@@ -100,3 +100,9 @@ public class MainController extends JFrame {
 		MainController main = new MainController();
 	}
 }
+
+
+/**
+ * TO DO:
+ * SEND INFO TO PLAYER MODEL!
+ */
