@@ -84,7 +84,7 @@ public class StartView extends MainView {
 		panel.add(pointsLabel);
 		
 		JButton btnDone = new JButton("Done");
-		btnDone.setBounds(103, 408, 77, 29);
+		btnDone.setBounds(489, 358, 77, 29);
 		btnDone.addActionListener(new PressListener());
 		panel.add(btnDone);
 		
@@ -171,9 +171,10 @@ public class StartView extends MainView {
 		difficultyGroup.add(rdbtnHard);
 		
 		pointsWarning = new JLabel("Please allocate all points!");
-		pointsWarning.setBounds(59, 390, 159, 16);
+		pointsWarning.setBounds(59, 407, 159, 16);
 		panel.add(pointsWarning);
 		pointsWarning.setVisible(false);
+		
 		
 		
 		
