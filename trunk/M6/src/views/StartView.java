@@ -76,15 +76,15 @@ public class StartView extends MainView {
 		textField.setColumns(10);
 		
 		JLabel lblPointsLeft = new JLabel("Points left:");
-		lblPointsLeft.setBounds(311, 248, 68, 16);
+		lblPointsLeft.setBounds(289, 184, 68, 16);
 		panel.add(lblPointsLeft);
 		
 		pointsLabel = new JLabel("16");
-		pointsLabel.setBounds(338, 273, 16, 16);
+		pointsLabel.setBounds(316, 209, 16, 16);
 		panel.add(pointsLabel);
 		
 		JButton btnDone = new JButton("Done");
-		btnDone.setBounds(489, 358, 77, 29);
+		btnDone.setBounds(431, 364, 95, 67);
 		btnDone.addActionListener(new PressListener());
 		panel.add(btnDone);
 		
