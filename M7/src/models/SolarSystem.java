@@ -4,7 +4,7 @@ public class SolarSystem {
 	private String techLevel;
 	private String name;
 	private int x, y;
-
+	
 	public SolarSystem(String name, int x, int y) {
 		this.name = name;
 		this.x = x;
@@ -54,5 +54,9 @@ public class SolarSystem {
 
 	public int getY() {
 		return y;
+	}
+	
+	public String toString() {
+		return "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+","+y;
 	}
 }
