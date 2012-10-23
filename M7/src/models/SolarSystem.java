@@ -62,7 +62,7 @@ public class SolarSystem {
 	}
 	
 	public String toString() {
-		String systemInfo = "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+","+y+"\n";
+		String systemInfo = "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+", "+y+"\n";
 		String planetInfo = "";
 		for(int i = 0; i < planets.length; i++) {
 			planetInfo += "      Name: "+planets[i].getName()+" Resources: "+planets[i].getResources()+"\n";

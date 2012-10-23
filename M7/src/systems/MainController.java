@@ -184,7 +184,7 @@ public class MainController extends JFrame {
 		
 		for(int i = 0; i < planetNames.length; i++) {
 				int num = rand.nextInt(13);
-				Planet[] planets = new Planet[1]; //change to more to add mroe planets
+				Planet[] planets = new Planet[1]; //change to more to add more planets
 				planets[0] = new Planet(planetNames[i]); //loop through to create more planets
 				planets[0].setResources(num);
 				galaxies[i].setPlanets(planets);
@@ -197,7 +197,7 @@ public class MainController extends JFrame {
 	 * Main method (should move to own driver class)
 	 */
 	public static void main(String[] args) {
-		MainController main = new MainController();
+		new MainController();
 	}
 }
 
