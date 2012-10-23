@@ -3,6 +3,7 @@ package models;
 public class SolarSystem {
 	private Planet[] planets;
 	private String techLevel;
+	private int techLevelNum;
 	private String name;
 	private int x, y;
 	
@@ -13,6 +14,7 @@ public class SolarSystem {
 	}
 
 	public void setTech(int num) {
+		techLevelNum = num;
 		switch (num) {
 		case 0:
 			techLevel = "Pre-Agriculture";
@@ -43,6 +45,10 @@ public class SolarSystem {
 	
 	public String techLevel() {
 		return techLevel;
+	}
+	
+	public int getTechLevelNum(){
+		return techLevelNum;
 	}
 
 	public String name() {
