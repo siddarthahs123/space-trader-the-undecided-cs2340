@@ -22,7 +22,7 @@ public class UniverseView extends MainView { //maybe implement main view
 		for(int i = 0; i < galaxies.length; i++) {
 			ImageIcon icon = new ImageIcon("src/views/galaxy.png");
 			JButton planet = new JButton(icon);
-			planet.setBounds(galaxies[i].getX(), galaxies[i].getY(), 33, 33);
+			planet.setBounds(galaxies[i].getX(), galaxies[i].getY(), 25, 25);
 			panel.add(planet);
 		}
 	}
