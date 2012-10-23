@@ -12,6 +12,7 @@ public class MainController extends JFrame {
 	private JFrame frame;
 	private Dimension dim;
 	private JPanel cards;
+	private int frameWidth, frameHeight;
 	private final String INTRO = "Intro Screen";
 	private final String START = "Start Screen";
 	private final String UNIVERSE = "Universe Screen";
@@ -20,7 +21,9 @@ public class MainController extends JFrame {
 	private SolarSystem[] galaxies;
 	
 	public MainController() {
-		dim = new Dimension(639, 473);
+		dim = new Dimension(679, 473);
+		frameWidth = (int)dim.getWidth();
+		frameHeight = (int)dim.getHeight();
 		frame = new JFrame("Space Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(dim);
@@ -55,7 +58,7 @@ public class MainController extends JFrame {
 		universe = new Universe();
 		generateGalaxies();
 		//FOR DEBUGGIN ONLY
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < galaxies.length; i++) {
 			System.out.println(galaxies[i].toString());
 		}
 		///////////////////
@@ -75,7 +78,6 @@ public class MainController extends JFrame {
 	public void nextState(String next) {
 		CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, next);
-        
 	}
 	
 	/**
@@ -144,8 +146,9 @@ public class MainController extends JFrame {
 		Random rand = new Random();
 		
 		for(int i = 0; i < names.length; i++) {
-			x = rand.nextInt(630) + 20;
-			y = rand.nextInt(430) + 20;
+			x = rand.nextInt((frameWidth/names.length)-20) + (i*(frameWidth-20)/names.length);
+			int scale = rand.nextInt(names.length-1);
+			y = rand.nextInt((frameHeight/names.length)-20) + (scale*(frameHeight-20)/names.length);
 			tech = rand.nextInt(8);
 			name = names[i];
 			SolarSystem galaxy = new SolarSystem(name, x, y);
@@ -161,9 +164,3 @@ public class MainController extends JFrame {
 		MainController main = new MainController();
 	}
 }
-
-
-/**
- * TO DO:
- * SEND INFO TO PLAYER MODEL!
- */
