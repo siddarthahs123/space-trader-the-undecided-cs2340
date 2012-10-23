@@ -3,6 +3,7 @@ package models;
 public class Universe {
 	
 	private String[] names;
+	private String[] pNames;
 	
 	public Universe() {
 		names = new String[] {
@@ -28,9 +29,35 @@ public class Universe {
 				"Fanta Pineapple"
 		};
 		
+		pNames = new String[] {
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				"6",
+				"7",
+				"8",
+				"9",
+				"10",
+				"11",
+				"12",
+				"13",
+				"14",
+				"15",
+				"16",
+				"17",
+				"18",
+				"19",
+				"20"
+		};
 	}
 	
 	public String[] getNames() {
 		return names;
+	}
+	
+	public String[] getPNames() {
+		return pNames;
 	}
 }
