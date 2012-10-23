@@ -20,11 +20,9 @@ public class UniverseView extends JPanel { //maybe implement main view
 	
 	public void drawGalaxies(SolarSystem[] galaxies) {
 		this.galaxies = galaxies;
-		System.out.println("drawing");
 	}
 	
 	public void paintComponent(Graphics g) {
-		System.out.println("painting!");
 		g.setColor(Color.blue);
 		
 		for(int i = 0; i < galaxies.length; i++) {
