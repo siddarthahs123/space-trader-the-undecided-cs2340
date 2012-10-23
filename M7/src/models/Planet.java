@@ -1,6 +1,6 @@
 package models;
 
-public class Planet {
+public class Planet { //somehow extends SolarSystem
 	private String resources;
 	private String name;
 

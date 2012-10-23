@@ -1,6 +1,7 @@
 package models;
 
 public class SolarSystem {
+	private Planet[] planets;
 	private String techLevel;
 	private String name;
 	private int x, y;
@@ -39,7 +40,7 @@ public class SolarSystem {
 			break;
 		}
 	}
-
+	
 	public String techLevel() {
 		return techLevel;
 	}
@@ -56,7 +57,16 @@ public class SolarSystem {
 		return y;
 	}
 	
+	public void setPlanets(Planet[] planets) {
+		this.planets = planets;
+	}
+	
 	public String toString() {
-		return "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+","+y;
+		String systemInfo = "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+","+y+"\n";
+		String planetInfo = "";
+		for(int i = 0; i < planets.length; i++) {
+			planetInfo += "      Name: "+planets[i].getName()+" Resources: "+planets[i].getResources()+"\n";
+		}
+		return systemInfo+planetInfo;
 	}
 }

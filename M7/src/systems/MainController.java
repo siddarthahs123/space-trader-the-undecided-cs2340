@@ -18,6 +18,7 @@ public class MainController extends JFrame {
 	private final String UNIVERSE = "Universe Screen";
 	
 	private Universe universe;
+	private Planet[] planetList;
 	private SolarSystem[] galaxies;
 	
 	public MainController() {
@@ -156,9 +157,26 @@ public class MainController extends JFrame {
 			galaxies[i] = galaxy;
 		}
 		
+		planetList = generatePlanets();
+		
 		return galaxies;
 	}
 	
+	public Planet[] generatePlanets() {
+		Random rand = new Random();
+		String[] planetNames = universe.getPNames();
+		Planet[] allPlanets = new Planet[planetNames.length];
+		
+		for(int i = 0; i < planetNames.length; i++) {
+				int num = rand.nextInt(13);
+				Planet[] planets = new Planet[1];
+				planets[0] = new Planet(planetNames[i]);
+				planets[0].setResources(num);
+				galaxies[i].setPlanets(planets);
+				allPlanets[i] = planets[0];
+		}
+		return allPlanets;
+	}
 	
 	public static void main(String[] args) {
 		MainController main = new MainController();
