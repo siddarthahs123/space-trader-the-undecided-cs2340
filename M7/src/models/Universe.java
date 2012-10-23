@@ -15,7 +15,17 @@ public class Universe {
 				"Obska",
 				"Bud Light",
 				"K102YN",
-				"Clessentra"
+				"Clessentra",
+				"Bjornos",
+				"Taiwan",
+				"Sector 17",
+				"Granzia",
+				"Baowaters",
+				"Rowlinga",
+				"Tintiti",
+				"Atlanta",
+				"Wallaberlo",
+				"Fanta Pineapple"
 		};
 		
 	}
