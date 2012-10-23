@@ -1,5 +1,7 @@
 package models;
 
+import javax.swing.*;
+
 public class SolarSystem {
 	private Planet[] planets;
 	private String techLevel;
@@ -65,6 +67,10 @@ public class SolarSystem {
 	
 	public void setPlanets(Planet[] planets) {
 		this.planets = planets;
+	}
+	
+	public Planet[] getPlanets() {
+		return planets;
 	}
 	
 	public String toString() {

@@ -2,6 +2,7 @@ package systems;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import java.util.*;
 
@@ -20,7 +21,11 @@ public class MainController extends JFrame {
 	private final String INTRO = "Intro Screen";
 	private final String START = "Start Screen";
 	private final String UNIVERSE = "Universe Screen";
+	private final String MARKET = "Market Screen";
 	
+	private Hashtable hash;
+	private SolarSystem curGalaxy;
+	private Planet curPlanet;
 	private Universe universe;
 	private Planet[] planetList;
 	private SolarSystem[] galaxies;
@@ -66,13 +71,17 @@ public class MainController extends JFrame {
 		universe = new Universe();
 		generateGalaxies();
 		//FOR DEBUGGIN ONLY
-		for(int i = 0; i < galaxies.length; i++) {
+		/*for(int i = 0; i < galaxies.length; i++) {
 			System.out.println(galaxies[i].toString());
-		}
+		}*/
 		///////////////////
 		UniverseView universeView = new UniverseView();
-		universeView.drawGalaxies(galaxies);
+		hash = universeView.drawGalaxies(galaxies, new PlanetListener());
 		JPanel universeCard = universeView.getPanel();
+		
+		//make market view
+		//add to card
+		//somehow call set current planet in order to get info
 		
 		//Add cards to card layout
 		cards = new JPanel(new CardLayout());
@@ -141,6 +150,15 @@ public class MainController extends JFrame {
 				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
 				nextState(UNIVERSE);
 			}
+		}
+	}
+	
+	public class PlanetListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			curGalaxy = (SolarSystem)hash.get(e.getSource());
+			curPlanet = curGalaxy.getPlanets()[0];
+			System.out.println(curGalaxy.toString());
+			nextState(MARKET);
 		}
 	}
 	
