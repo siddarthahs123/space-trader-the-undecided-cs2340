@@ -8,6 +8,10 @@ import java.util.*;
 import models.*;
 import views.*;
 
+/**
+ * Main Controller class for the game. Does all of the labor required.
+ * @author Justin
+ */
 public class MainController extends JFrame {
 	private JFrame frame;
 	private Dimension dim;
@@ -21,6 +25,9 @@ public class MainController extends JFrame {
 	private Planet[] planetList;
 	private SolarSystem[] galaxies;
 	
+	/**
+	 * Constructor for Main Controller
+	 */
 	public MainController() {
 		dim = new Dimension(679, 473);
 		frameWidth = (int)dim.getWidth();
@@ -137,6 +144,10 @@ public class MainController extends JFrame {
 		}
 	}
 	
+	/**
+	 * Method to generate all of the galaxies.
+	 * @return A list of galaxies in order to draw to map
+	 */
 	public SolarSystem[] generateGalaxies() {
 		String[] names = universe.getNames();
 		galaxies = new SolarSystem[names.length];
@@ -162,6 +173,10 @@ public class MainController extends JFrame {
 		return galaxies;
 	}
 	
+	/**
+	 * Method to generate planets called once all of the galaxies are created.
+	 * @return An array of all the planets for record
+	 */
 	public Planet[] generatePlanets() {
 		Random rand = new Random();
 		String[] planetNames = universe.getPNames();
@@ -169,8 +184,8 @@ public class MainController extends JFrame {
 		
 		for(int i = 0; i < planetNames.length; i++) {
 				int num = rand.nextInt(13);
-				Planet[] planets = new Planet[1];
-				planets[0] = new Planet(planetNames[i]);
+				Planet[] planets = new Planet[1]; //change to more to add mroe planets
+				planets[0] = new Planet(planetNames[i]); //loop through to create more planets
 				planets[0].setResources(num);
 				galaxies[i].setPlanets(planets);
 				allPlanets[i] = planets[0];
@@ -178,6 +193,9 @@ public class MainController extends JFrame {
 		return allPlanets;
 	}
 	
+	/**
+	 * Main method (should move to own driver class)
+	 */
 	public static void main(String[] args) {
 		MainController main = new MainController();
 	}
