@@ -200,3 +200,11 @@ public class MainController extends JFrame {
 		MainController main = new MainController();
 	}
 }
+
+/**
+ * To Do
+ * =====
+ * +Add listeners for all planets (should make own listener class)
+ * +Add marketplace interactions and general economy
+ * +Fix location generation of planets to disallow overlapping
+ */
