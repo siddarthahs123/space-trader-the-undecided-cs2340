@@ -1,9 +1,13 @@
 package models;
 
+import models.*;
+
 public class Universe {
 	
 	private String[] names;
 	private String[] pNames;
+	private Planet curPlanet;
+	private SolarSystem curGalaxy;
 	
 	public Universe() {
 		names = new String[] {
@@ -30,26 +34,26 @@ public class Universe {
 		};
 		
 		pNames = new String[] {
-				"1",
-				"2",
-				"3",
-				"4",
-				"5",
-				"6",
-				"7",
-				"8",
-				"9",
-				"10",
-				"11",
-				"12",
-				"13",
-				"14",
-				"15",
-				"16",
-				"17",
-				"18",
-				"19",
-				"20"
+				"Glenkada",
+				"Tyke",
+				"Smorpa",
+				"X73Z285",
+				"Storopa",
+				"Silventero",
+				"Acrylizia",
+				"Sazerac",
+				"Bulleit",
+				"Grouse",
+				"Glenrothes",
+				"Laphroaig",
+				"Buchantona",
+				"Drantofor",
+				"Cardaliana",
+				"Promentheria",
+				"Benzoate",
+				"Disodia",
+				"Rocalianda",
+				"Esterora"
 		};
 	}
 	
@@ -59,5 +63,13 @@ public class Universe {
 	
 	public String[] getPNames() {
 		return pNames;
+	}
+	
+	public void setCurPlanet(Planet curPlanet) {
+		this.curPlanet = curPlanet;
+	}
+	
+	public void setCurGalaxy(SolarSystem curGalaxy) {
+		this.curGalaxy = curGalaxy;
 	}
 }

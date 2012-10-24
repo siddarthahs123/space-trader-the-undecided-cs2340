@@ -30,6 +30,9 @@ public class MainController extends JFrame {
 	private Planet[] planetList;
 	private SolarSystem[] galaxies;
 	
+	private StartView startView;
+	private MarketView marketView;
+	
 	/**
 	 * Constructor for Main Controller
 	 */
@@ -63,13 +66,14 @@ public class MainController extends JFrame {
 		introView.getBtnLoadGame().addActionListener(new LoadGameListener());
 		
 		//Generate start view
-		StartView startView = new StartView();
+		startView = new StartView();
 		JPanel startCard = startView.getPanel();
-		startView.getBtnDone().addActionListener(new PlayerDoneListener(startView));
+		startView.getBtnDone().addActionListener(new PlayerDoneListener());
 		
 		//Generate galaxy map
 		universe = new Universe();
 		generateGalaxies();
+		refreshTradeGoods();
 		//FOR DEBUGGIN ONLY
 		/*for(int i = 0; i < galaxies.length; i++) {
 			System.out.println(galaxies[i].toString());
@@ -79,15 +83,16 @@ public class MainController extends JFrame {
 		hash = universeView.drawGalaxies(galaxies, new PlanetListener());
 		JPanel universeCard = universeView.getPanel();
 		
-		//make market view
-		//add to card
-		//somehow call set current planet in order to get info
+		//Generate market view
+		marketView = new MarketView();
+		JPanel marketCard = marketView.getPanel();
 		
 		//Add cards to card layout
 		cards = new JPanel(new CardLayout());
 		cards.add(introCard, INTRO);
 		cards.add(startCard, START);
 		cards.add(universeCard, UNIVERSE);
+		cards.add(marketCard, MARKET);
 
         pane.add(cards, BorderLayout.CENTER);
 	}
@@ -122,12 +127,7 @@ public class MainController extends JFrame {
 	 * @author Justin
 	 */
 	public class PlayerDoneListener implements ActionListener {
-		StartView startView;
 		Player player;
-		
-		public PlayerDoneListener(StartView startView) {
-			this.startView = startView;
-		}
 		
 		public void actionPerformed(ActionEvent e) {
 			if(startView.checkFields()) {
@@ -157,7 +157,11 @@ public class MainController extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			curGalaxy = (SolarSystem)hash.get(e.getSource());
 			curPlanet = curGalaxy.getPlanets()[0];
+			universe.setCurGalaxy(curGalaxy);
+			universe.setCurPlanet(curPlanet);
 			System.out.println(curGalaxy.toString());
+			
+			marketView.setPlanetName(curPlanet.getName());
 			nextState(MARKET);
 		}
 	}
@@ -205,11 +209,30 @@ public class MainController extends JFrame {
 				Planet[] planets = new Planet[1]; //change to more to add more planets
 				planets[0] = new Planet(planetNames[i]); //loop through to create more planets
 				planets[0].setResources(num);
+				planets[0].setGalaxy(galaxies[i]);
 				galaxies[i].setPlanets(planets);
 				allPlanets[i] = planets[0];
 		}
 		return allPlanets;
 	}
+	
+	public void refreshTradeGoods() {
+		
+		for(int i = 0; i < galaxies.length; i++) {
+			SolarSystem galaxy = galaxies[i];
+			Planet[] planets = galaxy.getPlanets();
+			
+			for(int j = 0; j < planets.length; j++) {
+				Hashtable<String, TradeGood> tempGoods = new Hashtable<String, TradeGood>();
+				
+			}
+				
+		}
+		
+	}
+	
+	
+	
 	
 	/**
 	 * Main method (should move to own driver class)

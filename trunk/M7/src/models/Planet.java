@@ -1,11 +1,17 @@
 package models;
 
+import java.util.*;
+
 public class Planet { //somehow extends SolarSystem
 	private String resources;
 	private String name;
+	private Hashtable<String, TradeGood> goods;
+	private SolarSystem galaxy;
 
 	public Planet(String name) {
 		this.name = name;
+		
+		goods = new Hashtable<String, TradeGood>();
 	}
 
 	public String getName() {
@@ -55,8 +61,20 @@ public class Planet { //somehow extends SolarSystem
 			break;
 		}
 	}
-
+	
+	public void setTradeGoods(Hashtable<String, TradeGood> goods) {
+		this.goods = goods;
+	}
+	
+	public Hashtable<String, TradeGood> getTradeGoods() {
+		return goods;
+	}
+	
 	public String getResources() {
 		return resources;
+	}
+	
+	public void setGalaxy(SolarSystem galaxy) {
+		this.galaxy = galaxy;
 	}
 }
