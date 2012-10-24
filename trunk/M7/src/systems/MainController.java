@@ -195,8 +195,10 @@ public class MainController extends JFrame {
 				
 				setMarketValues();
 				marketView.setPlanetName(curPlanet.getName());
-				player.setTurn(player.getTurn()+1);
-				player.setFuel(player.getFuel()-(int)distance);
+				if(!curButton.equals(prevButton)) { //if selecting a different galaxy
+					player.setTurn(player.getTurn()+1);
+					player.setFuel(player.getFuel()-(int)distance);
+				}
 				System.out.println("Fuel Remaining: "+player.getFuel()+"\n");
 				nextState(MARKET);
 			}
@@ -501,10 +503,9 @@ public class MainController extends JFrame {
 	 * A method that sets the market values on the market view
 	 */
 	public void setMarketValues() {
-		
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
-		ArrayList<TradeGood> tempGoods = new ArrayList<TradeGood>();
+		Hashtable<String, Integer> deflatedPrices = curPlanet.getDeflatedPrices();
 		
 		marketView.setLblRemaining(""+playerShip.getRemSpace());
 
@@ -519,7 +520,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getWaterBuy().setEnabled(true);
 					marketView.getWaterBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Furs") {
@@ -529,7 +529,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getFursBuy().setEnabled(true);
 					marketView.getFursBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Games") {
@@ -539,7 +538,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getGamesBuy().setEnabled(true);
 					marketView.getGamesBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Firearms") {
@@ -549,7 +547,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getFirearmsBuy().setEnabled(true);
 					marketView.getFirearmsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Food") {
@@ -559,7 +556,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getFoodBuy().setEnabled(true);
 					marketView.getFoodBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Machines") {
@@ -569,7 +565,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getMachinesBuy().setEnabled(true);
 					marketView.getMachinesBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Robots") {
@@ -579,7 +574,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getRobotsBuy().setEnabled(true);
 					marketView.getRobotsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Medicine") {
@@ -589,7 +583,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getMedicineBuy().setEnabled(true);
 					marketView.getMedicineBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Narcotics") {
@@ -599,7 +592,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getNarcoticsBuy().setEnabled(true);
 					marketView.getNarcoticsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Ore") {
@@ -609,7 +601,6 @@ public class MainController extends JFrame {
 				else {
 					marketView.getOreBuy().setEnabled(true);
 					marketView.getOreBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
-					tempGoods.add(mResource.get(0));
 				}
 			}
 		}
@@ -628,7 +619,10 @@ public class MainController extends JFrame {
 					marketView.getWaterSell().setEnabled(false);
 				else {
 					marketView.getWaterSell().setEnabled(true);
-					marketView.getWaterSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getWaterSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Furs") {
@@ -637,7 +631,10 @@ public class MainController extends JFrame {
 					marketView.getFursSell().setEnabled(false);
 				else {
 					marketView.getFursSell().setEnabled(true);
-					marketView.getFursSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getFursSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Games") {
@@ -646,7 +643,10 @@ public class MainController extends JFrame {
 					marketView.getGamesSell().setEnabled(false);
 				else {
 					marketView.getGamesSell().setEnabled(true);
-					marketView.getGamesSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getGamesSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Firearms") {
@@ -655,7 +655,10 @@ public class MainController extends JFrame {
 					marketView.getFirearmsSell().setEnabled(false);
 				else {
 					marketView.getFirearmsSell().setEnabled(true);
-					marketView.getFirearmsSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getFirearmsSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Food") {
@@ -664,7 +667,10 @@ public class MainController extends JFrame {
 					marketView.getFoodSell().setEnabled(false);
 				else {
 					marketView.getFoodSell().setEnabled(true);
-					marketView.getFoodSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getFoodSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Machines") {
@@ -673,7 +679,10 @@ public class MainController extends JFrame {
 					marketView.getMachinesSell().setEnabled(false);
 				else {
 					marketView.getMachinesSell().setEnabled(true);
-					marketView.getMachinesSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getMachinesSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Robots") {
@@ -682,7 +691,10 @@ public class MainController extends JFrame {
 					marketView.getRobotsSell().setEnabled(false);
 				else {
 					marketView.getRobotsSell().setEnabled(true);
-					marketView.getRobotsSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getRobotsSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Medicine") {
@@ -691,7 +703,10 @@ public class MainController extends JFrame {
 					marketView.getMedicineSell().setEnabled(false);
 				else {
 					marketView.getMedicineSell().setEnabled(true);
-					marketView.getMedicineSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getMedicineSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Narcotics") {
@@ -700,7 +715,10 @@ public class MainController extends JFrame {
 					marketView.getNarcoticsSell().setEnabled(false);
 				else {
 					marketView.getNarcoticsSell().setEnabled(true);
-					marketView.getNarcoticsSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getNarcoticsSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			else if((String)entry.getKey() == "Ore") {
@@ -709,7 +727,10 @@ public class MainController extends JFrame {
 					marketView.getOreSell().setEnabled(false);
 				else {
 					marketView.getOreSell().setEnabled(true);
-					marketView.getOreSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
+					//adds deflation to items in inventory
+					if(!deflatedPrices.get(pResource.get(0).getName()).equals(null)) {
+						marketView.getOreSell().setText("Sell["+deflatedPrices.get(pResource.get(0).getName())+"]");
+					}
 				}
 			}
 			
@@ -732,6 +753,7 @@ public class MainController extends JFrame {
  * +In MarketView, disallow spinner to go below 0 with listener
  * +Fix location generation of planets to disallow overlapping
  * +Fix issues with displaying the same price in market [FIXED]
+ * +Make quantity of items per planet dependent on situation
  * 
  * Quote:
  * "And then, the Earth being small, mankind will migrate into space, 

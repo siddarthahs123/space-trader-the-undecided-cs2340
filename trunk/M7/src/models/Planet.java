@@ -13,6 +13,7 @@ public class Planet { //somehow extends SolarSystem
 	private String resources;
 	private String name;
 	private Hashtable<String, ArrayList<TradeGood>> goods;
+	private Hashtable<String, Integer> deflatedPrices;
 	private SolarSystem galaxy;
 
 	/**
@@ -23,6 +24,18 @@ public class Planet { //somehow extends SolarSystem
 		this.name = name;
 		
 		goods = new Hashtable<String, ArrayList<TradeGood>>();
+	}
+	
+	public Hashtable<String, Integer> getDeflatedPrices() {
+		deflatedPrices = new Hashtable<String, Integer>();
+		String[] resources = goods.keySet().toArray(new String[goods.size()]);
+		for(int i = 0; i < goods.size(); i++) {
+			if(!goods.get(resources[i]).isEmpty()) {
+				deflatedPrices.put(resources[i], goods.get(resources[i]).get(0).getDeflatedPrice());
+			}
+		}
+		
+		return deflatedPrices;
 	}
 	
 	/**
