@@ -193,6 +193,8 @@ public class MainController extends JFrame {
 				
 				System.out.println(curGalaxy.toString());
 				
+				showRange();
+				
 				setMarketValues();
 				marketView.setPlanetName(curPlanet.getName());
 				if(!curButton.equals(prevButton)) { //if selecting a different galaxy
@@ -735,6 +737,28 @@ public class MainController extends JFrame {
 			}
 			
 			marketView.getLblRemcredits().setText(""+player.getCredits());
+		}
+		
+	}
+	
+	public void showRange() { //utilize this for determining if a ship can make it to a galaxy
+		JButton[] buttons = (JButton[])hash.keySet().toArray(new JButton[hash.size()]);
+		Border closeBorder = new LineBorder(Color.GREEN, 1);
+		Border farBorder = new LineBorder(Color.YELLOW, 1);
+		
+		for(int i = 0; i < buttons.length; i++) {
+			if(!buttons[i].equals(curButton)) {
+				int dX = buttons[i].getX() - curButton.getX();
+				int dY = buttons[i].getY() - curButton.getY();
+				int distance = (int)Math.pow((dX*dX)+(dY*dY), 1d/2d);
+				
+				if(distance <= player.getFuel()/2) { //green means close range
+					buttons[i].setBorder(closeBorder);
+				}
+				else if(distance > player.getFuel()/2 && distance <= player.getFuel()) { //yellow means far range
+					buttons[i].setBorder(farBorder);
+				}
+			}
 		}
 		
 	}
