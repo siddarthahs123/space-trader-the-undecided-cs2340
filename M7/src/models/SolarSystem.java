@@ -24,6 +24,10 @@ public class SolarSystem {
 		this.y = y;
 	}
 
+	/**
+	 * Sets the tech level for the solar system
+	 * @param num
+	 */
 	public void setTech(int num) {
 		techLevelNum = num;
 		switch (num) {
