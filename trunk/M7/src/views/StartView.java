@@ -2,6 +2,7 @@ package views;
 
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 
 public class StartView extends MainView {
 
@@ -64,6 +65,7 @@ public class StartView extends MainView {
 		btnRoll = new JButton("Roll");
 		btnRoll.setBounds(278, 329, 95, 67);
 		panel.add(btnRoll);
+		btnRoll.addActionListener(new RandomListener());
 		
 		pPoints = new JLabel("0");
 		pPoints.setBounds(183, 196, 16, 16);
@@ -142,8 +144,9 @@ public class StartView extends MainView {
 		rdbtnEasy = new JRadioButton("Easy");
 		difficultyLabel.add(rdbtnEasy);
 		
-		rdbtnMedium = new JRadioButton("Medium", true);
+		rdbtnMedium = new JRadioButton("Medium");
 		difficultyLabel.add(rdbtnMedium);
+		rdbtnMedium.setSelected(true);
 		
 		rdbtnHard = new JRadioButton("Hard");
 		difficultyLabel.add(rdbtnHard);
@@ -192,33 +195,7 @@ public class StartView extends MainView {
 					ePoints.setText(""+eScore);
 				}
 				
-				if(pScore > 0) {
-					pMinus.setEnabled(true);
-				}
-				else {
-					pMinus.setEnabled(false);
-				}
-				
-				if(fScore > 0) {
-					fMinus.setEnabled(true);
-				}
-				else {
-					fMinus.setEnabled(false);
-				}
-				
-				if(tScore > 0) {
-					tMinus.setEnabled(true);
-				}
-				else {
-					tMinus.setEnabled(false);
-				}
-				
-				if(eScore > 0) {
-					eMinus.setEnabled(true);
-				}
-				else {
-					eMinus.setEnabled(false);
-				}
+				checkMinus();
 				
 				remPoints--;
 				pointsLabel.setText(""+remPoints);
@@ -229,6 +206,41 @@ public class StartView extends MainView {
 			}
 		}
 		
+	}
+	
+	public void checkMinus() {
+		int pScore = Integer.parseInt(pPoints.getText());
+		int fScore = Integer.parseInt(fPoints.getText());
+		int tScore = Integer.parseInt(tPoints.getText());
+		int eScore = Integer.parseInt(ePoints.getText());
+		
+		if(pScore > 0) {
+			pMinus.setEnabled(true);
+		}
+		else {
+			pMinus.setEnabled(false);
+		}
+		
+		if(fScore > 0) {
+			fMinus.setEnabled(true);
+		}
+		else {
+			fMinus.setEnabled(false);
+		}
+		
+		if(tScore > 0) {
+			tMinus.setEnabled(true);
+		}
+		else {
+			tMinus.setEnabled(false);
+		}
+		
+		if(eScore > 0) {
+			eMinus.setEnabled(true);
+		}
+		else {
+			eMinus.setEnabled(false);
+		}
 	}
 	
 	public class MinusListener implements ActionListener {
@@ -258,6 +270,8 @@ public class StartView extends MainView {
 					ePoints.setText(""+eScore);
 				}
 				
+				checkMinus();
+				
 				remPoints++;
 				pointsLabel.setText(""+remPoints);
 				
@@ -267,6 +281,48 @@ public class StartView extends MainView {
 			if(remPoints == 16) {
 				disableMinusKeys();
 			}
+		}
+		
+	}
+	
+	public class RandomListener implements ActionListener {
+		Random rand;
+		public void actionPerformed(ActionEvent e) {
+			rand = new Random();
+			int pScore = 0;
+			int fScore = 0;
+			int tScore = 0;
+			int eScore = 0;
+			int remPoints = 16;
+			int placeHolder = 16;
+			int[] scores = new int[] { pScore, fScore, tScore, eScore };
+			boolean[] done = new boolean[] { false, false, false, false };
+			int tally = 0;
+			
+			while(remPoints > 0) {
+				int count = rand.nextInt(scores.length);
+				int score = rand.nextInt(placeHolder/3+3);
+				if(tally == 3 && done[count] == false) {
+					scores[count] = remPoints;
+					done[count] = true;
+					remPoints -= remPoints;
+				}
+				else if(done[count] == false) {
+					scores[count] = score;
+					done[count] = true;
+					remPoints -= score;
+					tally++;
+				}
+				
+			}
+			
+			pPoints.setText(""+scores[0]);
+			fPoints.setText(""+scores[1]);
+			tPoints.setText(""+scores[2]);
+			ePoints.setText(""+scores[3]);
+			pointsLabel.setText(""+remPoints);
+			disablePlusKeys();
+			checkMinus();
 		}
 		
 	}

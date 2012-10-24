@@ -23,9 +23,9 @@ public class Player {
 	 * @param engineer
 	 * @param name
 	 */
-	public Player(int pilot, int fighter, int trader, int engineer, String name) {
+	/*public Player(int pilot, int fighter, int trader, int engineer, String name) {
 		this(pilot, fighter, trader, engineer, 2, name);
-	}
+	}*/
 	
 	/**
 	 * Main Constructor allocates the skills of the player and the difficulty level and the name of the player
@@ -42,10 +42,11 @@ public class Player {
 		this.trader = trader;
 		this.engineer = engineer;
 		karma = 0;
-		credits = 5000; //default
 		this.name = name;
 		policeRecord = false;
 		this.difficulty = difficulty;
+		
+		this.credits = 2500 - (difficulty * 750);
 	}
 	
 	/**

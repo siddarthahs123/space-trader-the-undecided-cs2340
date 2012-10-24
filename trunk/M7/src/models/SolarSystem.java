@@ -119,10 +119,11 @@ public class SolarSystem {
 	 * @return A string representation of the Solar System and it's planets
 	 */
 	public String toString() {
-		String systemInfo = "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+", "+y+"\n";
+		String systemInfo = "Galaxy Information\n==================\n";
+		systemInfo += "Name: "+name+", Tech Level: "+techLevel+", Location: "+x+", "+y+"\n";
 		String planetInfo = "";
 		for(int i = 0; i < planets.length; i++) {
-			planetInfo += "      Name: "+planets[i].getName()+" Resources: "+planets[i].getResources()+"\n";
+			planetInfo += "-->   Name: "+planets[i].getName()+", Resources: "+planets[i].getResources()+"\n";
 		}
 		return systemInfo+planetInfo;
 	}

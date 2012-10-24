@@ -37,7 +37,7 @@ public class UniverseView extends MainView { //maybe implement main view
 		for(int i = 0; i < galaxies.length; i++) {
 			ImageIcon icon = new ImageIcon("src/views/galaxy.png");
 			JButton galaxyButton = new JButton(icon);
-			galaxyButton.setBounds(galaxies[i].getX(), galaxies[i].getY(), 25, 25);
+			galaxyButton.setBounds(galaxies[i].getX(), galaxies[i].getY(), 33, 33);
 			galaxyButton.addActionListener(listener);
 			tempHash.put(galaxyButton, galaxies[i]);
 			panel.add(galaxyButton);

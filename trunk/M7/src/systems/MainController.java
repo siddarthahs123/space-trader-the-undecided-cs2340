@@ -143,22 +143,26 @@ public class MainController extends JFrame {
 				int trader = startView.getTPoints();
 				String name = startView.getTextField();
 				int difficulty;
-				if(startView.difficultyGroup().getSelection() == startView.easy()) {
+				if(startView.easy().isSelected()) {
+					difficulty = 0;
+				}
+				else if(startView.medium().isSelected()) {
 					difficulty = 1;
 				}
-				else if(startView.difficultyGroup().getSelection() == startView.medium()) {
+				else {
 					difficulty = 2;
 				}
-				else {
-					difficulty = 3;
-				}
 				
-				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
+				player = new Player(pilot, fighter, trader, engineer, 0, name);
 				nextState(UNIVERSE);
 			}
 		}
 	}
 	
+	/**
+	 * Listener class for moving into the market view
+	 * @author Justin
+	 */
 	public class PlanetListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			curGalaxy = (SolarSystem)hash.get(e.getSource());
@@ -173,11 +177,16 @@ public class MainController extends JFrame {
 		}
 	}
 	
+	/**
+	 * A listener determining whether an item was bought and if it can be bought
+	 * @author Justin
+	 */
 	public class BuyListener implements ActionListener {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet;
 		Hashtable<String, ArrayList<TradeGood>> iPlayer;
 		
 		public void actionPerformed(ActionEvent e) {
+			marketView.getCreditWarning().setVisible(false);
 			iPlanet = curPlanet.getTradeGoods();
 			iPlayer = cargo.getTradeGoods();
 			int amount = marketView.getAmount();
@@ -209,29 +218,44 @@ public class MainController extends JFrame {
 				
 				ArrayList<TradeGood> tPlayer = iPlayer.get(resource);
 				ArrayList<TradeGood> tPlanet = iPlanet.get(resource);
-				if(tPlanet.size() >= amount) {
-					
-					for(int i = 0; i < amount; i++) {
-						TradeGood tempGood = tPlanet.remove(tPlanet.size()-1);
-						tPlayer.add(tempGood);
+				
+				TradeGood tempSource;
+				if(tPlanet.size() > 0) {
+					tempSource = tPlanet.get(0);
+				
+					if(player.getCredits() < amount*tempSource.getTotalPrice()) {
+						marketView.getCreditWarning().setVisible(true);
 					}
-					
-					playerShip.setRemSpace(remaining - amount);
-					setMarketValues();
-				}
-				else {
-					marketView.getSpaceWarning().setText("Not enough of that to buy!");
-					marketView.getSpaceWarning().setVisible(true);
+					else if(tPlanet.size() >= amount) {
+						
+						for(int i = 0; i < amount; i++) {
+							TradeGood tempGood = tPlanet.remove(tPlanet.size()-1);
+							tPlayer.add(tempGood);
+						}
+						player.setCredits(player.getCredits() - (amount*tempSource.getTotalPrice()));
+						playerShip.setRemSpace(remaining - amount);
+						setMarketValues();
+					}
+					else {
+						marketView.getSpaceWarning().setText("Not enough of that to buy!");
+						marketView.getSpaceWarning().setVisible(true);
+					}
 				}
 			}
 			else {
 				marketView.getSpaceWarning().setText("No space remaining in cargo hold!");
 				marketView.getSpaceWarning().setVisible(true);
 			}
+			
+			System.out.println(cargo.toString());
 		}
 		
 	}
 	
+	/**
+	 * A listener determining whether an item was sold and if it can be sold
+	 * @author Justin
+	 */
 	public class SellListener implements ActionListener {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet;
 		Hashtable<String, ArrayList<TradeGood>> iPlayer;
@@ -273,6 +297,7 @@ public class MainController extends JFrame {
 					tPlanet.add(tempGood);
 				}
 				
+				player.setCredits(player.getCredits() + (amount*tPlanet.get(0).getTotalPrice()));
 				playerShip.setRemSpace(remaining + amount);
 				setMarketValues();
 			}
@@ -280,8 +305,9 @@ public class MainController extends JFrame {
 				marketView.getSpaceWarning().setText("Not enough of that to sell!");
 				marketView.getSpaceWarning().setVisible(true);
 			}
-		}
 		
+			System.out.println(cargo.toString());
+		}
 	}
 	
 	/**
@@ -335,6 +361,9 @@ public class MainController extends JFrame {
 		return allPlanets;
 	}
 	
+	/**
+	 * A method that resets the trade goods in the Universe
+	 */
 	public void refreshTradeGoods() {
 		Random rand = new Random();
 		TradeGood[] listGoods = new TradeGood[] {
@@ -366,11 +395,12 @@ public class MainController extends JFrame {
 						quantity = 0;
 					
 					//calculate price
-					double fract = rand.nextInt(resource.getVar()+1);
-					int offset = (int)fract*resource.getPrice();
+					double fract = rand.nextInt(resource.getVar()+1)/100d;
+					int offset = (int)(fract*(double)resource.getPrice());
 					int flux = resource.getIPL()*(galaxies[i].getTechLevelNum()-resource.getMTLP());
 					int price = resource.getPrice() + flux + offset;
 					resource.setTotalPrice(price);
+					//System.out.println("Resource: "+resource.getName()+", "+fract+" "+offset+" "+flux+" "+price);
 					
 					ArrayList<TradeGood> list = new ArrayList<TradeGood>(quantity);
 					for(int n = 0; n < quantity; n++) {
@@ -385,6 +415,9 @@ public class MainController extends JFrame {
 		
 	}
 	
+	/**
+	 * A method that resets the resources in the cargo bay
+	 */
 	public void refreshCargoGoods() {
 		TradeGood[] listGoods = new TradeGood[] {
 				new Water(),
@@ -413,6 +446,9 @@ public class MainController extends JFrame {
 		cargo.setTradeGoods(tempGoods);
 	}
 
+	/**
+	 * A method that sets the market values on the market view
+	 */
 	public void setMarketValues() {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
@@ -617,8 +653,7 @@ public class MainController extends JFrame {
 		}
 		
 	}
-	
-	
+
 	/**
 	 * Main method (should move to own driver class)
 	 */
@@ -630,7 +665,6 @@ public class MainController extends JFrame {
 /**
  * To Do
  * =====
- * +Add listeners for all planets (should make own listener class)
- * +Add marketplace interactions and general economy
+ * +In MarketView, disallow spinner to go below 0 with listener
  * +Fix location generation of planets to disallow overlapping
  */
