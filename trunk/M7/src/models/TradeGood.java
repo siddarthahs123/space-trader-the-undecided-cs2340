@@ -1,5 +1,12 @@
 package models;
 
+/**
+ * 
+ * @author Samarth
+ * 
+ * This class represents the trade goods
+ *
+ */
 public class TradeGood {
 	private int basePrice; // initial price of trade good
 	private String name; // name of trade good
@@ -14,6 +21,21 @@ public class TradeGood {
 	private int MTL; // min price offered in space trade with random trader
 	private int MTH; // max price offered in space trade with random trader
 
+	/**
+	 * Constructor for a particular trade good
+	 * @param basePrice
+	 * @param name
+	 * @param MTLP
+	 * @param MTLU
+	 * @param TTP
+	 * @param IPL
+	 * @param Var
+	 * @param IE
+	 * @param CR
+	 * @param ER
+	 * @param MTL
+	 * @param MTH
+	 */
 	public TradeGood(int basePrice, String name, int MTLP, int MTLU, int TTP,
 			int IPL, int Var, String IE, String CR, String ER, int MTL, int MTH) {
 		this.basePrice = basePrice;
@@ -29,7 +51,7 @@ public class TradeGood {
 		this.MTL = MTL;
 		this.MTH = MTH;
 	}
-
+	
 	public int getPrice() {
 		return basePrice;
 	}
