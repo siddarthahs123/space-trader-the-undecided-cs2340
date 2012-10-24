@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.border.*;
+
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -15,6 +17,7 @@ import views.*;
  * @author Justin
  */
 public class MainController extends JFrame {
+	private JButton curButton, prevButton;
 	private JFrame frame;
 	private Dimension dim;
 	private JPanel cards;
@@ -33,6 +36,7 @@ public class MainController extends JFrame {
 	
 	private StartView startView;
 	private MarketView marketView;
+	private UniverseView universeView;
 	private Cargo cargo;
 	private Spaceship playerShip;
 	private Player player;
@@ -77,13 +81,12 @@ public class MainController extends JFrame {
 		//Generate galaxy map
 		universe = new Universe();
 		generateGalaxies();
-		refreshTradeGoods();
 		//FOR DEBUGGIN ONLY
 		/*for(int i = 0; i < galaxies.length; i++) {
 			System.out.println(galaxies[i].toString());
 		}*/
 		///////////////////
-		UniverseView universeView = new UniverseView();
+		universeView = new UniverseView();
 		hash = universeView.drawGalaxies(galaxies, new PlanetListener());
 		JPanel universeCard = universeView.getPanel();
 		
@@ -91,7 +94,7 @@ public class MainController extends JFrame {
 		cargo = new Cargo();
 		playerShip = new Flea();
 		refreshCargoGoods();
-		marketView = new MarketView(new BuyListener(), new SellListener());
+		marketView = new MarketView(new BuyListener(), new SellListener(), new MapListener());
 		JPanel marketCard = marketView.getPanel();
 		
 		//Add cards to card layout
@@ -163,17 +166,45 @@ public class MainController extends JFrame {
 	 * Listener class for moving into the market view
 	 * @author Justin
 	 */
-	public class PlanetListener implements ActionListener {
+	public class PlanetListener implements ActionListener { //make sure clicking on current planet doesn't add a turn
 		public void actionPerformed(ActionEvent e) {
-			curGalaxy = (SolarSystem)hash.get(e.getSource());
-			curPlanet = curGalaxy.getPlanets()[0];
-			universe.setCurGalaxy(curGalaxy);
-			universe.setCurPlanet(curPlanet);
-			System.out.println(curGalaxy.toString());
+			double distance = 0;
+			universeView.getFuelWarning().setVisible(false);
+			if(player.getTurn() > 0) {
+				int dX = curGalaxy.getX();
+				int dY = curGalaxy.getY();
+				distance = Math.pow((dX*dX)+(dY*dY), 1d/2d);
+				prevButton = curButton;
+				prevButton.setBorder(null); //eliminates previous border
+				//System.out.println("Distance to Travel: "+distance);
+			}
 			
-			marketView.setPlanetName(curPlanet.getName());
-			setMarketValues();
-			nextState(MARKET);
+			if(player.getFuel() >= distance) {
+				curButton = (JButton)e.getSource();
+				Border thickBorder = new LineBorder(Color.RED, 1);
+				curButton.setBorder(thickBorder); //sets current galaxy's border
+				curGalaxy = (SolarSystem)hash.get(e.getSource());
+				curPlanet = curGalaxy.getPlanets()[0];
+				
+				//System.out.println("CurGalaxy: "+curGalaxy.name()+" CurPlanet: "+curPlanet.getName());
+				
+				universe.setCurGalaxy(curGalaxy);
+				universe.setCurPlanet(curPlanet);
+				
+				System.out.println(curGalaxy.toString());
+				
+				setMarketValues();
+				marketView.setPlanetName(curPlanet.getName());
+				player.setTurn(player.getTurn()+1);
+				player.setFuel(player.getFuel()-(int)distance);
+				System.out.println("Fuel Remaining: "+player.getFuel()+"\n");
+				nextState(MARKET);
+			}
+			else {
+				Border thickBorder = new LineBorder(Color.RED, 1);
+				curButton.setBorder(thickBorder); //sets current galaxy's border
+				universeView.getFuelWarning().setVisible(true);
+			}
 		}
 	}
 	
@@ -297,7 +328,7 @@ public class MainController extends JFrame {
 					tPlanet.add(tempGood);
 				}
 				
-				player.setCredits(player.getCredits() + (amount*tPlanet.get(0).getTotalPrice()));
+				player.setCredits(player.getCredits() + (amount*tPlanet.get(0).getDeflatedPrice())); //!
 				playerShip.setRemSpace(remaining + amount);
 				setMarketValues();
 			}
@@ -309,6 +340,18 @@ public class MainController extends JFrame {
 			System.out.println(cargo.toString());
 		}
 	}
+	
+	public class MapListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			nextState(UNIVERSE);
+		}
+		
+	}
+	
+	
+	
+	
 	
 	/**
 	 * Method to generate all of the galaxies.
@@ -325,7 +368,7 @@ public class MainController extends JFrame {
 		
 		for(int i = 0; i < names.length; i++) {
 			x = rand.nextInt((frameWidth/names.length)-20) + (i*(frameWidth-20)/names.length);
-			int scale = rand.nextInt(names.length-1);
+			int scale = rand.nextInt(names.length-2)+1; //!
 			y = rand.nextInt((frameHeight/names.length)-20) + (scale*(frameHeight-20)/names.length);
 			tech = rand.nextInt(8);
 			name = names[i];
@@ -366,29 +409,34 @@ public class MainController extends JFrame {
 	 */
 	public void refreshTradeGoods() {
 		Random rand = new Random();
-		TradeGood[] listGoods = new TradeGood[] {
-				new Water(),
-				new Furs(),
-				new Games(),
-				new Food(),
-				new Firearms(),
-				new Machines(),
-				new Medicine(),
-				new Narcotics(),
-				new Ore(),
-				new Robots()
-		};
 		
+		//System.out.println(galaxies.length);
 		for(int i = 0; i < galaxies.length; i++) {
 			SolarSystem galaxy = galaxies[i];
 			Planet[] planets = galaxy.getPlanets();
+			TradeGood[] listGoods = new TradeGood[] {
+					new Water(),
+					new Furs(),
+					new Games(),
+					new Food(),
+					new Firearms(),
+					new Machines(),
+					new Medicine(),
+					new Narcotics(),
+					new Ore(),
+					new Robots()
+			};
 			
 			for(int j = 0; j < planets.length; j++) {
+				
+				//System.out.println("Galaxy: "+galaxies[i].name()+" Planet: "+planets[j].getName()); //!
+				
 				Planet planet = planets[j];
 				Hashtable<String, ArrayList<TradeGood>> tempGoods = new Hashtable<String, ArrayList<TradeGood>>();
 				
 				for(TradeGood resource : listGoods) {
 					int quantity;
+					TradeGood tempResource = resource;
 					if(galaxies[i].getTechLevelNum() >= resource.getMTLP())
 						quantity = rand.nextInt(10) + 3; //produces at least 3 of each possible resource
 					else
@@ -399,17 +447,20 @@ public class MainController extends JFrame {
 					int offset = (int)(fract*(double)resource.getPrice());
 					int flux = resource.getIPL()*(galaxies[i].getTechLevelNum()-resource.getMTLP());
 					int price = resource.getPrice() + flux + offset;
-					resource.setTotalPrice(price);
-					//System.out.println("Resource: "+resource.getName()+", "+fract+" "+offset+" "+flux+" "+price);
+					tempResource.setTotalPrice(price);
+					//System.out.println(price);
+					
+					//System.out.println("Resource: "+resource.getName()+" Price: "+price); //!
 					
 					ArrayList<TradeGood> list = new ArrayList<TradeGood>(quantity);
 					for(int n = 0; n < quantity; n++) {
-						list.add(resource);
+						list.add(tempResource);
 					}
 					tempGoods.put(resource.getName(), list);
 				}
 				
 				planet.setTradeGoods(tempGoods);
+				
 			}
 		}
 		
@@ -450,13 +501,16 @@ public class MainController extends JFrame {
 	 * A method that sets the market values on the market view
 	 */
 	public void setMarketValues() {
+		
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
+		ArrayList<TradeGood> tempGoods = new ArrayList<TradeGood>();
 		
 		marketView.setLblRemaining(""+playerShip.getRemSpace());
+
 		for(Entry entry : iPlanet.entrySet()) {
-			ArrayList<TradeGood> resource = (ArrayList<TradeGood>)entry.getValue();
-			int quantity = resource.size();
+			ArrayList<TradeGood> mResource = (ArrayList<TradeGood>)entry.getValue();
+			int quantity = mResource.size();
 			
 			if((String)entry.getKey() == "Water") {
 				marketView.getLblMwater().setText(""+quantity);
@@ -464,7 +518,8 @@ public class MainController extends JFrame {
 					marketView.getWaterBuy().setEnabled(false);
 				else {
 					marketView.getWaterBuy().setEnabled(true);
-					marketView.getWaterBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getWaterBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Furs") {
@@ -473,7 +528,8 @@ public class MainController extends JFrame {
 					marketView.getFursBuy().setEnabled(false);
 				else {
 					marketView.getFursBuy().setEnabled(true);
-					marketView.getFursBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getFursBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Games") {
@@ -482,7 +538,8 @@ public class MainController extends JFrame {
 					marketView.getGamesBuy().setEnabled(false);
 				else {
 					marketView.getGamesBuy().setEnabled(true);
-					marketView.getGamesBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getGamesBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Firearms") {
@@ -491,7 +548,8 @@ public class MainController extends JFrame {
 					marketView.getFirearmsBuy().setEnabled(false);
 				else {
 					marketView.getFirearmsBuy().setEnabled(true);
-					marketView.getFirearmsBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getFirearmsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Food") {
@@ -500,7 +558,8 @@ public class MainController extends JFrame {
 					marketView.getFoodBuy().setEnabled(false);
 				else {
 					marketView.getFoodBuy().setEnabled(true);
-					marketView.getFoodBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getFoodBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Machines") {
@@ -509,7 +568,8 @@ public class MainController extends JFrame {
 					marketView.getMachinesBuy().setEnabled(false);
 				else {
 					marketView.getMachinesBuy().setEnabled(true);
-					marketView.getMachinesBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getMachinesBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Robots") {
@@ -518,7 +578,8 @@ public class MainController extends JFrame {
 					marketView.getRobotsBuy().setEnabled(false);
 				else {
 					marketView.getRobotsBuy().setEnabled(true);
-					marketView.getRobotsBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getRobotsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Medicine") {
@@ -527,7 +588,8 @@ public class MainController extends JFrame {
 					marketView.getMedicineBuy().setEnabled(false);
 				else {
 					marketView.getMedicineBuy().setEnabled(true);
-					marketView.getMedicineBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getMedicineBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Narcotics") {
@@ -536,7 +598,8 @@ public class MainController extends JFrame {
 					marketView.getNarcoticsBuy().setEnabled(false);
 				else {
 					marketView.getNarcoticsBuy().setEnabled(true);
-					marketView.getNarcoticsBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getNarcoticsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 			else if((String)entry.getKey() == "Ore") {
@@ -545,17 +608,18 @@ public class MainController extends JFrame {
 					marketView.getOreBuy().setEnabled(false);
 				else {
 					marketView.getOreBuy().setEnabled(true);
-					marketView.getOreBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+					marketView.getOreBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
+					tempGoods.add(mResource.get(0));
 				}
 			}
 		}
-		
-		for(Entry entry : iPlayer.entrySet()) {
-			ArrayList<TradeGood> resource = (ArrayList<TradeGood>)entry.getValue();
-			int quantity = resource.size();
+
+		for(Entry entry : iPlayer.entrySet()) { //deflated price working for only one planet!
+			ArrayList<TradeGood> pResource = (ArrayList<TradeGood>)entry.getValue();
+			int quantity = pResource.size();
 			boolean disable = false;
 			
-			if(resource.size() > 0 && curGalaxy.getTechLevelNum() < resource.get(0).getMTLU())
+			if(pResource.size() > 0 && curGalaxy.getTechLevelNum() < pResource.get(0).getMTLU())
 				disable = true;
 			
 			if((String)entry.getKey() == "Water") {
@@ -564,7 +628,7 @@ public class MainController extends JFrame {
 					marketView.getWaterSell().setEnabled(false);
 				else {
 					marketView.getWaterSell().setEnabled(true);
-					marketView.getWaterSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getWaterSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Furs") {
@@ -573,7 +637,7 @@ public class MainController extends JFrame {
 					marketView.getFursSell().setEnabled(false);
 				else {
 					marketView.getFursSell().setEnabled(true);
-					marketView.getFursSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getFursSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Games") {
@@ -582,7 +646,7 @@ public class MainController extends JFrame {
 					marketView.getGamesSell().setEnabled(false);
 				else {
 					marketView.getGamesSell().setEnabled(true);
-					marketView.getGamesSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getGamesSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Firearms") {
@@ -591,7 +655,7 @@ public class MainController extends JFrame {
 					marketView.getFirearmsSell().setEnabled(false);
 				else {
 					marketView.getFirearmsSell().setEnabled(true);
-					marketView.getFirearmsSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getFirearmsSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Food") {
@@ -600,7 +664,7 @@ public class MainController extends JFrame {
 					marketView.getFoodSell().setEnabled(false);
 				else {
 					marketView.getFoodSell().setEnabled(true);
-					marketView.getFoodSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getFoodSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Machines") {
@@ -609,7 +673,7 @@ public class MainController extends JFrame {
 					marketView.getMachinesSell().setEnabled(false);
 				else {
 					marketView.getMachinesSell().setEnabled(true);
-					marketView.getMachinesSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getMachinesSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Robots") {
@@ -618,7 +682,7 @@ public class MainController extends JFrame {
 					marketView.getRobotsSell().setEnabled(false);
 				else {
 					marketView.getRobotsSell().setEnabled(true);
-					marketView.getRobotsSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getRobotsSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Medicine") {
@@ -627,7 +691,7 @@ public class MainController extends JFrame {
 					marketView.getMedicineSell().setEnabled(false);
 				else {
 					marketView.getMedicineSell().setEnabled(true);
-					marketView.getMedicineSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getMedicineSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Narcotics") {
@@ -636,7 +700,7 @@ public class MainController extends JFrame {
 					marketView.getNarcoticsSell().setEnabled(false);
 				else {
 					marketView.getNarcoticsSell().setEnabled(true);
-					marketView.getNarcoticsSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getNarcoticsSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			else if((String)entry.getKey() == "Ore") {
@@ -645,7 +709,7 @@ public class MainController extends JFrame {
 					marketView.getOreSell().setEnabled(false);
 				else {
 					marketView.getOreSell().setEnabled(true);
-					marketView.getOreSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+					marketView.getOreSell().setText("Sell["+pResource.get(0).getDeflatedPrice()+"]");
 				}
 			}
 			
@@ -653,7 +717,7 @@ public class MainController extends JFrame {
 		}
 		
 	}
-
+	
 	/**
 	 * Main method (should move to own driver class)
 	 */
@@ -667,6 +731,7 @@ public class MainController extends JFrame {
  * =====
  * +In MarketView, disallow spinner to go below 0 with listener
  * +Fix location generation of planets to disallow overlapping
+ * +Fix issues with displaying the same price in market [FIXED]
  * 
  * Quote:
  * "And then, the Earth being small, mankind will migrate into space, 

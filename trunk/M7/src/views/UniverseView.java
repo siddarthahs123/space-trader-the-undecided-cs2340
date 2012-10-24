@@ -14,6 +14,7 @@ import systems.MainController.*;
 public class UniverseView extends MainView { //maybe implement main view
 	
 	private JPanel panel;
+	private JLabel fuelWarning;
 	
 	/**
 	 * Constructor for this class.
@@ -23,6 +24,13 @@ public class UniverseView extends MainView { //maybe implement main view
 		panel.setBounds(6, 6, 679, 473);
 		panel.setLayout(null);
 		panel.setBackground(Color.black);
+		
+		fuelWarning = new JLabel("Not enough fuel to reach destination!");
+		fuelWarning.setForeground(Color.WHITE);
+		fuelWarning.setHorizontalAlignment(SwingConstants.CENTER);
+		fuelWarning.setBounds(211, 6, 255, 16);
+		fuelWarning.setVisible(false);
+		panel.add(fuelWarning);
 		
 	}
 	
@@ -39,6 +47,8 @@ public class UniverseView extends MainView { //maybe implement main view
 			JButton galaxyButton = new JButton(icon);
 			galaxyButton.setBounds(galaxies[i].getX(), galaxies[i].getY(), 33, 33);
 			galaxyButton.addActionListener(listener);
+			galaxyButton.setToolTipText("<html>Galaxy: "+galaxies[i].name()+"<br>Tech Level: "+galaxies[i].techLevel()
+					+"<br>Coordinates: "+galaxies[i].getX()+", "+galaxies[i].getY()+"</html>");
 			tempHash.put(galaxyButton, galaxies[i]);
 			panel.add(galaxyButton);
 		}
@@ -54,4 +64,7 @@ public class UniverseView extends MainView { //maybe implement main view
 		return panel;
 	}
 	
+	public JLabel getFuelWarning() {
+		return fuelWarning;
+	}
 }
