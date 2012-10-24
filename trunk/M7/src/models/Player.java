@@ -33,7 +33,7 @@ public class Player {
 		this.difficulty = difficulty;
 		
 		turn = 0;
-		fuel = 70000; //700 is reasonable
+		fuel = 700; //700 is reasonable
 		this.credits = 2500 - (difficulty * 750);
 	}
 	
