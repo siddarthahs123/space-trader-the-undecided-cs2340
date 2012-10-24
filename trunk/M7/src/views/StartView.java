@@ -6,11 +6,12 @@ import javax.swing.*;
 public class StartView extends MainView {
 
 	private JPanel panel;
-	private JButton fPlus, tPlus, ePlus, pPlus, fMinus, tMinus, eMinus, pMinus, btnDone;
+	private JButton fPlus, tPlus, ePlus, pPlus, fMinus, tMinus, eMinus, pMinus, btnDone, btnRoll;
 	private JLabel fPoints, tPoints, ePoints, pPoints, pointsWarning, nameWarning, pointsLabel;
 	private JTextField textField;
 	private JRadioButton rdbtnEasy, rdbtnMedium, rdbtnHard;
 	private ButtonGroup difficultyGroup;
+	private JLabel lblRandomly;
 	
 	public StartView() {
 		panel = new JPanel();
@@ -18,6 +19,7 @@ public class StartView extends MainView {
 		panel.setLayout(null);
 		
 		JLabel lblWhatIsYour = new JLabel("What is your name?");
+		lblWhatIsYour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWhatIsYour.setBounds(78, 20, 121, 16);
 		panel.add(lblWhatIsYour);
 		
@@ -47,6 +49,7 @@ public class StartView extends MainView {
 		textField.setColumns(10);
 		
 		JLabel lblPointsLeft = new JLabel("Points left:");
+		lblPointsLeft.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPointsLeft.setBounds(289, 184, 68, 16);
 		panel.add(lblPointsLeft);
 		
@@ -55,8 +58,12 @@ public class StartView extends MainView {
 		panel.add(pointsLabel);
 		
 		btnDone = new JButton("Done");
-		btnDone.setBounds(431, 364, 95, 67);
+		btnDone.setBounds(431, 329, 95, 67);
 		panel.add(btnDone);
+		
+		btnRoll = new JButton("Roll");
+		btnRoll.setBounds(278, 329, 95, 67);
+		panel.add(btnRoll);
 		
 		pPoints = new JLabel("0");
 		pPoints.setBounds(183, 196, 16, 16);
@@ -120,6 +127,7 @@ public class StartView extends MainView {
 		disableMinusKeys();
 		
 		nameWarning = new JLabel("Please enter a name!");
+		nameWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		nameWarning.setBounds(71, 67, 128, 16);
 		panel.add(nameWarning);
 		nameWarning.setVisible(false);
@@ -134,7 +142,7 @@ public class StartView extends MainView {
 		rdbtnEasy = new JRadioButton("Easy");
 		difficultyLabel.add(rdbtnEasy);
 		
-		rdbtnMedium = new JRadioButton("Medium");
+		rdbtnMedium = new JRadioButton("Medium", true);
 		difficultyLabel.add(rdbtnMedium);
 		
 		rdbtnHard = new JRadioButton("Hard");
@@ -148,6 +156,11 @@ public class StartView extends MainView {
 		pointsWarning = new JLabel("Please allocate all points!");
 		pointsWarning.setBounds(59, 407, 159, 16);
 		panel.add(pointsWarning);
+		
+		lblRandomly = new JLabel("Randomize:");
+		lblRandomly.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRandomly.setBounds(278, 311, 95, 16);
+		panel.add(lblRandomly);
 		pointsWarning.setVisible(false);
 	}
 	
