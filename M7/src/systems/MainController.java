@@ -667,4 +667,9 @@ public class MainController extends JFrame {
  * =====
  * +In MarketView, disallow spinner to go below 0 with listener
  * +Fix location generation of planets to disallow overlapping
+ * 
+ * Quote:
+ * "And then, the Earth being small, mankind will migrate into space, 
+ * and will cross the airless Saharas which separate planet from planet and sun from sun."
+ * -Winwood Reade, THE MARTYRDOM OF MAN, 1872
  */
