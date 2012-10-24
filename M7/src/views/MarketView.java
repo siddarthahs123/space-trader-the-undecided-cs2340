@@ -13,11 +13,13 @@ public class MarketView extends MainView {
 	private JPanel panel;
 	private JLabel planetName, lblMrobots, lblMore, lblMnarcotics, lblMmedicine, lblMmachines, lblMfirearms, lblMfood,
 		lblMgames, lblMfurs, lblMwater, lblCrobots, lblCore, lblCnarcotics, lblCmedicine, lblCmachines, lblCfirearms,
-		lblCfood, lblCgames, lblCfurs, lblCwater;
+		lblCfood, lblCgames, lblCfurs, lblCwater, spaceWarning, lblremaining;;
 	private ButtonGroup buyGroup, sellGroup;
 	private JButton waterBuy, fursBuy, gamesBuy, foodBuy, firearmsBuy, machinesBuy, medicineBuy, narcoticsBuy, oreBuy,
 		robotsBuy, waterSell, fursSell, gamesSell, foodSell, firearmsSell, machinesSell, medicineSell, narcoticsSell, oreSell,
 		robotsSell;
+	private JSpinner spinner;
+	private JLabel lblRemcredits;
 
 	public MarketView(BuyListener buyListener, SellListener sellListener) {
 		panel = new JPanel();
@@ -190,104 +192,124 @@ public class MarketView extends MainView {
 		panel.add(lblMrobots);
 		
 		waterBuy = new JButton("Buy");
-		waterBuy.setBounds(403, 94, 61, 29);
+		waterBuy.setBounds(386, 94, 97, 29);
 		panel.add(waterBuy);
 		waterBuy.addActionListener(buyListener);
+		waterBuy.setEnabled(false);
 		
 		fursBuy = new JButton("Buy");
-		fursBuy.setBounds(403, 119, 61, 29);
+		fursBuy.setBounds(386, 119, 97, 29);
 		panel.add(fursBuy);
 		fursBuy.addActionListener(buyListener);
+		fursBuy.setEnabled(false);
 		
 		gamesBuy = new JButton("Buy");
-		gamesBuy.setBounds(403, 144, 61, 29);
+		gamesBuy.setBounds(386, 144, 97, 29);
 		panel.add(gamesBuy);
 		gamesBuy.addActionListener(buyListener);
+		gamesBuy.setEnabled(false);
 		
 		foodBuy = new JButton("Buy");
-		foodBuy.setBounds(403, 169, 61, 29);
+		foodBuy.setBounds(386, 169, 97, 29);
 		panel.add(foodBuy);
 		foodBuy.addActionListener(buyListener);
+		foodBuy.setEnabled(false);
 		
 		firearmsBuy = new JButton("Buy");
-		firearmsBuy.setBounds(403, 194, 61, 29);
+		firearmsBuy.setBounds(386, 194, 97, 29);
 		panel.add(firearmsBuy);
 		firearmsBuy.addActionListener(buyListener);
+		firearmsBuy.setEnabled(false);
 		
 		machinesBuy = new JButton("Buy");
-		machinesBuy.setBounds(403, 219, 61, 29);
+		machinesBuy.setBounds(386, 219, 97, 29);
 		panel.add(machinesBuy);
 		machinesBuy.addActionListener(buyListener);
+		machinesBuy.setEnabled(false);
 		
 		medicineBuy = new JButton("Buy");
-		medicineBuy.setBounds(403, 244, 61, 29);
+		medicineBuy.setBounds(386, 244, 97, 29);
 		panel.add(medicineBuy);
 		medicineBuy.addActionListener(buyListener);
+		medicineBuy.setEnabled(false);
 		
 		narcoticsBuy = new JButton("Buy");
-		narcoticsBuy.setBounds(403, 269, 61, 29);
+		narcoticsBuy.setBounds(386, 269, 97, 29);
 		panel.add(narcoticsBuy);
 		narcoticsBuy.addActionListener(buyListener);
+		narcoticsBuy.setEnabled(false);
 		
 		oreBuy = new JButton("Buy");
-		oreBuy.setBounds(403, 294, 61, 29);
+		oreBuy.setBounds(386, 294, 97, 29);
 		panel.add(oreBuy);
 		oreBuy.addActionListener(buyListener);
+		oreBuy.setEnabled(false);
 		
 		robotsBuy = new JButton("Buy");
-		robotsBuy.setBounds(403, 319, 61, 29);
+		robotsBuy.setBounds(386, 319, 97, 29);
 		panel.add(robotsBuy);
 		robotsBuy.addActionListener(buyListener);
+		robotsBuy.setEnabled(false);
 		
 		waterSell = new JButton("Sell");
-		waterSell.setBounds(476, 94, 61, 29);
+		waterSell.setBounds(476, 94, 97, 29);
 		panel.add(waterSell);
 		waterSell.addActionListener(sellListener);
+		waterSell.setEnabled(false);
 		
 		fursSell = new JButton("Sell");
-		fursSell.setBounds(476, 119, 61, 29);
+		fursSell.setBounds(476, 119, 97, 29);
 		panel.add(fursSell);
 		fursSell.addActionListener(sellListener);
+		fursSell.setEnabled(false);
 		
 		gamesSell = new JButton("Sell");
-		gamesSell.setBounds(476, 144, 61, 29);
+		gamesSell.setBounds(476, 144, 97, 29);
 		panel.add(gamesSell);
 		gamesSell.addActionListener(sellListener);
+		gamesSell.setEnabled(false);
 		
 		foodSell = new JButton("Sell");
-		foodSell.setBounds(476, 169, 61, 29);
+		foodSell.setBounds(476, 169, 97, 29);
 		panel.add(foodSell);
 		foodSell.addActionListener(sellListener);
+		foodSell.setEnabled(false);
 		
 		firearmsSell = new JButton("Sell");
-		firearmsSell.setBounds(476, 194, 61, 29);
+		firearmsSell.setBounds(476, 194, 97, 29);
 		panel.add(firearmsSell);
 		firearmsSell.addActionListener(sellListener);
+		firearmsSell.setEnabled(false);
 		
 		machinesSell = new JButton("Sell");
-		machinesSell.setBounds(476, 219, 61, 29);
+		machinesSell.setBounds(476, 219, 97, 29);
 		panel.add(machinesSell);
 		machinesSell.addActionListener(sellListener);
+		machinesSell.setEnabled(false);
 		
 		medicineSell = new JButton("Sell");
-		medicineSell.setBounds(476, 244, 61, 29);
+		medicineSell.setBounds(476, 244, 97, 29);
 		panel.add(medicineSell);
 		medicineSell.addActionListener(sellListener);
+		medicineSell.setEnabled(false);
 		
 		narcoticsSell = new JButton("Sell");
-		narcoticsSell.setBounds(476, 269, 61, 29);
+		narcoticsSell.setBounds(476, 269, 97, 29);
 		panel.add(narcoticsSell);
 		narcoticsSell.addActionListener(sellListener);
+		narcoticsSell.setEnabled(false);
 		
 		oreSell = new JButton("Sell");
-		oreSell.setBounds(476, 294, 61, 29);
+		oreSell.setBounds(476, 294, 97, 29);
 		panel.add(oreSell);
 		oreSell.addActionListener(sellListener);
+		oreSell.setEnabled(false);
 		
 		robotsSell = new JButton("Sell");
-		robotsSell.setBounds(476, 319, 61, 29);
+		robotsSell.setBounds(476, 319, 97, 29);
 		panel.add(robotsSell);
 		robotsSell.addActionListener(sellListener);
+		robotsSell.setEnabled(false);
 		
 		buyGroup = new ButtonGroup();
 		buyGroup.add(waterBuy);
@@ -312,6 +334,40 @@ public class MarketView extends MainView {
 		sellGroup.add(narcoticsSell);
 		sellGroup.add(oreSell);
 		sellGroup.add(robotsSell);
+		
+		spaceWarning = new JLabel("No space remaining in cargo hold!");
+		spaceWarning.setHorizontalAlignment(SwingConstants.CENTER);
+		spaceWarning.setBounds(227, 371, 237, 16);
+		panel.add(spaceWarning);
+		spaceWarning.setVisible(false);
+		
+		lblremaining = new JLabel("[remaining]");
+		lblremaining.setBounds(227, 75, 61, 16);
+		panel.add(lblremaining);
+		
+		spinner = new JSpinner();
+		spinner.setBounds(592, 211, 61, 28);
+		panel.add(spinner);
+		spinner.setValue(1);
+		
+		JLabel lblAmount = new JLabel("Amount:");
+		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmount.setBounds(592, 194, 61, 16);
+		panel.add(lblAmount);
+		
+		JLabel lblCredits = new JLabel("Credits:");
+		lblCredits.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCredits.setBounds(565, 25, 61, 16);
+		panel.add(lblCredits);
+		
+		lblRemcredits = new JLabel("remCredits");
+		lblRemcredits.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRemcredits.setBounds(565, 46, 61, 16);
+		panel.add(lblRemcredits);
+	}
+	
+	public int getAmount() {
+		return (Integer)spinner.getValue();
 	}
 	
 	public JLabel getPlanetName() {
@@ -490,7 +546,19 @@ public class MarketView extends MainView {
 		return panel;
 	}
 	
+	public JLabel getSpaceWarning() {
+		return spaceWarning;
+	}
+	
 	public void setPlanetName(String name) {
 		planetName.setText(name);
+	}
+	
+	public void setLblRemaining(String amount) {
+		lblremaining.setText("["+amount+"]");
+	}
+	
+	public JLabel getLblRemcredits() {
+		return lblRemcredits;
 	}
 }

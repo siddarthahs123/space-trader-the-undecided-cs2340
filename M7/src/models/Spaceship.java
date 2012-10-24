@@ -23,6 +23,7 @@ public class Spaceship {
 	private int strength;
 	private int repairCost;
 	private int size;
+	private int remSpace;
 
 	public Spaceship(String name, int cargo, int weaponSlots, int shieldSlots,
 			int gadgetSlots, int crew, int fuel, int minTech, int fuelCost,
@@ -43,6 +44,8 @@ public class Spaceship {
 		this.strength = strength;
 		this.repairCost = repairCost;
 		this.size = size;
+		
+		remSpace = cargo;
 	}
 	
 	/**
@@ -163,6 +166,14 @@ public class Spaceship {
 	 */
 	public int getSize() {
 		return size;
+	}
+	
+	public int getRemSpace() {
+		return remSpace;
+	}
+	
+	public void setRemSpace(int remSpace) {
+		this.remSpace = remSpace;
 	}
 
 }

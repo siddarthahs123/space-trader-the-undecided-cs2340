@@ -33,6 +33,9 @@ public class MainController extends JFrame {
 	
 	private StartView startView;
 	private MarketView marketView;
+	private Cargo cargo;
+	private Spaceship playerShip;
+	private Player player;
 	
 	/**
 	 * Constructor for Main Controller
@@ -85,6 +88,9 @@ public class MainController extends JFrame {
 		JPanel universeCard = universeView.getPanel();
 		
 		//Generate market view
+		cargo = new Cargo();
+		playerShip = new Flea();
+		refreshCargoGoods();
 		marketView = new MarketView(new BuyListener(), new SellListener());
 		JPanel marketCard = marketView.getPanel();
 		
@@ -128,7 +134,6 @@ public class MainController extends JFrame {
 	 * @author Justin
 	 */
 	public class PlayerDoneListener implements ActionListener {
-		Player player;
 		
 		public void actionPerformed(ActionEvent e) {
 			if(startView.checkFields()) {
@@ -168,62 +173,116 @@ public class MainController extends JFrame {
 		}
 	}
 	
-	
-	
 	public class BuyListener implements ActionListener {
+		Hashtable<String, ArrayList<TradeGood>> iPlanet;
+		Hashtable<String, ArrayList<TradeGood>> iPlayer;
 		
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource() == marketView.getWaterBuy())
-				;
-			else if(e.getSource() == marketView.getFursBuy())
-				;
-			else if(e.getSource() == marketView.getGamesBuy())
-				;
-			else if(e.getSource() == marketView.getFoodBuy())
-				;
-			else if(e.getSource() == marketView.getFirearmsBuy())
-				;
-			else if(e.getSource() == marketView.getMachinesBuy())
-				;
-			else if(e.getSource() == marketView.getMedicineBuy())
-				;
-			else if(e.getSource() == marketView.getNarcoticsBuy())
-				;
-			else if(e.getSource() == marketView.getOreBuy())
-				;
-			else if(e.getSource() == marketView.getRobotsBuy())
-				;
+			iPlanet = curPlanet.getTradeGoods();
+			iPlayer = cargo.getTradeGoods();
+			int amount = marketView.getAmount();
+			int remaining = playerShip.getRemSpace();
+			
+			if(remaining - amount >= 0) {
+				marketView.getSpaceWarning().setVisible(false);
+				String resource = "";
+				if(e.getSource() == marketView.getWaterBuy())
+					resource = "Water";
+				else if(e.getSource() == marketView.getFursBuy())
+					resource = "Furs";
+				else if(e.getSource() == marketView.getGamesBuy())
+					resource = "Games";
+				else if(e.getSource() == marketView.getFoodBuy())
+					resource = "Food";
+				else if(e.getSource() == marketView.getFirearmsBuy())
+					resource = "Firearms";
+				else if(e.getSource() == marketView.getMachinesBuy())
+					resource = "Machines";
+				else if(e.getSource() == marketView.getMedicineBuy())
+					resource = "Medicine";
+				else if(e.getSource() == marketView.getNarcoticsBuy())
+					resource = "Narcotics";
+				else if(e.getSource() == marketView.getOreBuy())
+					resource = "Ore";
+				else if(e.getSource() == marketView.getRobotsBuy())
+					resource = "Robots";
+				
+				ArrayList<TradeGood> tPlayer = iPlayer.get(resource);
+				ArrayList<TradeGood> tPlanet = iPlanet.get(resource);
+				if(tPlanet.size() >= amount) {
+					
+					for(int i = 0; i < amount; i++) {
+						TradeGood tempGood = tPlanet.remove(tPlanet.size()-1);
+						tPlayer.add(tempGood);
+					}
+					
+					playerShip.setRemSpace(remaining - amount);
+					setMarketValues();
+				}
+				else {
+					marketView.getSpaceWarning().setText("Not enough of that to buy!");
+					marketView.getSpaceWarning().setVisible(true);
+				}
+			}
+			else {
+				marketView.getSpaceWarning().setText("No space remaining in cargo hold!");
+				marketView.getSpaceWarning().setVisible(true);
+			}
 		}
 		
 	}
 	
 	public class SellListener implements ActionListener {
+		Hashtable<String, ArrayList<TradeGood>> iPlanet;
+		Hashtable<String, ArrayList<TradeGood>> iPlayer;
 		
 		public void actionPerformed(ActionEvent e) {
+			iPlanet = curPlanet.getTradeGoods();
+			iPlayer = cargo.getTradeGoods();
+			int amount = marketView.getAmount();
+			int remaining = playerShip.getRemSpace();
+			String resource = "";
+			
 			if(e.getSource() == marketView.getWaterSell())
-				;
+				resource = "Water";
 			else if(e.getSource() == marketView.getFursSell())
-				;
+				resource = "Furs";
 			else if(e.getSource() == marketView.getGamesSell())
-				;
+				resource = "Games";
 			else if(e.getSource() == marketView.getFoodSell())
-				;
+				resource = "Food";
 			else if(e.getSource() == marketView.getFirearmsSell())
-				;
+				resource = "Firearms";
 			else if(e.getSource() == marketView.getMachinesSell())
-				;
+				resource = "Machines";
 			else if(e.getSource() == marketView.getMedicineSell())
-				;
+				resource = "Medicine";
 			else if(e.getSource() == marketView.getNarcoticsSell())
-				;
+				resource = "Narcotics";
 			else if(e.getSource() == marketView.getOreSell())
-				;
+				resource = "Ore";
 			else if(e.getSource() == marketView.getRobotsSell())
-				;
+				resource = "Robots";
+			
+			ArrayList<TradeGood> tPlanet = iPlanet.get(resource);
+			ArrayList<TradeGood> tPlayer = iPlayer.get(resource);
+			if(tPlayer.size() >= amount) {
+				marketView.getSpaceWarning().setVisible(false);
+				for(int i = 0; i < amount; i++) {
+					TradeGood tempGood = tPlayer.remove(tPlayer.size()-1);
+					tPlanet.add(tempGood);
+				}
+				
+				playerShip.setRemSpace(remaining + amount);
+				setMarketValues();
+			}
+			else {
+				marketView.getSpaceWarning().setText("Not enough of that to sell!");
+				marketView.getSpaceWarning().setVisible(true);
+			}
 		}
 		
 	}
-	
 	
 	/**
 	 * Method to generate all of the galaxies.
@@ -299,13 +358,25 @@ public class MainController extends JFrame {
 				Planet planet = planets[j];
 				Hashtable<String, ArrayList<TradeGood>> tempGoods = new Hashtable<String, ArrayList<TradeGood>>();
 				
-				for(int m = 0; m < listGoods.length; m++) {
-					int quantity = rand.nextInt(10);
+				for(TradeGood resource : listGoods) {
+					int quantity;
+					if(galaxies[i].getTechLevelNum() >= resource.getMTLP())
+						quantity = rand.nextInt(10) + 3; //produces at least 3 of each possible resource
+					else
+						quantity = 0;
+					
+					//calculate price
+					double fract = rand.nextInt(resource.getVar()+1);
+					int offset = (int)fract*resource.getPrice();
+					int flux = resource.getIPL()*(galaxies[i].getTechLevelNum()-resource.getMTLP());
+					int price = resource.getPrice() + flux + offset;
+					resource.setTotalPrice(price);
+					
 					ArrayList<TradeGood> list = new ArrayList<TradeGood>(quantity);
 					for(int n = 0; n < quantity; n++) {
-						list.add(listGoods[m]);
+						list.add(resource);
 					}
-					tempGoods.put(listGoods[m].getName(), list);
+					tempGoods.put(resource.getName(), list);
 				}
 				
 				planet.setTradeGoods(tempGoods);
@@ -314,33 +385,235 @@ public class MainController extends JFrame {
 		
 	}
 	
+	public void refreshCargoGoods() {
+		TradeGood[] listGoods = new TradeGood[] {
+				new Water(),
+				new Furs(),
+				new Games(),
+				new Food(),
+				new Firearms(),
+				new Machines(),
+				new Medicine(),
+				new Narcotics(),
+				new Ore(),
+				new Robots()
+		};
+		
+		Hashtable<String, ArrayList<TradeGood>> tempGoods = new Hashtable<String, ArrayList<TradeGood>>();
+				
+		for(TradeGood resource : listGoods) {
+			int quantity = 0;
+			ArrayList<TradeGood> list = new ArrayList<TradeGood>(quantity);
+			for(int n = 0; n < quantity; n++) {
+				list.add(resource);
+			}
+			tempGoods.put(resource.getName(), list);
+		}
+				
+		cargo.setTradeGoods(tempGoods);
+	}
+
 	public void setMarketValues() {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
+		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
 		
+		marketView.setLblRemaining(""+playerShip.getRemSpace());
 		for(Entry entry : iPlanet.entrySet()) {
 			ArrayList<TradeGood> resource = (ArrayList<TradeGood>)entry.getValue();
 			int quantity = resource.size();
 			
-			if((String)entry.getKey() == "Water")
+			if((String)entry.getKey() == "Water") {
 				marketView.getLblMwater().setText(""+quantity);
-			else if((String)entry.getKey() == "Furs")
+				if(quantity == 0)
+					marketView.getWaterBuy().setEnabled(false);
+				else {
+					marketView.getWaterBuy().setEnabled(true);
+					marketView.getWaterBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Furs") {
 				marketView.getLblMfurs().setText(""+quantity);
-			else if((String)entry.getKey() == "Games")
+				if(quantity == 0)
+					marketView.getFursBuy().setEnabled(false);
+				else {
+					marketView.getFursBuy().setEnabled(true);
+					marketView.getFursBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Games") {
 				marketView.getLblMgames().setText(""+quantity);
-			else if((String)entry.getKey() == "Firearms")
+				if(quantity == 0)
+					marketView.getGamesBuy().setEnabled(false);
+				else {
+					marketView.getGamesBuy().setEnabled(true);
+					marketView.getGamesBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Firearms") {
 				marketView.getLblMfirearms().setText(""+quantity);
-			else if((String)entry.getKey() == "Food")
+				if(quantity == 0)
+					marketView.getFirearmsBuy().setEnabled(false);
+				else {
+					marketView.getFirearmsBuy().setEnabled(true);
+					marketView.getFirearmsBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Food") {
 				marketView.getLblMfood().setText(""+quantity);
-			else if((String)entry.getKey() == "Machines")
+				if(quantity == 0)
+					marketView.getFoodBuy().setEnabled(false);
+				else {
+					marketView.getFoodBuy().setEnabled(true);
+					marketView.getFoodBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Machines") {
 				marketView.getLblMmachines().setText(""+quantity);
-			else if((String)entry.getKey() == "Robots")
+				if(quantity == 0)
+					marketView.getMachinesBuy().setEnabled(false);
+				else {
+					marketView.getMachinesBuy().setEnabled(true);
+					marketView.getMachinesBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Robots") {
 				marketView.getLblMrobots().setText(""+quantity);
-			else if((String)entry.getKey() == "Medicine")
+				if(quantity == 0)
+					marketView.getRobotsBuy().setEnabled(false);
+				else {
+					marketView.getRobotsBuy().setEnabled(true);
+					marketView.getRobotsBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Medicine") {
 				marketView.getLblMmedicine().setText(""+quantity);
-			else if((String)entry.getKey() == "Narcotics")
+				if(quantity == 0)
+					marketView.getMedicineBuy().setEnabled(false);
+				else {
+					marketView.getMedicineBuy().setEnabled(true);
+					marketView.getMedicineBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Narcotics") {
 				marketView.getLblMnarcotics().setText(""+quantity);
-			else if((String)entry.getKey() == "Ore")
+				if(quantity == 0)
+					marketView.getNarcoticsBuy().setEnabled(false);
+				else {
+					marketView.getNarcoticsBuy().setEnabled(true);
+					marketView.getNarcoticsBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Ore") {
 				marketView.getLblMore().setText(""+quantity);
+				if(quantity == 0)
+					marketView.getOreBuy().setEnabled(false);
+				else {
+					marketView.getOreBuy().setEnabled(true);
+					marketView.getOreBuy().setText("Buy["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+		}
+		
+		for(Entry entry : iPlayer.entrySet()) {
+			ArrayList<TradeGood> resource = (ArrayList<TradeGood>)entry.getValue();
+			int quantity = resource.size();
+			boolean disable = false;
+			
+			if(resource.size() > 0 && curGalaxy.getTechLevelNum() < resource.get(0).getMTLU())
+				disable = true;
+			
+			if((String)entry.getKey() == "Water") {
+				marketView.getLblCwater().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getWaterSell().setEnabled(false);
+				else {
+					marketView.getWaterSell().setEnabled(true);
+					marketView.getWaterSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Furs") {
+				marketView.getLblCfurs().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getFursSell().setEnabled(false);
+				else {
+					marketView.getFursSell().setEnabled(true);
+					marketView.getFursSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Games") {
+				marketView.getLblCgames().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getGamesSell().setEnabled(false);
+				else {
+					marketView.getGamesSell().setEnabled(true);
+					marketView.getGamesSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Firearms") {
+				marketView.getLblCfirearms().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getFirearmsSell().setEnabled(false);
+				else {
+					marketView.getFirearmsSell().setEnabled(true);
+					marketView.getFirearmsSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Food") {
+				marketView.getLblCfood().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getFoodSell().setEnabled(false);
+				else {
+					marketView.getFoodSell().setEnabled(true);
+					marketView.getFoodSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Machines") {
+				marketView.getLblCmachines().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getMachinesSell().setEnabled(false);
+				else {
+					marketView.getMachinesSell().setEnabled(true);
+					marketView.getMachinesSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Robots") {
+				marketView.getLblCrobots().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getRobotsSell().setEnabled(false);
+				else {
+					marketView.getRobotsSell().setEnabled(true);
+					marketView.getRobotsSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Medicine") {
+				marketView.getLblCmedicine().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getMedicineSell().setEnabled(false);
+				else {
+					marketView.getMedicineSell().setEnabled(true);
+					marketView.getMedicineSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Narcotics") {
+				marketView.getLblCnarcotics().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getNarcoticsSell().setEnabled(false);
+				else {
+					marketView.getNarcoticsSell().setEnabled(true);
+					marketView.getNarcoticsSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			else if((String)entry.getKey() == "Ore") {
+				marketView.getLblCore().setText(""+quantity);
+				if(quantity == 0 || disable)
+					marketView.getOreSell().setEnabled(false);
+				else {
+					marketView.getOreSell().setEnabled(true);
+					marketView.getOreSell().setText("Sell["+resource.get(0).getTotalPrice()+"]");
+				}
+			}
+			
+			marketView.getLblRemcredits().setText(""+player.getCredits());
 		}
 		
 	}
