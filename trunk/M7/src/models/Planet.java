@@ -5,13 +5,13 @@ import java.util.*;
 public class Planet { //somehow extends SolarSystem
 	private String resources;
 	private String name;
-	private Hashtable<String, TradeGood> goods;
+	private Hashtable<String, ArrayList<TradeGood>> goods;
 	private SolarSystem galaxy;
 
 	public Planet(String name) {
 		this.name = name;
 		
-		goods = new Hashtable<String, TradeGood>();
+		goods = new Hashtable<String, ArrayList<TradeGood>>();
 	}
 
 	public String getName() {
@@ -62,11 +62,11 @@ public class Planet { //somehow extends SolarSystem
 		}
 	}
 	
-	public void setTradeGoods(Hashtable<String, TradeGood> goods) {
+	public void setTradeGoods(Hashtable<String, ArrayList<TradeGood>> goods) {
 		this.goods = goods;
 	}
 	
-	public Hashtable<String, TradeGood> getTradeGoods() {
+	public Hashtable<String, ArrayList<TradeGood>> getTradeGoods() {
 		return goods;
 	}
 	
