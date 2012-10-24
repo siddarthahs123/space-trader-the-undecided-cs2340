@@ -1,7 +1,10 @@
 package models;
 
-import javax.swing.*;
-
+/**
+ * This class represents the SolarSystem model that stores all the information about
+ * the galaxy.
+ * @author Justin
+ */
 public class SolarSystem {
 	private Planet[] planets;
 	private String techLevel;
@@ -9,6 +12,12 @@ public class SolarSystem {
 	private String name;
 	private int x, y;
 	
+	/**
+	 * This is the constructor for this class.
+	 * @param name The name of the Solar System
+	 * @param x The X coordinate of the planet
+	 * @param y The Y coordinate of the planet
+	 */
 	public SolarSystem(String name, int x, int y) {
 		this.name = name;
 		this.x = x;
@@ -45,34 +54,66 @@ public class SolarSystem {
 		}
 	}
 	
+	/**
+	 * A getter for the string version of the TechLevel
+	 * @return The TechLevel as a string
+	 */
 	public String techLevel() {
 		return techLevel;
 	}
 	
+	/**
+	 * A getter for the int version of the TechLevel
+	 * @return The TechLevel as a number
+	 */
 	public int getTechLevelNum(){
 		return techLevelNum;
 	}
 
+	/**
+	 * A getter for the name of the Solar System
+	 * @return
+	 */
 	public String name() {
 		return name;
 	}
-
+	
+	/**
+	 * A getter for the X coordinate of the Solar System
+	 * @return The X coordinate of the solar system
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * A getter for the Y coordinate of the Solar System
+	 * @return The Y coordinate of the solar system
+	 */
 	public int getY() {
 		return y;
 	}
 	
+	/**
+	 * A setter for the array of Planets in the solar system
+	 * @param planets An array of Planets
+	 */
 	public void setPlanets(Planet[] planets) {
 		this.planets = planets;
 	}
 	
+	/**
+	 * A getter for the array of Planets in the Solar System
+	 * @return An array of Planets in the Solar System
+	 */
 	public Planet[] getPlanets() {
 		return planets;
 	}
 	
+	/**
+	 * A getter for the information of the Solar System
+	 * @return A string representation of the Solar System and it's planets
+	 */
 	public String toString() {
 		String systemInfo = "Name: "+name+" Tech Level: "+techLevel+" Location: "+x+", "+y+"\n";
 		String planetInfo = "";
