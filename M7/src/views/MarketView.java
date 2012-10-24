@@ -13,13 +13,12 @@ public class MarketView extends MainView {
 	private JPanel panel;
 	private JLabel planetName, lblMrobots, lblMore, lblMnarcotics, lblMmedicine, lblMmachines, lblMfirearms, lblMfood,
 		lblMgames, lblMfurs, lblMwater, lblCrobots, lblCore, lblCnarcotics, lblCmedicine, lblCmachines, lblCfirearms,
-		lblCfood, lblCgames, lblCfurs, lblCwater, spaceWarning, lblremaining;;
+		lblCfood, lblCgames, lblCfurs, lblCwater, spaceWarning, lblremaining, creditWarning, lblRemcredits;
 	private ButtonGroup buyGroup, sellGroup;
 	private JButton waterBuy, fursBuy, gamesBuy, foodBuy, firearmsBuy, machinesBuy, medicineBuy, narcoticsBuy, oreBuy,
 		robotsBuy, waterSell, fursSell, gamesSell, foodSell, firearmsSell, machinesSell, medicineSell, narcoticsSell, oreSell,
 		robotsSell;
 	private JSpinner spinner;
-	private JLabel lblRemcredits;
 
 	public MarketView(BuyListener buyListener, SellListener sellListener) {
 		panel = new JPanel();
@@ -192,121 +191,121 @@ public class MarketView extends MainView {
 		panel.add(lblMrobots);
 		
 		waterBuy = new JButton("Buy");
-		waterBuy.setBounds(386, 94, 97, 29);
+		waterBuy.setBounds(367, 95, 115, 29);
 		panel.add(waterBuy);
 		waterBuy.addActionListener(buyListener);
 		waterBuy.setEnabled(false);
 		
 		fursBuy = new JButton("Buy");
-		fursBuy.setBounds(386, 119, 97, 29);
+		fursBuy.setBounds(367, 120, 115, 29);
 		panel.add(fursBuy);
 		fursBuy.addActionListener(buyListener);
 		fursBuy.setEnabled(false);
 		
 		gamesBuy = new JButton("Buy");
-		gamesBuy.setBounds(386, 144, 97, 29);
+		gamesBuy.setBounds(367, 145, 115, 29);
 		panel.add(gamesBuy);
 		gamesBuy.addActionListener(buyListener);
 		gamesBuy.setEnabled(false);
 		
 		foodBuy = new JButton("Buy");
-		foodBuy.setBounds(386, 169, 97, 29);
+		foodBuy.setBounds(367, 170, 115, 29);
 		panel.add(foodBuy);
 		foodBuy.addActionListener(buyListener);
 		foodBuy.setEnabled(false);
 		
 		firearmsBuy = new JButton("Buy");
-		firearmsBuy.setBounds(386, 194, 97, 29);
+		firearmsBuy.setBounds(367, 195, 115, 29);
 		panel.add(firearmsBuy);
 		firearmsBuy.addActionListener(buyListener);
 		firearmsBuy.setEnabled(false);
 		
 		machinesBuy = new JButton("Buy");
-		machinesBuy.setBounds(386, 219, 97, 29);
+		machinesBuy.setBounds(367, 220, 115, 29);
 		panel.add(machinesBuy);
 		machinesBuy.addActionListener(buyListener);
 		machinesBuy.setEnabled(false);
 		
 		medicineBuy = new JButton("Buy");
-		medicineBuy.setBounds(386, 244, 97, 29);
+		medicineBuy.setBounds(367, 245, 115, 29);
 		panel.add(medicineBuy);
 		medicineBuy.addActionListener(buyListener);
 		medicineBuy.setEnabled(false);
 		
 		narcoticsBuy = new JButton("Buy");
-		narcoticsBuy.setBounds(386, 269, 97, 29);
+		narcoticsBuy.setBounds(367, 270, 115, 29);
 		panel.add(narcoticsBuy);
 		narcoticsBuy.addActionListener(buyListener);
 		narcoticsBuy.setEnabled(false);
 		
 		oreBuy = new JButton("Buy");
-		oreBuy.setBounds(386, 294, 97, 29);
+		oreBuy.setBounds(367, 295, 115, 29);
 		panel.add(oreBuy);
 		oreBuy.addActionListener(buyListener);
 		oreBuy.setEnabled(false);
 		
 		robotsBuy = new JButton("Buy");
-		robotsBuy.setBounds(386, 319, 97, 29);
+		robotsBuy.setBounds(367, 320, 115, 29);
 		panel.add(robotsBuy);
 		robotsBuy.addActionListener(buyListener);
 		robotsBuy.setEnabled(false);
 		
 		waterSell = new JButton("Sell");
-		waterSell.setBounds(476, 94, 97, 29);
+		waterSell.setBounds(476, 95, 115, 29);
 		panel.add(waterSell);
 		waterSell.addActionListener(sellListener);
 		waterSell.setEnabled(false);
 		
 		fursSell = new JButton("Sell");
-		fursSell.setBounds(476, 119, 97, 29);
+		fursSell.setBounds(476, 120, 115, 29);
 		panel.add(fursSell);
 		fursSell.addActionListener(sellListener);
 		fursSell.setEnabled(false);
 		
 		gamesSell = new JButton("Sell");
-		gamesSell.setBounds(476, 144, 97, 29);
+		gamesSell.setBounds(476, 145, 115, 29);
 		panel.add(gamesSell);
 		gamesSell.addActionListener(sellListener);
 		gamesSell.setEnabled(false);
 		
 		foodSell = new JButton("Sell");
-		foodSell.setBounds(476, 169, 97, 29);
+		foodSell.setBounds(476, 170, 115, 29);
 		panel.add(foodSell);
 		foodSell.addActionListener(sellListener);
 		foodSell.setEnabled(false);
 		
 		firearmsSell = new JButton("Sell");
-		firearmsSell.setBounds(476, 194, 97, 29);
+		firearmsSell.setBounds(476, 195, 115, 29);
 		panel.add(firearmsSell);
 		firearmsSell.addActionListener(sellListener);
 		firearmsSell.setEnabled(false);
 		
 		machinesSell = new JButton("Sell");
-		machinesSell.setBounds(476, 219, 97, 29);
+		machinesSell.setBounds(476, 220, 115, 29);
 		panel.add(machinesSell);
 		machinesSell.addActionListener(sellListener);
 		machinesSell.setEnabled(false);
 		
 		medicineSell = new JButton("Sell");
-		medicineSell.setBounds(476, 244, 97, 29);
+		medicineSell.setBounds(476, 245, 115, 29);
 		panel.add(medicineSell);
 		medicineSell.addActionListener(sellListener);
 		medicineSell.setEnabled(false);
 		
 		narcoticsSell = new JButton("Sell");
-		narcoticsSell.setBounds(476, 269, 97, 29);
+		narcoticsSell.setBounds(476, 270, 115, 29);
 		panel.add(narcoticsSell);
 		narcoticsSell.addActionListener(sellListener);
 		narcoticsSell.setEnabled(false);
 		
 		oreSell = new JButton("Sell");
-		oreSell.setBounds(476, 294, 97, 29);
+		oreSell.setBounds(476, 295, 115, 29);
 		panel.add(oreSell);
 		oreSell.addActionListener(sellListener);
 		oreSell.setEnabled(false);
 		
 		robotsSell = new JButton("Sell");
-		robotsSell.setBounds(476, 319, 97, 29);
+		robotsSell.setBounds(476, 320, 115, 29);
 		panel.add(robotsSell);
 		robotsSell.addActionListener(sellListener);
 		robotsSell.setEnabled(false);
@@ -364,6 +363,12 @@ public class MarketView extends MainView {
 		lblRemcredits.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRemcredits.setBounds(565, 46, 61, 16);
 		panel.add(lblRemcredits);
+		
+		creditWarning = new JLabel("Not enough credits remaining!");
+		creditWarning.setHorizontalAlignment(SwingConstants.CENTER);
+		creditWarning.setBounds(237, 391, 227, 16);
+		panel.add(creditWarning);
+		creditWarning.setVisible(false);
 	}
 	
 	public int getAmount() {
@@ -560,5 +565,9 @@ public class MarketView extends MainView {
 	
 	public JLabel getLblRemcredits() {
 		return lblRemcredits;
+	}
+	
+	public JLabel getCreditWarning() {
+		return creditWarning;
 	}
 }

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+import java.util.Map.*;
 
 public class Cargo {
 	
@@ -18,4 +19,12 @@ public class Cargo {
 		this.inventory = inventory;
 	}
 	
+	public String toString() {
+		String str = "Cargo Inventory\n===============\n";
+		for(Entry entry : inventory.entrySet()) {
+			str += "Resource: "+entry.getKey()+", Quantity: "+((ArrayList<TradeGood>)entry.getValue()).size()+"\n";
+		}
+		
+		return str;
+	}
 }
