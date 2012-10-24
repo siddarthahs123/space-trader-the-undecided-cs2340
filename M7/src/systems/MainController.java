@@ -213,20 +213,44 @@ public class MainController extends JFrame {
 				galaxies[i].setPlanets(planets);
 				allPlanets[i] = planets[0];
 		}
+		refreshTradeGoods();
 		return allPlanets;
 	}
 	
 	public void refreshTradeGoods() {
+		Random rand = new Random();
+		TradeGood[] listGoods = new TradeGood[] {
+				new Water(),
+				new Furs(),
+				new Games(),
+				new Food(),
+				new Firearms(),
+				new Machines(),
+				new Medicine(),
+				new Narcotics(),
+				new Ore(),
+				new Robots()
+		};
 		
 		for(int i = 0; i < galaxies.length; i++) {
 			SolarSystem galaxy = galaxies[i];
 			Planet[] planets = galaxy.getPlanets();
 			
 			for(int j = 0; j < planets.length; j++) {
-				Hashtable<String, TradeGood> tempGoods = new Hashtable<String, TradeGood>();
+				Planet planet = planets[j];
+				Hashtable<String, ArrayList<TradeGood>> tempGoods = new Hashtable<String, ArrayList<TradeGood>>();
 				
+				for(int m = 0; m < listGoods.length; m++) {
+					int quantity = rand.nextInt(10);
+					ArrayList<TradeGood> list = new ArrayList<TradeGood>(quantity);
+					for(int n = 0; n < quantity; n++) {
+						list.add(listGoods[m]);
+					}
+					tempGoods.put(listGoods[m].getName(), list);
+				}
+				
+				planet.setTradeGoods(tempGoods);
 			}
-				
 		}
 		
 	}
