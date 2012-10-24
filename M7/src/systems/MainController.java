@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 import models.*;
 import views.*;
@@ -84,7 +85,7 @@ public class MainController extends JFrame {
 		JPanel universeCard = universeView.getPanel();
 		
 		//Generate market view
-		marketView = new MarketView();
+		marketView = new MarketView(new BuyListener(), new SellListener());
 		JPanel marketCard = marketView.getPanel();
 		
 		//Add cards to card layout
@@ -162,9 +163,67 @@ public class MainController extends JFrame {
 			System.out.println(curGalaxy.toString());
 			
 			marketView.setPlanetName(curPlanet.getName());
+			setMarketValues();
 			nextState(MARKET);
 		}
 	}
+	
+	
+	
+	public class BuyListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == marketView.getWaterBuy())
+				;
+			else if(e.getSource() == marketView.getFursBuy())
+				;
+			else if(e.getSource() == marketView.getGamesBuy())
+				;
+			else if(e.getSource() == marketView.getFoodBuy())
+				;
+			else if(e.getSource() == marketView.getFirearmsBuy())
+				;
+			else if(e.getSource() == marketView.getMachinesBuy())
+				;
+			else if(e.getSource() == marketView.getMedicineBuy())
+				;
+			else if(e.getSource() == marketView.getNarcoticsBuy())
+				;
+			else if(e.getSource() == marketView.getOreBuy())
+				;
+			else if(e.getSource() == marketView.getRobotsBuy())
+				;
+		}
+		
+	}
+	
+	public class SellListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == marketView.getWaterSell())
+				;
+			else if(e.getSource() == marketView.getFursSell())
+				;
+			else if(e.getSource() == marketView.getGamesSell())
+				;
+			else if(e.getSource() == marketView.getFoodSell())
+				;
+			else if(e.getSource() == marketView.getFirearmsSell())
+				;
+			else if(e.getSource() == marketView.getMachinesSell())
+				;
+			else if(e.getSource() == marketView.getMedicineSell())
+				;
+			else if(e.getSource() == marketView.getNarcoticsSell())
+				;
+			else if(e.getSource() == marketView.getOreSell())
+				;
+			else if(e.getSource() == marketView.getRobotsSell())
+				;
+		}
+		
+	}
+	
 	
 	/**
 	 * Method to generate all of the galaxies.
@@ -255,7 +314,36 @@ public class MainController extends JFrame {
 		
 	}
 	
-	
+	public void setMarketValues() {
+		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
+		
+		for(Entry entry : iPlanet.entrySet()) {
+			ArrayList<TradeGood> resource = (ArrayList<TradeGood>)entry.getValue();
+			int quantity = resource.size();
+			
+			if((String)entry.getKey() == "Water")
+				marketView.getLblMwater().setText(""+quantity);
+			else if((String)entry.getKey() == "Furs")
+				marketView.getLblMfurs().setText(""+quantity);
+			else if((String)entry.getKey() == "Games")
+				marketView.getLblMgames().setText(""+quantity);
+			else if((String)entry.getKey() == "Firearms")
+				marketView.getLblMfirearms().setText(""+quantity);
+			else if((String)entry.getKey() == "Food")
+				marketView.getLblMfood().setText(""+quantity);
+			else if((String)entry.getKey() == "Machines")
+				marketView.getLblMmachines().setText(""+quantity);
+			else if((String)entry.getKey() == "Robots")
+				marketView.getLblMrobots().setText(""+quantity);
+			else if((String)entry.getKey() == "Medicine")
+				marketView.getLblMmedicine().setText(""+quantity);
+			else if((String)entry.getKey() == "Narcotics")
+				marketView.getLblMnarcotics().setText(""+quantity);
+			else if((String)entry.getKey() == "Ore")
+				marketView.getLblMore().setText(""+quantity);
+		}
+		
+	}
 	
 	
 	/**
