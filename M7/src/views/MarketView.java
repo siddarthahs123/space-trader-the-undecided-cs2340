@@ -1,12 +1,12 @@
 package views;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-import models.*;
 import systems.MainController.BuyListener;
 import systems.MainController.SellListener;
-import java.awt.Color;
-import java.awt.event.*;
+import systems.MainController.MapListener;
 
 public class MarketView extends MainView {
 	
@@ -17,10 +17,10 @@ public class MarketView extends MainView {
 	private ButtonGroup buyGroup, sellGroup;
 	private JButton waterBuy, fursBuy, gamesBuy, foodBuy, firearmsBuy, machinesBuy, medicineBuy, narcoticsBuy, oreBuy,
 		robotsBuy, waterSell, fursSell, gamesSell, foodSell, firearmsSell, machinesSell, medicineSell, narcoticsSell, oreSell,
-		robotsSell;
+		robotsSell, btnToMap, fuelBuy;
 	private JSpinner spinner;
 
-	public MarketView(BuyListener buyListener, SellListener sellListener) {
+	public MarketView(BuyListener buyListener, SellListener sellListener, MapListener mapListener) {
 		panel = new JPanel();
 		panel.setBounds(6, 6, 679, 473);
 		panel.setLayout(null);
@@ -336,7 +336,7 @@ public class MarketView extends MainView {
 		
 		spaceWarning = new JLabel("No space remaining in cargo hold!");
 		spaceWarning.setHorizontalAlignment(SwingConstants.CENTER);
-		spaceWarning.setBounds(227, 371, 237, 16);
+		spaceWarning.setBounds(354, 361, 237, 16);
 		panel.add(spaceWarning);
 		spaceWarning.setVisible(false);
 		
@@ -348,6 +348,7 @@ public class MarketView extends MainView {
 		spinner.setBounds(592, 211, 61, 28);
 		panel.add(spinner);
 		spinner.setValue(1);
+		spinner.addChangeListener(new SpinListener());
 		
 		JLabel lblAmount = new JLabel("Amount:");
 		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
@@ -366,9 +367,33 @@ public class MarketView extends MainView {
 		
 		creditWarning = new JLabel("Not enough credits remaining!");
 		creditWarning.setHorizontalAlignment(SwingConstants.CENTER);
-		creditWarning.setBounds(237, 391, 227, 16);
+		creditWarning.setBounds(364, 381, 227, 16);
 		panel.add(creditWarning);
+		
+		btnToMap = new JButton("To Map");
+		btnToMap.setBounds(6, 20, 117, 29);
+		panel.add(btnToMap);
+		
+		fuelBuy = new JButton("Buy");
+		fuelBuy.setEnabled(false);
+		fuelBuy.setBounds(151, 365, 115, 29);
+		panel.add(fuelBuy);
+		
+		JLabel lblFuel = new JLabel("Fuel");
+		lblFuel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFuel.setBounds(55, 372, 61, 16);
+		panel.add(lblFuel);
 		creditWarning.setVisible(false);
+		btnToMap.addActionListener(mapListener);
+		
+	}
+	
+	public class SpinListener implements ChangeListener {
+		public void stateChanged(ChangeEvent e) {
+			if((Integer)spinner.getValue() < 1) {
+				spinner.setValue(1);
+			}
+		}
 	}
 	
 	public int getAmount() {
@@ -569,5 +594,9 @@ public class MarketView extends MainView {
 	
 	public JLabel getCreditWarning() {
 		return creditWarning;
+	}
+	
+	public JButton getBtnToMap() {
+		return btnToMap;
 	}
 }

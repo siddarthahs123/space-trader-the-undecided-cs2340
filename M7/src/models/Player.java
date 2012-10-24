@@ -8,24 +8,10 @@ package models;
  *
  */
 public class Player {
-	private int pilot, fighter, trader, engineer, karma, difficulty;
+	private int pilot, fighter, trader, engineer, karma, difficulty, fuel, turn;
 	private double credits;
 	private String name;
 	private boolean policeRecord;
-	
-	/**
-	 * Constructor that allocates the skills of the player
-	 * Constructor is chained to the main constructor
-	 * 
-	 * @param pilot
-	 * @param fighter
-	 * @param trader
-	 * @param engineer
-	 * @param name
-	 */
-	/*public Player(int pilot, int fighter, int trader, int engineer, String name) {
-		this(pilot, fighter, trader, engineer, 2, name);
-	}*/
 	
 	/**
 	 * Main Constructor allocates the skills of the player and the difficulty level and the name of the player
@@ -46,6 +32,8 @@ public class Player {
 		policeRecord = false;
 		this.difficulty = difficulty;
 		
+		turn = 0;
+		fuel = 70000; //700 is reasonable
 		this.credits = 2500 - (difficulty * 750);
 	}
 	
@@ -206,4 +194,19 @@ public class Player {
 		return difficulty;
 	}
 	
+	public int getFuel() {
+		return fuel;
+	}
+	
+	public void setFuel(int fuel) {
+		this.fuel = fuel;
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
 }

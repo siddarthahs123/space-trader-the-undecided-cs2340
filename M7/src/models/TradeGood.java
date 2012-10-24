@@ -20,7 +20,7 @@ public class TradeGood {
 	private String ER; // if true, the resource is expensive
 	private int MTL; // min price offered in space trade with random trader
 	private int MTH; // max price offered in space trade with random trader
-	private int totalPrice;
+	private int totalPrice, deflatedPrice;
 
 	/**
 	 * Constructor for a particular trade good
@@ -52,6 +52,7 @@ public class TradeGood {
 		this.MTL = MTL;
 		this.MTH = MTH;
 		totalPrice = basePrice; //starting out
+		deflatedPrice = totalPrice; //starting out
 	}
 	
 	public int getPrice() {
@@ -106,7 +107,12 @@ public class TradeGood {
 		return totalPrice;
 	}
 	
+	public int getDeflatedPrice() {
+		return deflatedPrice;
+	}
+	
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
+		this.deflatedPrice = (int)(totalPrice - (totalPrice*0.05d));
 	}
 }
