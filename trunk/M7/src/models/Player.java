@@ -42,7 +42,7 @@ public class Player {
 		this.trader = trader;
 		this.engineer = engineer;
 		karma = 0;
-		credits = 2000; //default
+		credits = 5000; //default
 		this.name = name;
 		policeRecord = false;
 		this.difficulty = difficulty;
