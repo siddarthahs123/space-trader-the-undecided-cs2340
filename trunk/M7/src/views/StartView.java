@@ -301,7 +301,7 @@ public class StartView extends MainView {
 			
 			while(remPoints > 0) {
 				int count = rand.nextInt(scores.length);
-				int score = rand.nextInt(placeHolder/3+3);
+				int score = rand.nextInt((remPoints/2)+2);
 				if(tally == 3 && done[count] == false) {
 					scores[count] = remPoints;
 					done[count] = true;
@@ -313,6 +313,7 @@ public class StartView extends MainView {
 					remPoints -= score;
 					tally++;
 				}
+				
 				
 			}
 			
