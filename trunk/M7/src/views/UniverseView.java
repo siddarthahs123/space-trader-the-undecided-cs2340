@@ -2,17 +2,22 @@ package views;
 
 import java.awt.*;
 import java.util.*;
-
 import javax.swing.*;
-
 
 import models.*;
 import systems.MainController.*;
 
+/**
+ * This class represents the Long-Range map for the game and displays all Solar Systems.
+ * @author Justin
+ */
 public class UniverseView extends MainView { //maybe implement main view
 	
 	private JPanel panel;
 	
+	/**
+	 * Constructor for this class.
+	 */
 	public UniverseView() {
 		panel = new JPanel();
 		panel.setBounds(6, 6, 679, 473);
@@ -21,6 +26,12 @@ public class UniverseView extends MainView { //maybe implement main view
 		
 	}
 	
+	/**
+	 * This method places the galaxies on the map as buttons.
+	 * @param galaxies An SolarSystem array of all galaxies
+	 * @param listener A listener to be added to each button
+	 * @return A hashtable storing the button-solarsystem pairs
+	 */
 	public Hashtable<JButton, SolarSystem> drawGalaxies(SolarSystem[] galaxies, PlanetListener listener) {
 		Hashtable<JButton, SolarSystem> tempHash = new Hashtable<JButton, SolarSystem>();
 		for(int i = 0; i < galaxies.length; i++) {
@@ -35,6 +46,10 @@ public class UniverseView extends MainView { //maybe implement main view
 		return tempHash;
 	}
 	
+	/**
+	 * This method is a getter for the panel.
+	 * @return The panel
+	 */
 	public JPanel getPanel() {
 		return panel;
 	}
