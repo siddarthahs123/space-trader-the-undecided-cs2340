@@ -28,6 +28,7 @@ public class MainController extends JFrame {
 	private final String MARKET = "Market Screen";
 	
 	private Hashtable<JButton, SolarSystem> hash;
+	private Hashtable<String, Integer> deflatedPrices;
 	private SolarSystem curGalaxy;
 	private Planet curPlanet;
 	private Universe universe;
@@ -209,6 +210,7 @@ public class MainController extends JFrame {
 				}
 				showRange();
 				System.out.println("Fuel Remaining: "+player.getFuel()+"\n");
+				deflatedPrices = curPlanet.getDeflatedPrices();
 				nextState(MARKET);
 			}
 			else {
@@ -514,7 +516,7 @@ public class MainController extends JFrame {
 	public void setMarketValues() {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
-		Hashtable<String, Integer> deflatedPrices = curPlanet.getDeflatedPrices();
+		
 		
 		marketView.setLblRemaining(""+playerShip.getRemSpace());
 
