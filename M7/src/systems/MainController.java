@@ -27,7 +27,7 @@ public class MainController extends JFrame {
 	private final String UNIVERSE = "Universe Screen";
 	private final String MARKET = "Market Screen";
 	
-	private Hashtable hash;
+	private Hashtable<JButton, SolarSystem> hash;
 	private SolarSystem curGalaxy;
 	private Planet curPlanet;
 	private Universe universe;
@@ -170,17 +170,25 @@ public class MainController extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			double distance = 0;
 			universeView.getFuelWarning().setVisible(false);
+			
 			if(player.getTurn() > 0) {
-				int dX = curGalaxy.getX();
-				int dY = curGalaxy.getY();
-				distance = Math.pow((dX*dX)+(dY*dY), 1d/2d);
-				prevButton = curButton;
-				prevButton.setBorder(null); //eliminates previous border
-				//System.out.println("Distance to Travel: "+distance);
+				JButton tempButton = (JButton)e.getSource();
+				SolarSystem destSystem = hash.get(tempButton);
+				if(!destSystem.equals(curGalaxy)) {
+					int sX = destSystem.getX();
+					int sY = destSystem.getY();
+					int dX = sY - curGalaxy.getX();
+					int dY = sX - curGalaxy.getY();
+					distance = Math.pow((dX*dX)+(dY*dY), 1d/2d);
+					prevButton = curButton;
+					curButton = tempButton;
+				}
+			}
+			else {
+				curButton = (JButton)e.getSource();
 			}
 			
 			if(player.getFuel() >= distance) {
-				curButton = (JButton)e.getSource();
 				Border thickBorder = new LineBorder(Color.RED, 1);
 				curButton.setBorder(thickBorder); //sets current galaxy's border
 				curGalaxy = (SolarSystem)hash.get(e.getSource());
@@ -193,22 +201,21 @@ public class MainController extends JFrame {
 				
 				System.out.println(curGalaxy.toString());
 				
-				showRange();
-				
 				setMarketValues();
 				marketView.setPlanetName(curPlanet.getName());
 				if(!curButton.equals(prevButton)) { //if selecting a different galaxy
 					player.setTurn(player.getTurn()+1);
 					player.setFuel(player.getFuel()-(int)distance);
 				}
+				showRange();
 				System.out.println("Fuel Remaining: "+player.getFuel()+"\n");
 				nextState(MARKET);
 			}
 			else {
-				Border thickBorder = new LineBorder(Color.RED, 1);
-				curButton.setBorder(thickBorder); //sets current galaxy's border
+				
 				universeView.getFuelWarning().setVisible(true);
 			}
+			
 		}
 	}
 	
@@ -745,12 +752,14 @@ public class MainController extends JFrame {
 		JButton[] buttons = (JButton[])hash.keySet().toArray(new JButton[hash.size()]);
 		Border closeBorder = new LineBorder(Color.GREEN, 1);
 		Border farBorder = new LineBorder(Color.YELLOW, 1);
+		Border curBorder = new LineBorder(Color.RED, 1);
 		
 		for(int i = 0; i < buttons.length; i++) {
 			if(!buttons[i].equals(curButton)) {
 				int dX = buttons[i].getX() - curButton.getX();
 				int dY = buttons[i].getY() - curButton.getY();
 				int distance = (int)Math.pow((dX*dX)+(dY*dY), 1d/2d);
+				System.out.println(hash.get(buttons[i]).name()+": "+distance);
 				
 				if(distance <= player.getFuel()/2) { //green means close range
 					buttons[i].setBorder(closeBorder);
@@ -758,6 +767,12 @@ public class MainController extends JFrame {
 				else if(distance > player.getFuel()/2 && distance <= player.getFuel()) { //yellow means far range
 					buttons[i].setBorder(farBorder);
 				}
+				else {
+					buttons[i].setBorder(null);
+				}
+			}
+			else {
+				curButton.setBorder(curBorder); //sets current galaxy's border
 			}
 		}
 		
