@@ -33,6 +33,9 @@ public class Planet { //somehow extends SolarSystem
 			if(!goods.get(resources[i]).isEmpty()) {
 				deflatedPrices.put(resources[i], goods.get(resources[i]).get(0).getDeflatedPrice());
 			}
+			else {
+				deflatedPrices.put(resources[i], 0);
+			}
 		}
 		
 		return deflatedPrices;
