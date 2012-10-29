@@ -10,7 +10,7 @@ public class SolarSystem {
 	private String techLevel;
 	private int techLevelNum;
 	private String name;
-	private int x, y;
+	private int x, y, distance;
 	
 	/**
 	 * This is the constructor for this class.
@@ -112,6 +112,14 @@ public class SolarSystem {
 	 */
 	public Planet[] getPlanets() {
 		return planets;
+	}
+	
+	public int getDistanceTo() {
+		return distance;
+	}
+	
+	public void setDistanceTo(int distance) {
+		this.distance = distance;
 	}
 	
 	/**

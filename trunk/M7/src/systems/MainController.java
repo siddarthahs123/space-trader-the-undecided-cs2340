@@ -148,15 +148,6 @@ public class MainController extends JFrame {
 				String name = startView.getTextField();
 				int difficulty = startView.getDifficulty();
 				System.out.println("Difficulty : " + difficulty);
-//				if(startView.easy().isSelected()) {
-//					difficulty = 0;
-//				}
-//				else if(startView.medium().isSelected()) {
-//					difficulty = 1;
-//				}
-//				else {
-//					difficulty = 2;
-//				}
 				
 				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
 				player.printData();
@@ -178,11 +169,7 @@ public class MainController extends JFrame {
 				JButton tempButton = (JButton)e.getSource();
 				SolarSystem destSystem = hash.get(tempButton);
 				if(!destSystem.equals(curGalaxy)) {
-					int sX = destSystem.getX();
-					int sY = destSystem.getY();
-					int dX = sY - curGalaxy.getX();
-					int dY = sX - curGalaxy.getY();
-					distance = (int)Math.pow((dX*dX)+(dY*dY), 1d/2d);
+					distance = destSystem.getDistanceTo();
 					prevButton = curButton;
 					curButton = tempButton;
 				}
@@ -194,8 +181,6 @@ public class MainController extends JFrame {
 			if(player.getFuel() >= distance) {
 				curGalaxy = (SolarSystem)hash.get(e.getSource());
 				curPlanet = curGalaxy.getPlanets()[0];
-				
-				//System.out.println("CurGalaxy: "+curGalaxy.name()+" CurPlanet: "+curPlanet.getName());
 				
 				universe.setCurGalaxy(curGalaxy);
 				universe.setCurPlanet(curPlanet);
@@ -761,6 +746,8 @@ public class MainController extends JFrame {
 				int dX = buttons[i].getX() - curButton.getX();
 				int dY = buttons[i].getY() - curButton.getY();
 				int distance = (int)Math.pow((dX*dX)+(dY*dY), 1d/2d);
+				
+				hash.get(buttons[i]).setDistanceTo(distance); //set distance to galaxy
 				
 				System.out.println(hash.get(buttons[i]).name()+": "+distance);
 				
