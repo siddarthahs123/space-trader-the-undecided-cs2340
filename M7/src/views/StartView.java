@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.event.*;
+
 import javax.swing.*;
 import java.util.*;
 
@@ -13,7 +14,7 @@ public class StartView extends MainView {
 	private JRadioButton rdbtnEasy, rdbtnMedium, rdbtnHard;
 	private ButtonGroup difficultyGroup;
 	private JLabel lblRandomly;
-	
+	private int difficulty;
 	public StartView() {
 		panel = new JPanel();
 		panel.setBounds(6, 6, 679, 473);
@@ -141,6 +142,8 @@ public class StartView extends MainView {
 		JLabel lblDifficulty = new JLabel("Difficulty:");
 		difficultyLabel.add(lblDifficulty);
 		
+		DifficultyListener dListener = new DifficultyListener();
+		
 		rdbtnEasy = new JRadioButton("Easy");
 		difficultyLabel.add(rdbtnEasy);
 		
@@ -155,6 +158,10 @@ public class StartView extends MainView {
 		difficultyGroup.add(rdbtnEasy);
 		difficultyGroup.add(rdbtnMedium);
 		difficultyGroup.add(rdbtnHard);
+		
+		rdbtnMedium.addActionListener(dListener);
+		rdbtnEasy.addActionListener(dListener);
+		rdbtnHard.addActionListener(dListener);
 		
 		pointsWarning = new JLabel("Please allocate all points!");
 		pointsWarning.setBounds(59, 407, 159, 16);
@@ -420,5 +427,24 @@ public class StartView extends MainView {
 	
 	public ButtonGroup difficultyGroup() {
 		return difficultyGroup;
+	}
+	
+	private class DifficultyListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == rdbtnEasy)
+				difficulty = 0;
+			else if (e.getSource() == rdbtnMedium)
+				difficulty = 1;
+			else
+				difficulty = 2;
+			
+		}
+		
+	}
+
+	public int getDifficulty() {
+		return difficulty;
 	}
 }
