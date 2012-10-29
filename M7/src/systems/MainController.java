@@ -147,6 +147,7 @@ public class MainController extends JFrame {
 				int trader = startView.getTPoints();
 				String name = startView.getTextField();
 				int difficulty = startView.getDifficulty();
+				System.out.println("Difficulty : " + difficulty);
 //				if(startView.easy().isSelected()) {
 //					difficulty = 0;
 //				}
@@ -214,10 +215,9 @@ public class MainController extends JFrame {
 				nextState(MARKET);
 			}
 			else {
-				System.out.println(distance);
+				System.out.println("Distance travelled : " + distance);
 				universeView.getFuelWarning().setVisible(true);
 			}
-			
 		}
 	}
 	
