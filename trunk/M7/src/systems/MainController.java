@@ -170,7 +170,7 @@ public class MainController extends JFrame {
 	 */
 	public class PlanetListener implements ActionListener { //make sure clicking on current planet doesn't add a turn
 		public void actionPerformed(ActionEvent e) {
-			double distance = 0;
+			int distance = 0;
 			universeView.getFuelWarning().setVisible(false);
 			
 			if(player.getTurn() > 0) {
@@ -181,7 +181,7 @@ public class MainController extends JFrame {
 					int sY = destSystem.getY();
 					int dX = sY - curGalaxy.getX();
 					int dY = sX - curGalaxy.getY();
-					distance = Math.pow((dX*dX)+(dY*dY), 1d/2d);
+					distance = (int)Math.pow((dX*dX)+(dY*dY), 1d/2d);
 					prevButton = curButton;
 					curButton = tempButton;
 				}
@@ -191,8 +191,6 @@ public class MainController extends JFrame {
 			}
 			
 			if(player.getFuel() >= distance) {
-				Border thickBorder = new LineBorder(Color.RED, 1);
-				curButton.setBorder(thickBorder); //sets current galaxy's border
 				curGalaxy = (SolarSystem)hash.get(e.getSource());
 				curPlanet = curGalaxy.getPlanets()[0];
 				
@@ -207,7 +205,8 @@ public class MainController extends JFrame {
 				marketView.setPlanetName(curPlanet.getName());
 				if(!curButton.equals(prevButton)) { //if selecting a different galaxy
 					player.setTurn(player.getTurn()+1);
-					player.setFuel(player.getFuel()-(int)distance);
+					System.out.println(distance);
+					player.setFuel(player.getFuel()-distance);
 				}
 				showRange();
 				System.out.println("Fuel Remaining: "+player.getFuel()+"\n");
@@ -215,7 +214,7 @@ public class MainController extends JFrame {
 				nextState(MARKET);
 			}
 			else {
-				
+				System.out.println(distance);
 				universeView.getFuelWarning().setVisible(true);
 			}
 			
@@ -751,23 +750,24 @@ public class MainController extends JFrame {
 		
 	}
 	
-	public void showRange() { //utilize this for determining if a ship can make it to a galaxy
+	public void showRange() {
 		JButton[] buttons = (JButton[])hash.keySet().toArray(new JButton[hash.size()]);
-		Border closeBorder = new LineBorder(Color.GREEN, 1);
-		Border farBorder = new LineBorder(Color.YELLOW, 1);
-		Border curBorder = new LineBorder(Color.RED, 1);
+		Border closeBorder = new LineBorder(Color.YELLOW, 1);
+		Border farBorder = new LineBorder(Color.RED, 1);
+		Border curBorder = new LineBorder(Color.GREEN, 1);
 		
 		for(int i = 0; i < buttons.length; i++) {
 			if(!buttons[i].equals(curButton)) {
 				int dX = buttons[i].getX() - curButton.getX();
 				int dY = buttons[i].getY() - curButton.getY();
 				int distance = (int)Math.pow((dX*dX)+(dY*dY), 1d/2d);
+				
 				System.out.println(hash.get(buttons[i]).name()+": "+distance);
 				
-				if(distance <= player.getFuel()/2) { //green means close range
+				if(distance <= player.getFuel()/2) { //yellow means close range
 					buttons[i].setBorder(closeBorder);
 				}
-				else if(distance > player.getFuel()/2 && distance <= player.getFuel()) { //yellow means far range
+				else if(distance > player.getFuel()/2 && distance <= player.getFuel()) { //red means far range
 					buttons[i].setBorder(farBorder);
 				}
 				else {
