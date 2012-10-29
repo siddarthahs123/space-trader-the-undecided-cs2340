@@ -146,18 +146,19 @@ public class MainController extends JFrame {
 				int engineer = startView.getEPoints();
 				int trader = startView.getTPoints();
 				String name = startView.getTextField();
-				int difficulty;
-				if(startView.easy().isSelected()) {
-					difficulty = 0;
-				}
-				else if(startView.medium().isSelected()) {
-					difficulty = 1;
-				}
-				else {
-					difficulty = 2;
-				}
+				int difficulty = startView.getDifficulty();
+//				if(startView.easy().isSelected()) {
+//					difficulty = 0;
+//				}
+//				else if(startView.medium().isSelected()) {
+//					difficulty = 1;
+//				}
+//				else {
+//					difficulty = 2;
+//				}
 				
-				player = new Player(pilot, fighter, trader, engineer, 0, name);
+				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
+				player.printData();
 				nextState(UNIVERSE);
 			}
 		}
