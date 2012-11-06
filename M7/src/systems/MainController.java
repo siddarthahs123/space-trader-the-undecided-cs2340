@@ -2,6 +2,9 @@ package systems;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -16,7 +19,7 @@ import views.*;
  * Main Controller class for the game. Does all of the labor required.
  * @author Justin
  */
-public class MainController extends JFrame {
+public class MainController {
 	private JButton curButton, prevButton;
 	private JFrame frame;
 	private Dimension dim;
@@ -95,7 +98,8 @@ public class MainController extends JFrame {
 		cargo = new Cargo();
 		playerShip = new Flea();
 		refreshCargoGoods();
-		marketView = new MarketView(new BuyListener(), new SellListener(), new MapListener());
+		
+		marketView = new MarketView(new BuyListener(), new SellListener(), new MapListener(), new SaveGameListener());
 		JPanel marketCard = marketView.getPanel();
 		
 		//Add cards to card layout
@@ -130,6 +134,31 @@ public class MainController extends JFrame {
 	public class LoadGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
+		}
+	}
+	
+	public class SaveGameListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == marketView.getSaveButton()) {
+				try {
+					String f = (String)JOptionPane.showInputDialog(null, "Enter file name : ", "Save", JOptionPane.PLAIN_MESSAGE, null, null, "");
+					FileWriter fw = new FileWriter(f + ".txt");
+					BufferedWriter bw = new BufferedWriter(fw);
+					PrintWriter out = new PrintWriter(bw);
+					out.println(player.write());
+					
+					for (SolarSystem system : galaxies) {
+						out.println(system.write());
+					}
+					out.flush();
+					out.close();
+				}
+				catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -376,7 +405,6 @@ public class MainController extends JFrame {
 		}
 		
 		planetList = generatePlanets();
-		
 		return galaxies;
 	}
 	

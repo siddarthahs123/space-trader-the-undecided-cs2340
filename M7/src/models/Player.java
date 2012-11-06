@@ -41,12 +41,13 @@ public class Player {
 	 * Used to print the data of the player to the console
 	 */
 	public void printData() {
+		System.out.println("Name: "+name);
 		System.out.println("Pilot: "+pilot);
 		System.out.println("Fighter: "+fighter);
 		System.out.println("Trader: "+trader);
 		System.out.println("Engineer: "+engineer);
-		System.out.println("Name: "+name);
 		System.out.println("Credits: "+credits);
+		System.out.println("Karma: "+ karma);
 		System.out.println("Difficulty: "+difficulty);
 	}
 	
@@ -208,5 +209,21 @@ public class Player {
 	
 	public void setTurn(int turn) {
 		this.turn = turn;
+	}
+
+	public String write() {
+		String out = "";
+		out += "Name : " + name + "\n";
+		out += "Pilot : "+ pilot + "\n";
+		out += "Fighter : "+ fighter + "\n";
+		out += "Trader : "+ trader + "\n";
+		out += "Engineer : "+ engineer + "\n";
+		out += "Credits : "+ credits + "\n";
+		out += "Karma : "+ karma + "\n";
+		out += "Difficulty : "+ difficulty + "\n";
+		out += "Fuel : "+ fuel + "\n";
+		out += "Turn : "+ turn + "\n";
+		out += "Police Record : "+ policeRecord + "\n\n";
+		return out;
 	}
 }

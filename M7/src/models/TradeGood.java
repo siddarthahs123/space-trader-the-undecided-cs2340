@@ -115,4 +115,12 @@ public class TradeGood {
 		this.totalPrice = totalPrice;
 		this.deflatedPrice = (int)(totalPrice - (totalPrice*0.05d));
 	}
+	
+	public String write() {
+		String out = "";
+		out += "Good Name : " + name + "\n";
+		out += "Base Price : " + basePrice + "\n";
+		out += "Deflated Price : " + deflatedPrice + "\n";
+		return out + "\n";
+	}
 }
