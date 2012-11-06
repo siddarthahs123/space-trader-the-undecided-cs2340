@@ -118,9 +118,9 @@ public class TradeGood {
 	
 	public String write() {
 		String out = "";
-		out += "Good Name : " + name + "\n";
-		out += "Base Price : " + basePrice + "\n";
-		out += "Deflated Price : " + deflatedPrice + "\n";
-		return out + "\n";
+		//out += "Good Name : " + name + "\n";
+		out += "Base Price : " + basePrice;
+		//out += "Deflated Price : " + deflatedPrice + "\n";
+		return out;
 	}
 }

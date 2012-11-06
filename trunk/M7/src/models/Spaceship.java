@@ -176,4 +176,12 @@ public class Spaceship {
 		this.remSpace = remSpace;
 	}
 
+	public String write() {
+		String out = "";
+		out += "Ship Type : " + name + "\n";
+		out += "Cargo Space : " + cargo;
+		
+		return out;
+	}
+
 }

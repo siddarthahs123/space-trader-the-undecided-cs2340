@@ -141,9 +141,9 @@ public class SolarSystem {
 		out += "Galaxy Name : " + name + "\n";
 		out += "Tech Level : " + techLevel + "\n";
 		out += "X coordinate : " + x + "\n";
-		out += "Y coordinate : " + y + "\n";
+		out += "Y coordinate : " + y + "\n\n";
 		for (Planet planet : planets)
 			out += planet.write();
-		return out + "\n";
+		return out;
 	}
 }
