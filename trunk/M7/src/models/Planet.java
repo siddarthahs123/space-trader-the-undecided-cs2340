@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 
@@ -127,5 +128,18 @@ public class Planet { //somehow extends SolarSystem
 	 */
 	public void setGalaxy(SolarSystem galaxy) {
 		this.galaxy = galaxy;
+	}
+	
+	public String write() {
+		String out = "";
+		out += "Planet Name : " + name + "\n";
+		out += "Resources : " + resources + "\n";
+		out += "Trade Goods : " + "\n";
+		for (Entry<String, ArrayList<TradeGood>> entry : goods.entrySet()) {
+			for (TradeGood good : entry.getValue()) {
+				out += good.write() + "\n";
+			}
+		}
+		return out + "\n";
 	}
 }

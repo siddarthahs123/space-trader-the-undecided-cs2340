@@ -135,4 +135,15 @@ public class SolarSystem {
 		}
 		return systemInfo+planetInfo;
 	}
+	
+	public String write() {
+		String out = "";
+		out += "Galaxy Name : " + name + "\n";
+		out += "Tech Level : " + techLevel + "\n";
+		out += "X coordinate : " + x + "\n";
+		out += "Y coordinate : " + y + "\n";
+		for (Planet planet : planets)
+			out += planet.write();
+		return out + "\n";
+	}
 }
