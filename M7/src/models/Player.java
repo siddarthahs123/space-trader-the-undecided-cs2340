@@ -223,7 +223,7 @@ public class Player {
 		out += "Difficulty : "+ difficulty + "\n";
 		out += "Fuel : "+ fuel + "\n";
 		out += "Turn : "+ turn + "\n";
-		out += "Police Record : "+ policeRecord + "\n\n";
+		out += "Police Record : "+ policeRecord + "\n";
 		return out;
 	}
 }

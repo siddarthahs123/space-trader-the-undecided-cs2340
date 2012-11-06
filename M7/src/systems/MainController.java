@@ -148,7 +148,10 @@ public class MainController {
 					BufferedWriter bw = new BufferedWriter(fw);
 					PrintWriter out = new PrintWriter(bw);
 					out.println(player.write());
-					
+					out.println(playerShip.write() +"\n");
+					out.println("Player cargo : " + "\n" + cargo.write());
+					out.println("Current Galaxy : " + curGalaxy.name());
+					out.println("Current Planet : " + curPlanet.getName() + "\n");
 					for (SolarSystem system : galaxies) {
 						out.println(system.write());
 					}

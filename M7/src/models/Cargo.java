@@ -27,4 +27,11 @@ public class Cargo {
 		
 		return str;
 	}
+
+	public String write() {
+		String out = "";
+		for (Entry<String, ArrayList<TradeGood>> entry : inventory.entrySet())
+			out +=entry.getKey() + " : "+entry.getValue().size() + "\n";
+		return out;
+	}
 }
