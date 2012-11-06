@@ -5,6 +5,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import systems.MainController.BuyListener;
+import systems.MainController.SaveGameListener;
 import systems.MainController.SellListener;
 import systems.MainController.MapListener;
 
@@ -19,8 +20,9 @@ public class MarketView extends MainView {
 		robotsBuy, waterSell, fursSell, gamesSell, foodSell, firearmsSell, machinesSell, medicineSell, narcoticsSell, oreSell,
 		robotsSell, btnToMap, fuelBuy;
 	private JSpinner spinner;
+	private JButton btnSaveGame;
 
-	public MarketView(BuyListener buyListener, SellListener sellListener, MapListener mapListener) {
+	public MarketView(BuyListener buyListener, SellListener sellListener, MapListener mapListener, SaveGameListener saveGameListener) {
 		panel = new JPanel();
 		panel.setBounds(6, 6, 679, 473);
 		panel.setLayout(null);
@@ -383,6 +385,12 @@ public class MarketView extends MainView {
 		lblFuel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFuel.setBounds(55, 372, 61, 16);
 		panel.add(lblFuel);
+		
+		btnSaveGame = new JButton("Save Game");
+		btnSaveGame.setBounds(543, 414, 104, 29);
+		panel.add(btnSaveGame);
+		btnSaveGame.addActionListener(saveGameListener);
+		
 		creditWarning.setVisible(false);
 		btnToMap.addActionListener(mapListener);
 		
@@ -394,6 +402,10 @@ public class MarketView extends MainView {
 				spinner.setValue(1);
 			}
 		}
+	}
+	
+	public JButton getSaveButton() {
+		return btnSaveGame;
 	}
 	
 	public int getAmount() {
