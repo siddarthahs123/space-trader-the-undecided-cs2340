@@ -1,19 +1,53 @@
 package systems;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-
-import javax.swing.*;
-import javax.swing.border.*;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Map.Entry;
+import java.util.Random;
+import java.util.Scanner;
 
-import models.*;
-import views.*;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
+import models.Cargo;
+import models.Firearms;
+import models.Flea;
+import models.Food;
+import models.Furs;
+import models.Games;
+import models.Machines;
+import models.Medicine;
+import models.Narcotics;
+import models.Ore;
+import models.Planet;
+import models.Player;
+import models.Robots;
+import models.SolarSystem;
+import models.Spaceship;
+import models.TradeGood;
+import models.Universe;
+import models.Water;
+import views.IntroView;
+import views.MarketView;
+import views.StartView;
+import views.UniverseView;
 
 /**
  * Main Controller class for the game. Does all of the labor required.
@@ -38,6 +72,7 @@ public class MainController {
 	private Planet[] planetList;
 	private SolarSystem[] galaxies;
 	
+	private IntroView introView;
 	private StartView startView;
 	private MarketView marketView;
 	private UniverseView universeView;
@@ -72,7 +107,7 @@ public class MainController {
 	 */
 	public void addViews(Container pane) {
 		//Generate intro view
-		IntroView introView = new IntroView();
+		introView = new IntroView();
 		JPanel introCard = introView.getPanel();
 		introView.getBtnNewGame().addActionListener(new NewGameListener());
 		introView.getBtnLoadGame().addActionListener(new LoadGameListener());
@@ -129,14 +164,203 @@ public class MainController {
 	
 	/**
 	 * Listener class for load game selection.
-	 * @author Justin
+	 * @author Samarth Agarwal
 	 */
 	public class LoadGameListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			
+		public void actionPerformed(ActionEvent e){
+			if (e.getSource() == introView.getBtnLoadGame()) {
+				try {
+					load();
+				} 
+				catch (FileNotFoundException e1) {
+					System.out.println("No such file found. Try again.");
+				}
+			}
 		}
 	}
 	
+	/**
+	 * Helper method to load game
+	 * @author Samarth Agarwal
+	 * @throws FileNotFoundException
+	 */
+	public void load() throws FileNotFoundException {
+		JFileChooser choose = new JFileChooser();
+		choose.showOpenDialog(introView.getPanel());
+		File f = choose.getSelectedFile();
+		Scanner scan;
+		try{
+			scan = new Scanner(f);
+		}
+		catch(NullPointerException e){
+			return;
+		}
+		while (scan.hasNext()) {
+			String ret;
+			
+			boolean playerSettingDone = false;
+			boolean playerShipSettingDone = false;
+			boolean playerCargoSettingDone = false;
+			boolean currentPositionSettingDone = false;
+			
+			//Player Details
+			String playerName = "";
+			int pilot = 0;
+			int fighter = 0;
+			int trader = 0;
+			int engineer = 0;
+			double credits = 0.0;
+			int karma = 0;
+			int difficulty = -1;
+			int fuel = 0;
+			int turn = 0;
+			boolean policeRecord;
+			//Player Details
+			
+			//Player ship
+			String shipType = "";
+			//Player ship
+			
+			//Player Cargo
+			Hashtable<String, ArrayList<TradeGood>> inventory = new Hashtable<String, ArrayList<TradeGood>>();
+			//Player Cargo
+			
+			//Player's current position
+			
+			//Player's current position
+			
+			while (!playerSettingDone) {
+				ret = scan.next();
+				
+				if (ret.equals("PlayerName"))
+					playerName = scan.nextLine().trim();
+				else if (ret.equals("Pilot"))
+					pilot = scan.nextInt();
+				else if (ret.equals("Fighter"))
+					fighter = scan.nextInt();
+				else if (ret.equals("Trader"))
+					trader = scan.nextInt();
+				else if (ret.equals("Engineer"))
+					engineer = scan.nextInt();
+				else if (ret.equals("Credits"))
+					credits = scan.nextDouble();
+				else if (ret.equals("Karma"))
+					karma = scan.nextInt();
+				else if (ret.equals("Difficulty"))
+					difficulty = scan.nextInt();
+				else if (ret.equals("Fuel"))
+					fuel = scan.nextInt();
+				else if (ret.equals("Turn"))
+					turn = scan.nextInt();
+				else if (ret.equals("PoliceRecord")) {
+					policeRecord = scan.nextBoolean();
+					//System.out.println(policeRecord);
+					player = new Player(pilot, fighter, trader, engineer, difficulty, playerName);
+					player.setCredits(credits);
+					player.setKarma(karma);
+					player.setFuel(fuel);
+					player.setTurn(turn);
+					player.setPoliceRecord(policeRecord);
+					//System.out.println(player.write());
+					playerSettingDone = true;
+				}
+			}
+			
+			while (!playerShipSettingDone) {
+				ret = scan.next();
+				if (ret.equals("ShipType")) {
+					shipType = scan.next();
+					if (shipType.equals("Flea")) {
+						playerShip = new Flea();
+						playerShipSettingDone = true;
+						//System.out.println(playerShip.write());
+					}
+				}
+			}
+			
+			while (!playerCargoSettingDone) {
+				ret = scan.next();
+				if (ret.equals("Firearms")) {
+					int firearms = scan.nextInt();
+					inventory.put("Firearms", new ArrayList<TradeGood>());
+					for (int i = 0; i < firearms; i++)
+						inventory.get("Firearms").add(new Firearms());
+				}
+				else if (ret.equals("Games")) {
+					int games = scan.nextInt();
+					inventory.put("Games", new ArrayList<TradeGood>());
+					for (int i = 0; i < games; i++)
+						inventory.get("Games").add(new Games());
+				}
+				else if (ret.equals("Ore")) {
+					int ore = scan.nextInt();
+					inventory.put("Ore", new ArrayList<TradeGood>());
+					for (int i = 0; i < ore; i++)
+						inventory.get("Ore").add(new Ore());
+				}
+				else if (ret.equals("Water")) {
+					int water = scan.nextInt();
+					inventory.put("Water", new ArrayList<TradeGood>());
+					for (int i = 0; i < water; i++)
+						inventory.get("Water").add(new Water());
+				}
+				else if (ret.equals("Machines")) {
+					int machines = scan.nextInt();
+					inventory.put("Machines", new ArrayList<TradeGood>());
+					for (int i = 0; i < machines; i++)
+						inventory.get("Machines").add(new Machines());
+				}
+				else if (ret.equals("Furs")) {
+					int furs = scan.nextInt();
+					inventory.put("Furs", new ArrayList<TradeGood>());
+					for (int i = 0; i < furs; i++)
+						inventory.get("Furs").add(new Furs());
+				}
+				else if (ret.equals("Robots")) {
+					int robots = scan.nextInt();
+					inventory.put("Robots", new ArrayList<TradeGood>());
+					for (int i = 0; i < robots; i++)
+						inventory.get("Robots").add(new Robots());
+				}
+				else if (ret.equals("Medicine")) {
+					int medicine = scan.nextInt();
+					inventory.put("Medicine", new ArrayList<TradeGood>());
+					for (int i = 0; i < medicine; i++)
+						inventory.get("Medicine").add(new Medicine());
+				}
+				else if (ret.equals("Food")) {
+					int food = scan.nextInt();
+					inventory.put("Food", new ArrayList<TradeGood>());
+					for (int i = 0; i < food; i++)
+						inventory.get("Food").add(new Food());
+				}
+				else if (ret.equals("Narcotics")) {
+					int narcotics = scan.nextInt();
+					inventory.put("Narcotics", new ArrayList<TradeGood>());
+					for (int i = 0; i < narcotics; i++)
+						inventory.get("Narcotics").add(new Narcotics());
+					playerCargoSettingDone = true;
+				}
+			}
+			
+			
+//			while (!currentPositionSettingDone) {
+//				ret = scan.next();
+//				if (ret.equals("CurrentGalaxy")) {
+//					String galaxy = scan.next();
+//					curGalaxy.s
+//				}
+//			}
+			
+			break;
+		}
+	}
+	
+	/**
+	 * Private class used to save game
+	 * @author Samarth Agarwal
+	 *
+	 */
 	public class SaveGameListener implements ActionListener {
 
 		@Override
@@ -149,9 +373,9 @@ public class MainController {
 					PrintWriter out = new PrintWriter(bw);
 					out.println(player.write());
 					out.println(playerShip.write() +"\n");
-					out.println("Player cargo : " + "\n" + cargo.write());
-					out.println("Current Galaxy : " + curGalaxy.name());
-					out.println("Current Planet : " + curPlanet.getName() + "\n");
+					out.println(cargo.write());
+					out.println("CurrentGalaxy " + curGalaxy.name());
+					out.println("CurrentPlanet " + curPlanet.getName() + "\n");
 					for (SolarSystem system : galaxies) {
 						out.println(system.write());
 					}

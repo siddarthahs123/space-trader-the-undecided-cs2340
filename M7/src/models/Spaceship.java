@@ -178,8 +178,8 @@ public class Spaceship {
 
 	public String write() {
 		String out = "";
-		out += "Ship Type : " + name + "\n";
-		out += "Cargo Space : " + cargo;
+		out += "ShipType " + name;
+		//out += "Cargo Space : " + cargo;
 		
 		return out;
 	}

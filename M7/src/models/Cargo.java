@@ -21,8 +21,8 @@ public class Cargo {
 	
 	public String toString() {
 		String str = "Cargo Inventory\n===============\n";
-		for(Entry entry : inventory.entrySet()) {
-			str += "Resource: "+entry.getKey()+", Quantity: "+((ArrayList<TradeGood>)entry.getValue()).size()+"\n";
+		for(Entry<String, ArrayList<TradeGood>> entry : inventory.entrySet()) {
+			str += "Resource: "+entry.getKey()+", Quantity: "+ entry.getValue().size()+"\n";
 		}
 		
 		return str;
@@ -31,7 +31,7 @@ public class Cargo {
 	public String write() {
 		String out = "";
 		for (Entry<String, ArrayList<TradeGood>> entry : inventory.entrySet())
-			out +=entry.getKey() + " : "+entry.getValue().size() + "\n";
+			out +=entry.getKey() + " "+entry.getValue().size() + "\n";
 		return out;
 	}
 }
