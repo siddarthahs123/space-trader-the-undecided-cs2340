@@ -26,6 +26,10 @@ public class Planet { //somehow extends SolarSystem
 		
 		goods = new Hashtable<String, ArrayList<TradeGood>>();
 	}
+//	
+//	public Planet (String name, Hashtable<String, ArrayList<TradeGood>>) {
+//		
+//	}
 	
 	public Hashtable<String, Integer> getDeflatedPrices() {
 		deflatedPrices = new Hashtable<String, Integer>();
@@ -48,6 +52,10 @@ public class Planet { //somehow extends SolarSystem
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	public void setResources(String resources) {
+		this.resources = resources;
 	}
 
 	/**
