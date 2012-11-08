@@ -138,10 +138,10 @@ public class SolarSystem {
 	
 	public String write() {
 		String out = "";
-		out += "Galaxy Name : " + name + "\n";
-		out += "Tech Level : " + techLevel + "\n";
-		out += "X coordinate : " + x + "\n";
-		out += "Y coordinate : " + y + "\n\n";
+		out += "GalaxyName " + name + "\n";
+		out += "TechLevel " + techLevel + "\n";
+		out += "Xcoordinate " + x + "\n";
+		out += "Ycoordinate " + y + "\n\n";
 		for (Planet planet : planets)
 			out += planet.write();
 		return out;

@@ -132,12 +132,12 @@ public class Planet { //somehow extends SolarSystem
 	
 	public String write() {
 		String out = "";
-		out += "Planet Name : " + name + "\n";
-		out += "Resources : " + resources + "\n\n";
-		out += "Trade Goods : " + "\n";
+		out += "PlanetName " + name + "\n";
+		out += "Resources " + resources + "\n\n";
+		out += "TradeGoods " + "\n";
 		for (Entry<String, ArrayList<TradeGood>> entry : goods.entrySet()) {
 			//for (TradeGood good : entry.getValue()) {
-			out += entry.getKey() + " : " + entry.getValue().size() +" ";
+			out += entry.getKey() + " " + entry.getValue().size() +" ";
 			for (TradeGood good : entry.getValue()) {
 				out += good.write();
 				break;

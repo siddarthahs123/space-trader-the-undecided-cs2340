@@ -213,17 +213,17 @@ public class Player {
 
 	public String write() {
 		String out = "";
-		out += "Name : " + name + "\n";
-		out += "Pilot : "+ pilot + "\n";
-		out += "Fighter : "+ fighter + "\n";
-		out += "Trader : "+ trader + "\n";
-		out += "Engineer : "+ engineer + "\n";
-		out += "Credits : "+ credits + "\n";
-		out += "Karma : "+ karma + "\n";
-		out += "Difficulty : "+ difficulty + "\n";
-		out += "Fuel : "+ fuel + "\n";
-		out += "Turn : "+ turn + "\n";
-		out += "Police Record : "+ policeRecord + "\n";
+		out += "PlayerName " + name + "\n";
+		out += "Pilot "+ pilot + "\n";
+		out += "Fighter "+ fighter + "\n";
+		out += "Trader "+ trader + "\n";
+		out += "Engineer "+ engineer + "\n";
+		out += "Credits "+ credits + "\n";
+		out += "Karma "+ karma + "\n";
+		out += "Difficulty "+ difficulty + "\n";
+		out += "Fuel "+ fuel + "\n";
+		out += "Turn "+ turn + "\n";
+		out += "PoliceRecord "+ policeRecord + "\n";
 		return out;
 	}
 }
