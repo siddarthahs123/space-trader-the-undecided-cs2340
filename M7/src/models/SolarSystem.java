@@ -58,6 +58,9 @@ public class SolarSystem {
 		}
 	}
 	
+	public void setTechLevel(String techLevel) {
+		this.techLevel = techLevel;
+	}
 	/**
 	 * A getter for the string version of the TechLevel
 	 * @return The TechLevel as a string
@@ -126,15 +129,15 @@ public class SolarSystem {
 	 * A getter for the information of the Solar System
 	 * @return A string representation of the Solar System and it's planets
 	 */
-	public String toString() {
-		String systemInfo = "Galaxy Information\n==================\n";
-		systemInfo += "Name: "+name+", Tech Level: "+techLevel+", Location: "+x+", "+y+"\n";
-		String planetInfo = "";
-		for(int i = 0; i < planets.length; i++) {
-			planetInfo += "-->   Name: "+planets[i].getName()+", Resources: "+planets[i].getResources()+"\n";
-		}
-		return systemInfo+planetInfo;
-	}
+//	public String toString() {
+//		String systemInfo = "Galaxy Information\n==================\n";
+//		systemInfo += "Name: "+name+", Tech Level: "+techLevel+", Location: "+x+", "+y+"\n";
+//		String planetInfo = "";
+//		for(Planet planet : planets) {
+//			planetInfo += "-->   Name: "+planet.getName()+", Resources: "+planet.getResources()+"\n";
+//		}
+//		return systemInfo+planetInfo;
+//	}
 	
 	public String write() {
 		String out = "";
@@ -145,5 +148,9 @@ public class SolarSystem {
 		for (Planet planet : planets)
 			out += planet.write();
 		return out;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

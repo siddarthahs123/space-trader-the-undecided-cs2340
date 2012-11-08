@@ -195,13 +195,16 @@ public class MainController {
 		catch(NullPointerException e){
 			return;
 		}
-		while (scan.hasNext()) {
+		
+		boolean loadingDone = false;
+		while (!loadingDone) {
 			String ret;
 			
 			boolean playerSettingDone = false;
 			boolean playerShipSettingDone = false;
 			boolean playerCargoSettingDone = false;
 			boolean currentPositionSettingDone = false;
+			boolean universeSettingDone = false;
 			
 			//Player Details
 			String playerName = "";
@@ -226,9 +229,21 @@ public class MainController {
 			//Player Cargo
 			
 			//Player's current position
-			
+			String currentGalaxy = "";
+			String currentPlanet = "";
 			//Player's current position
 			
+			//Universe Generation
+			galaxies = new SolarSystem[universe.getNames().length];
+			String galaxyName = "";
+			String techLevel = "";
+			int x = 0, y=0;
+			int galaxyCounter = 0;
+			
+			String planetName = "";
+			String resources = "";
+			Hashtable<String, ArrayList<TradeGood>> planetGoods = new Hashtable<String, ArrayList<TradeGood>>();
+			//Universe Generation
 			while (!playerSettingDone) {
 				ret = scan.next();
 				
@@ -279,62 +294,61 @@ public class MainController {
 			}
 			
 			while (!playerCargoSettingDone) {
-				ret = scan.next();
-				if (ret.equals("Firearms")) {
+				if (scan.next().equals("Firearms")) {
 					int firearms = scan.nextInt();
 					inventory.put("Firearms", new ArrayList<TradeGood>());
 					for (int i = 0; i < firearms; i++)
 						inventory.get("Firearms").add(new Firearms());
 				}
-				else if (ret.equals("Games")) {
+				if (scan.next().equals("Games")) {
 					int games = scan.nextInt();
 					inventory.put("Games", new ArrayList<TradeGood>());
 					for (int i = 0; i < games; i++)
 						inventory.get("Games").add(new Games());
 				}
-				else if (ret.equals("Ore")) {
+				if (scan.next().equals("Ore")) {
 					int ore = scan.nextInt();
 					inventory.put("Ore", new ArrayList<TradeGood>());
 					for (int i = 0; i < ore; i++)
 						inventory.get("Ore").add(new Ore());
 				}
-				else if (ret.equals("Water")) {
+				if (scan.next().equals("Water")) {
 					int water = scan.nextInt();
 					inventory.put("Water", new ArrayList<TradeGood>());
 					for (int i = 0; i < water; i++)
 						inventory.get("Water").add(new Water());
 				}
-				else if (ret.equals("Machines")) {
+				if (scan.next().equals("Machines")) {
 					int machines = scan.nextInt();
 					inventory.put("Machines", new ArrayList<TradeGood>());
 					for (int i = 0; i < machines; i++)
 						inventory.get("Machines").add(new Machines());
 				}
-				else if (ret.equals("Furs")) {
+				if (scan.next().equals("Furs")) {
 					int furs = scan.nextInt();
 					inventory.put("Furs", new ArrayList<TradeGood>());
 					for (int i = 0; i < furs; i++)
 						inventory.get("Furs").add(new Furs());
 				}
-				else if (ret.equals("Robots")) {
+				if (scan.next().equals("Robots")) {
 					int robots = scan.nextInt();
 					inventory.put("Robots", new ArrayList<TradeGood>());
 					for (int i = 0; i < robots; i++)
 						inventory.get("Robots").add(new Robots());
 				}
-				else if (ret.equals("Medicine")) {
+				if (scan.next().equals("Medicine")) {
 					int medicine = scan.nextInt();
 					inventory.put("Medicine", new ArrayList<TradeGood>());
 					for (int i = 0; i < medicine; i++)
 						inventory.get("Medicine").add(new Medicine());
 				}
-				else if (ret.equals("Food")) {
+				if (scan.next().equals("Food")) {
 					int food = scan.nextInt();
 					inventory.put("Food", new ArrayList<TradeGood>());
 					for (int i = 0; i < food; i++)
 						inventory.get("Food").add(new Food());
 				}
-				else if (ret.equals("Narcotics")) {
+				if (scan.next().equals("Narcotics")) {
 					int narcotics = scan.nextInt();
 					inventory.put("Narcotics", new ArrayList<TradeGood>());
 					for (int i = 0; i < narcotics; i++)
@@ -343,16 +357,221 @@ public class MainController {
 				}
 			}
 			
-			
-//			while (!currentPositionSettingDone) {
-//				ret = scan.next();
-//				if (ret.equals("CurrentGalaxy")) {
-//					String galaxy = scan.next();
-//					curGalaxy.s
-//				}
-//			}
-			
-			break;
+			while (!currentPositionSettingDone) {
+				ret = scan.next();
+				if (ret.equals("CurrentGalaxy")) {
+					String galaxy = scan.next();
+					currentGalaxy = galaxy;
+				}
+				else if (ret.equals("CurrentPlanet")) {
+					String planet = scan.next();
+					currentPlanet = planet;
+					currentPositionSettingDone = true;
+				}
+			}
+			//System.out.println(universe.getNames().length);
+			while (!universeSettingDone) {
+				ret = scan.next();
+				if (ret.equals("GalaxyName")) {
+					
+					galaxyName = scan.nextLine().trim();
+					//System.out.println("GalaxyName " + galaxyName);
+					//String techLevel = "";
+					//int x = 0, y = 0;
+					
+					if (scan.next().equals("TechLevel"))
+						techLevel = scan.nextLine().trim();
+					if (scan.next().equals("Xcoordinate"))
+						x = scan.nextInt();
+					if (scan.next().equals("Ycoordinate"))
+						y = scan.nextInt();
+					//System.out.println("TechLevel " + techLevel + "X " + x + "Y " + y);
+					galaxies[galaxyCounter] = new SolarSystem (galaxyName, x, y);
+					galaxies[galaxyCounter].setTechLevel(techLevel);
+					//galaxyCounter++;
+					
+					boolean galaxyDone = false;
+					Planet[] planets = new Planet[1]; 
+					while (!galaxyDone) {
+						if (scan.next().equals("PlanetName")) {
+							planetName = scan.next();
+							//System.out.println(planetName);
+							planets[0] = new Planet(planetName);
+						}
+						if (scan.next().equals("Resources")) {
+							resources = scan.nextLine().trim();
+							planets[0].setResources(resources);
+						}
+						if (scan.next().equals("TradeGoods")) {
+							boolean planetGoodsSettingDone = false;
+							while (!planetGoodsSettingDone) {
+								ret = scan.next();
+								if (ret.equals("Firearms")) {
+									int firearms = scan.nextInt();
+									planetGoods.put("Firearms", new ArrayList<TradeGood>());
+									for (int i = 0; i < firearms; i++)
+										planetGoods.get("Firearms").add(new Firearms());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> firearmsList = planetGoods.get("Firearms");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : firearmsList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Games")) {
+									int games = scan.nextInt();
+									planetGoods.put("Games", new ArrayList<TradeGood>());
+									for (int i = 0; i < games; i++)
+										planetGoods.get("Games").add(new Games());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> gamesList = planetGoods.get("Games");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : gamesList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Ore")) {
+									int ore = scan.nextInt();
+									planetGoods.put("Ore", new ArrayList<TradeGood>());
+									for (int i = 0; i < ore; i++)
+										planetGoods.get("Ore").add(new Ore());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> oreList = planetGoods.get("Ore");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : oreList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Water")) {
+									int water = scan.nextInt();
+									planetGoods.put("Water", new ArrayList<TradeGood>());
+									for (int i = 0; i < water; i++)
+										planetGoods.get("Water").add(new Water());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> waterList = planetGoods.get("Water");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : waterList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Machines")) {
+									int machines = scan.nextInt();
+									planetGoods.put("Machines", new ArrayList<TradeGood>());
+									for (int i = 0; i < machines; i++)
+										planetGoods.get("Machines").add(new Machines());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> machinesList = planetGoods.get("Machines");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : machinesList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Furs")) {
+									int furs = scan.nextInt();
+									planetGoods.put("Furs", new ArrayList<TradeGood>());
+									for (int i = 0; i < furs; i++)
+										planetGoods.get("Furs").add(new Furs());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> fursList = planetGoods.get("Furs");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : fursList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Robots")) {
+									int robots = scan.nextInt();
+									planetGoods.put("Robots", new ArrayList<TradeGood>());
+									for (int i = 0; i < robots; i++)
+										planetGoods.get("Robots").add(new Robots());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> robotsList = planetGoods.get("Robots");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : robotsList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Medicine")) {
+									int medicine = scan.nextInt();
+									planetGoods.put("Medicine", new ArrayList<TradeGood>());
+									for (int i = 0; i < medicine; i++)
+										planetGoods.get("Medicine").add(new Medicine());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> medicineList = planetGoods.get("Medicine");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : medicineList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Food")) {
+									int food = scan.nextInt();
+									planetGoods.put("Food", new ArrayList<TradeGood>());
+									for (int i = 0; i < food; i++)
+										planetGoods.get("Food").add(new Food());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> foodList = planetGoods.get("Food");
+										int totalPrice = scan.nextInt();
+										for (TradeGood item : foodList) {
+											item.setTotalPrice(totalPrice);
+										}
+									}
+								}
+								if (ret.equals("Narcotics")) {
+									int narcotics = scan.nextInt();
+									//System.out.println("Narcotics " + narcotics);
+									planetGoods.put("Narcotics", new ArrayList<TradeGood>());
+									for (int i = 0; i < narcotics; i++)
+										planetGoods.get("Narcotics").add(new Narcotics());
+									ret = scan.next();
+									if (ret.equals("TotalPrice")) {
+										ArrayList<TradeGood> narcoticsList = planetGoods.get("Narcotics");
+										int totalPrice = scan.nextInt();
+										//System.out.println("Price " + totalPrice);
+										for (TradeGood item : narcoticsList) {
+											item.setTotalPrice(totalPrice);
+										}
+										ret = scan.next();
+									}
+									planetGoodsSettingDone = true;
+								}
+							}
+							planets[0].setTradeGoods(planetGoods);
+						}
+						if (ret.equals("GalaxyDone")) {
+							//System.out.println("Galaxy done for planet " + planets[0].getName());
+							galaxies[galaxyCounter].setPlanets(planets);
+							//System.out.println(galaxies[galaxyCounter].write());
+							galaxyCounter++;
+							//System.out.println(galaxyCounter);
+							galaxyDone = true;
+						}
+					}
+				}
+				if (ret.equals("GalaxySettingDone")) {
+					//System.out.println("Done");
+					universeSettingDone = true;
+					loadingDone = true;
+				}
+			}
+		}
+		for (SolarSystem galaxy : galaxies) {
+			System.out.println(galaxy.write());
 		}
 	}
 	
@@ -378,7 +597,9 @@ public class MainController {
 					out.println("CurrentPlanet " + curPlanet.getName() + "\n");
 					for (SolarSystem system : galaxies) {
 						out.println(system.write());
+						out.println("GalaxyDone" + "\n");
 					}
+					out.println("GalaxySettingDone");
 					out.flush();
 					out.close();
 				}
