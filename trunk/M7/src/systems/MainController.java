@@ -170,7 +170,7 @@ public class MainController {
 	 */
 	public class ContinueGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			nextState(UNIVERSE);
+			nextState(MARKET);
 		}
 	}
 	
@@ -208,6 +208,11 @@ public class MainController {
 			return;
 		}
 		
+		//Player's current position
+		String currentGalaxy = "";
+		String currentPlanet = "";
+		//Player's current position
+		
 		boolean loadingDone = false;
 		while (!loadingDone) {
 			String ret;
@@ -239,11 +244,6 @@ public class MainController {
 			//Player Cargo
 			Hashtable<String, ArrayList<TradeGood>> inventory = new Hashtable<String, ArrayList<TradeGood>>();
 			//Player Cargo
-			
-			//Player's current position
-			String currentGalaxy = "";
-			String currentPlanet = "";
-			//Player's current position
 			
 			//Universe Generation
 			galaxies = new SolarSystem[universe.getNames().length];
@@ -583,11 +583,20 @@ public class MainController {
 			}
 		}
 		for (SolarSystem galaxy : galaxies) {
-			System.out.println(galaxy.write());
+			if (galaxy.getName().equals(currentGalaxy)) {
+				curGalaxy = galaxy;
+				for (Planet planet : galaxy.getPlanets()) {
+					if (planet.getName().equals(currentPlanet)) {
+						curPlanet = planet;
+					}
+				}
+			}
 		}
 		
+		setMarketValues();
 		universeView.drawGalaxies(galaxies, new PlanetListener());
 		introView.getBtnContinueGame().setEnabled(true);
+		System.out.println("Number of galaxies : " + galaxies.length);
 	}
 	
 	/**
@@ -601,6 +610,7 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == marketView.getSaveButton()) {
 				try {
+					System.out.println("Number of galaxies : " + galaxies.length);
 					String f = (String)JOptionPane.showInputDialog(null, "Enter file name : ", "Save", JOptionPane.PLAIN_MESSAGE, null, null, "");
 					FileWriter fw = new FileWriter(f + ".txt");
 					BufferedWriter bw = new BufferedWriter(fw);
