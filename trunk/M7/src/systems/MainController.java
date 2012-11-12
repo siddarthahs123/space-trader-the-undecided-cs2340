@@ -63,6 +63,7 @@ public class MainController {
 	private final String START = "Start Screen";
 	private final String UNIVERSE = "Universe Screen";
 	private final String MARKET = "Market Screen";
+	private final String curState = "";
 	
 	private Hashtable<JButton, SolarSystem> hash;
 	private Hashtable<String, Integer> deflatedPrices;
@@ -111,6 +112,7 @@ public class MainController {
 		JPanel introCard = introView.getPanel();
 		introView.getBtnNewGame().addActionListener(new NewGameListener());
 		introView.getBtnLoadGame().addActionListener(new LoadGameListener());
+		introView.getBtnContinueGame().addActionListener(new ContinueGameListener());
 		
 		//Generate start view
 		startView = new StartView();
@@ -159,6 +161,16 @@ public class MainController {
 	public class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			nextState(START);
+		}
+	}
+	
+	/**
+	 * Listener class for continuing game
+	 * @author Justin
+	 */
+	public class ContinueGameListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			nextState(UNIVERSE);
 		}
 	}
 	
@@ -573,6 +585,9 @@ public class MainController {
 		for (SolarSystem galaxy : galaxies) {
 			System.out.println(galaxy.write());
 		}
+		
+		universeView.drawGalaxies(galaxies, new PlanetListener());
+		introView.getBtnContinueGame().setEnabled(true);
 	}
 	
 	/**
@@ -1255,7 +1270,6 @@ public class MainController {
 /**
  * To Do
  * =====
- * +In MarketView, disallow spinner to go below 0 with listener
  * +Fix location generation of planets to disallow overlapping
  * +Fix issues with displaying the same price in market [FIXED]
  * +Make quantity of items per planet dependent on situation
