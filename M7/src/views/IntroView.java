@@ -5,7 +5,7 @@ import javax.swing.*;
 public class IntroView extends MainView {
 
 	private JPanel panel;
-	private JButton btnNewGame, btnLoadGame;
+	private JButton btnNewGame, btnLoadGame, btnContinueGame;
 	
 	public IntroView() {
 		panel = new JPanel();
@@ -19,6 +19,11 @@ public class IntroView extends MainView {
 		btnLoadGame = new JButton("Load Game");
 		btnLoadGame.setBounds(264, 231, 117, 29);
 		panel.add(btnLoadGame);
+		
+		btnContinueGame = new JButton("Continue");
+		btnContinueGame.setBounds(264, 302, 117, 29);
+		panel.add(btnContinueGame);
+		btnContinueGame.setEnabled(false);
 	}
 	
 	public JPanel getPanel() {
@@ -33,4 +38,7 @@ public class IntroView extends MainView {
 		return btnLoadGame;
 	}
 	
+	public JButton getBtnContinueGame() {
+		return btnContinueGame;
+	}
 }
