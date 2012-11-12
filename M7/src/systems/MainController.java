@@ -254,7 +254,7 @@ public class MainController {
 			
 			String planetName = "";
 			String resources = "";
-			Hashtable<String, ArrayList<TradeGood>> planetGoods = new Hashtable<String, ArrayList<TradeGood>>();
+			Hashtable<String, ArrayList<TradeGood>> planetGoods;
 			//Universe Generation
 			while (!playerSettingDone) {
 				ret = scan.next();
@@ -415,6 +415,7 @@ public class MainController {
 							planets[0].setResources(resources);
 						}
 						if (scan.next().equals("TradeGoods")) {
+							planetGoods = new Hashtable<String, ArrayList<TradeGood>>();
 							boolean planetGoodsSettingDone = false;
 							while (!planetGoodsSettingDone) {
 								ret = scan.next();
@@ -564,6 +565,7 @@ public class MainController {
 								}
 							}
 							planets[0].setTradeGoods(planetGoods);
+							//System.out.println(planets[0].write());
 						}
 						if (ret.equals("GalaxyDone")) {
 							//System.out.println("Galaxy done for planet " + planets[0].getName());
@@ -592,11 +594,14 @@ public class MainController {
 				}
 			}
 		}
-		
+		for (SolarSystem galaxy : galaxies) {
+			System.out.println(galaxy.write());
+		}
+//		System.out.println("Current state : "+ curGalaxy.getName() + " " + curPlanet.getName());
 		setMarketValues();
 		universeView.drawGalaxies(galaxies, new PlanetListener());
 		introView.getBtnContinueGame().setEnabled(true);
-		System.out.println("Number of galaxies : " + galaxies.length);
+		//System.out.println("Number of galaxies : " + galaxies.length);
 	}
 	
 	/**
@@ -1002,7 +1007,9 @@ public class MainController {
 	public void setMarketValues() {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
-		
+//		for (Entry<String, ArrayList<TradeGood>> entry : iPlanet.entrySet()){
+//			System.out.println(entry.getKey() + " " + entry.getValue().size());
+//		}
 		
 		marketView.setLblRemaining(""+playerShip.getRemSpace());
 
