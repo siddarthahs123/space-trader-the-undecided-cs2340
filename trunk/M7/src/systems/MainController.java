@@ -599,8 +599,8 @@ public class MainController {
 		}
 //		System.out.println("Current state : "+ curGalaxy.getName() + " " + curPlanet.getName());
 		setMarketValues();
-		universeView.drawGalaxies(galaxies, new PlanetListener());
 		introView.getBtnContinueGame().setEnabled(true);
+		nextState(MARKET);
 		//System.out.println("Number of galaxies : " + galaxies.length);
 	}
 	
