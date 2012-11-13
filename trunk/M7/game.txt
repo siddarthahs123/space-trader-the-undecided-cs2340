@@ -1,467 +1,467 @@
-PlayerName fdafda
-Pilot 3
-Fighter 4
-Trader 0
-Engineer 9
-Credits 1447.0
+PlayerName dfadafadsa
+Pilot 9
+Fighter 1
+Trader 3
+Engineer 3
+Credits 75.0
 Karma 0
 Difficulty 1
-Fuel 543
-Turn 4
+Fuel 700
+Turn 1
 PoliceRecord false
 
 ShipType Flea
 
 Firearms 0
-Games 0
-Ore 0
-Water 10
+Games 1
+Ore 2
+Water 5
 Machines 0
-Furs 0
+Furs 1
 Robots 0
 Medicine 0
-Food 0
+Food 1
 Narcotics 0
 
-CurrentGalaxy Rowlinga
-CurrentPlanet Promentheria
+CurrentGalaxy Fanta Pineapple
+CurrentPlanet Esterora
 
 GalaxyName Creynolds7
-TechLevel Pre-Agriculture
-Xcoordinate 10
-Ycoordinate 204
+TechLevel Renaissance
+Xcoordinate 7
+Ycoordinate 114
 
 PlanetName Glenkada
-Resources Lots of Water
+Resources Lifeless
 
 TradeGoods 
-Firearms 0 
-Games 0 
-Ore 0 
-Water 12 TotalPrice 30
+Firearms 12 TotalPrice 1650
+Games 10 TotalPrice 257
+Ore 7 TotalPrice 394
+Water 4 TotalPrice 39
 Machines 0 
-Furs 10 TotalPrice 267
+Furs 5 TotalPrice 285
 Robots 0 
 Medicine 0 
-Food 0 
+Food 10 TotalPrice 119
 Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Zamarth
-TechLevel Industrial
-Xcoordinate 39
-Ycoordinate 386
+TechLevel Medieval
+Xcoordinate 36
+Ycoordinate 91
 
 PlanetName Tyke
-Resources No Special Resources
+Resources Rich Soil
 
 TradeGoods 
-Firearms 8 TotalPrice 1125
-Games 11 TotalPrice 232
-Ore 4 TotalPrice 431
-Water 11 TotalPrice 45
-Machines 10 TotalPrice 620
-Furs 4 TotalPrice 310
+Firearms 0 
+Games 0 
+Ore 5 TotalPrice 374
+Water 5 TotalPrice 37
+Machines 0 
+Furs 5 TotalPrice 295
 Robots 0 
-Medicine 9 TotalPrice 633
-Food 11 TotalPrice 134
-Narcotics 4 TotalPrice 7630
+Medicine 0 
+Food 9 TotalPrice 108
+Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Frappacino
-TechLevel Early Industrial
-Xcoordinate 66
-Ycoordinate 272
+TechLevel Agriculture
+Xcoordinate 77
+Ycoordinate 23
 
 PlanetName Smorpa
-Resources Poor Soil
+Resources Rich Soil
 
 TradeGoods 
-Firearms 10 TotalPrice 1187
-Games 11 TotalPrice 252
-Ore 5 TotalPrice 404
-Water 10 TotalPrice 42
-Machines 6 TotalPrice 650
-Furs 9 TotalPrice 312
+Firearms 0 
+Games 0 
+Ore 0 
+Water 3 TotalPrice 33
+Machines 0 
+Furs 8 TotalPrice 285
 Robots 0 
-Medicine 8 TotalPrice 650
-Food 10 TotalPrice 130
+Medicine 0 
+Food 4 TotalPrice 115
 Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Xerkona
-TechLevel Post-Industrial
-Xcoordinate 100
+TechLevel Agriculture
+Xcoordinate 98
 Ycoordinate 387
 
 PlanetName X73Z285
-Resources Desert
+Resources Lifeless
 
 TradeGoods 
-Firearms 7 TotalPrice 2087
-Games 6 TotalPrice 225
-Ore 4 TotalPrice 461
-Water 7 TotalPrice 48
-Machines 7 TotalPrice 609
-Furs 4 TotalPrice 335
-Robots 7 TotalPrice 5900
-Medicine 5 TotalPrice 590
-Food 12 TotalPrice 145
-Narcotics 9 TotalPrice 5055
+Firearms 0 
+Games 0 
+Ore 0 
+Water 8 TotalPrice 33
+Machines 0 
+Furs 5 TotalPrice 275
+Robots 0 
+Medicine 0 
+Food 11 TotalPrice 120
+Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Glosta
-TechLevel Hi-Tech
-Xcoordinate 132
-Ycoordinate 340
+TechLevel Medieval
+Xcoordinate 135
+Ycoordinate 69
 
 PlanetName Storopa
-Resources Desert
+Resources Weird Mushrooms
 
 TradeGoods 
-Firearms 3 TotalPrice 1987
-Games 8 TotalPrice 210
-Ore 11 TotalPrice 474
-Water 4 TotalPrice 52
-Machines 5 TotalPrice 586
-Furs 10 TotalPrice 330
-Robots 10 TotalPrice 8150
-Medicine 9 TotalPrice 586
-Food 10 TotalPrice 150
-Narcotics 9 TotalPrice 5385
+Firearms 0 
+Games 0 
+Ore 9 TotalPrice 367
+Water 5 TotalPrice 36
+Machines 0 
+Furs 9 TotalPrice 287
+Robots 0 
+Medicine 0 
+Food 3 TotalPrice 112
+Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Bertonia
-TechLevel Post-Industrial
-Xcoordinate 165
-Ycoordinate 340
+TechLevel Pre-Agriculture
+Xcoordinate 173
+Ycoordinate 183
 
 PlanetName Silventero
-Resources Rich Soil
+Resources Lifeless
 
 TradeGoods 
-Firearms 6 TotalPrice 1425
-Games 6 TotalPrice 232
-Ore 4 TotalPrice 444
-Water 10 TotalPrice 48
-Machines 4 TotalPrice 603
-Furs 7 TotalPrice 325
-Robots 9 TotalPrice 6100
-Medicine 6 TotalPrice 596
-Food 7 TotalPrice 128
-Narcotics 9 TotalPrice 4320
+Firearms 0 
+Games 0 
+Ore 0 
+Water 6 TotalPrice 30
+Machines 0 
+Furs 3 TotalPrice 260
+Robots 0 
+Medicine 0 
+Food 0 
+Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Obska
-TechLevel Renaissance
-Xcoordinate 208
-Ycoordinate 385
+TechLevel Early Industrial
+Xcoordinate 200
+Ycoordinate 296
 
 PlanetName Acrylizia
-Resources Desert
+Resources No Special Resources
 
 TradeGoods 
-Firearms 9 TotalPrice 1812
-Games 4 TotalPrice 257
-Ore 7 TotalPrice 373
-Water 3 TotalPrice 39
-Machines 0 
-Furs 12 TotalPrice 300
+Firearms 6 TotalPrice 1687
+Games 4 TotalPrice 242
+Ore 10 TotalPrice 397
+Water 5 TotalPrice 43
+Machines 7 TotalPrice 650
+Furs 5 TotalPrice 295
 Robots 0 
-Medicine 0 
-Food 12 TotalPrice 112
+Medicine 7 TotalPrice 669
+Food 5 TotalPrice 128
 Narcotics 0 
 
 GalaxyDone
 
 GalaxyName Bud Light
-TechLevel Post-Industrial
-Xcoordinate 242
-Ycoordinate 319
+TechLevel Medieval
+Xcoordinate 238
+Ycoordinate 158
 
 PlanetName Sazerac
-Resources Mineral Poor
-
-TradeGoods 
-Firearms 7 TotalPrice 1662
-Games 10 TotalPrice 227
-Ore 12 TotalPrice 447
-Water 9 TotalPrice 48
-Machines 9 TotalPrice 603
-Furs 3 TotalPrice 325
-Robots 5 TotalPrice 7350
-Medicine 9 TotalPrice 622
-Food 7 TotalPrice 138
-Narcotics 8 TotalPrice 5720
-
-GalaxyDone
-
-GalaxyName K102YN
-TechLevel Pre-Agriculture
-Xcoordinate 269
-Ycoordinate 46
-
-PlanetName Bulleit
-Resources No Special Resources
+Resources Lots of Water
 
 TradeGoods 
 Firearms 0 
 Games 0 
-Ore 0 
-Water 7 TotalPrice 31
+Ore 4 TotalPrice 381
+Water 11 TotalPrice 36
 Machines 0 
-Furs 10 TotalPrice 275
+Furs 12 TotalPrice 292
 Robots 0 
 Medicine 0 
-Food 0 
+Food 10 TotalPrice 115
 Narcotics 0 
 
 GalaxyDone
 
-GalaxyName Clessentra
-TechLevel Post-Industrial
-Xcoordinate 302
-Ycoordinate 362
+GalaxyName K102YN
+TechLevel Medieval
+Xcoordinate 272
+Ycoordinate 228
 
-PlanetName Grouse
-Resources Lifeless
-
-TradeGoods 
-Firearms 11 TotalPrice 1400
-Games 6 TotalPrice 232
-Ore 9 TotalPrice 444
-Water 7 TotalPrice 48
-Machines 5 TotalPrice 622
-Furs 3 TotalPrice 310
-Robots 3 TotalPrice 5850
-Medicine 9 TotalPrice 616
-Food 8 TotalPrice 129
-Narcotics 11 TotalPrice 5475
-
-GalaxyDone
-
-GalaxyName Bjornos
-TechLevel Hi-Tech
-Xcoordinate 331
-Ycoordinate 408
-
-PlanetName Glenrothes
-Resources Weird Mushrooms
-
-TradeGoods 
-Firearms 6 TotalPrice 2050
-Games 10 TotalPrice 210
-Ore 6 TotalPrice 481
-Water 3 TotalPrice 52
-Machines 9 TotalPrice 566
-Furs 6 TotalPrice 337
-Robots 3 TotalPrice 7550
-Medicine 8 TotalPrice 592
-Food 3 TotalPrice 132
-Narcotics 9 TotalPrice 7239
-
-GalaxyDone
-
-GalaxyName Taiwan
-TechLevel Pre-Agriculture
-Xcoordinate 373
-Ycoordinate 203
-
-PlanetName Laphroaig
+PlanetName Bulleit
 Resources Rich Soil
 
 TradeGoods 
 Firearms 0 
 Games 0 
-Ore 0 
-Water 0 
+Ore 3 TotalPrice 385
+Water 4 TotalPrice 36
 Machines 0 
-Furs 8 TotalPrice 257
+Furs 7 TotalPrice 270
 Robots 0 
 Medicine 0 
-Food 0 
+Food 4 TotalPrice 113
 Narcotics 0 
 
 GalaxyDone
 
-GalaxyName Sector 17
-TechLevel Pre-Agriculture
-Xcoordinate 395
-Ycoordinate 158
-
-PlanetName Buchantona
-Resources Mineral Rich
-
-TradeGoods 
-Firearms 0 
-Games 0 
-Ore 0 
-Water 3 TotalPrice 30
-Machines 0 
-Furs 8 TotalPrice 272
-Robots 0 
-Medicine 0 
-Food 0 
-Narcotics 0 
-
-GalaxyDone
-
-GalaxyName Granzia
+GalaxyName Clessentra
 TechLevel Early Industrial
-Xcoordinate 440
-Ycoordinate 47
+Xcoordinate 306
+Ycoordinate 114
 
-PlanetName Drantofor
-Resources Mineral Poor
+PlanetName Grouse
+Resources Poor Soil
 
 TradeGoods 
-Firearms 3 TotalPrice 1600
-Games 5 TotalPrice 252
-Ore 11 TotalPrice 404
-Water 10 TotalPrice 42
-Machines 4 TotalPrice 663
-Furs 10 TotalPrice 302
+Firearms 6 TotalPrice 2262
+Games 7 TotalPrice 252
+Ore 4 TotalPrice 393
+Water 7 TotalPrice 42
+Machines 9 TotalPrice 682
+Furs 3 TotalPrice 300
 Robots 0 
-Medicine 7 TotalPrice 656
-Food 3 TotalPrice 131
+Medicine 5 TotalPrice 656
+Food 5 TotalPrice 124
 Narcotics 0 
 
 GalaxyDone
 
-GalaxyName Baowaters
-TechLevel Pre-Agriculture
-Xcoordinate 472
-Ycoordinate 294
+GalaxyName Bjornos
+TechLevel Agriculture
+Xcoordinate 333
+Ycoordinate 92
 
-PlanetName Cardaliana
+PlanetName Glenrothes
 Resources Lifeless
 
 TradeGoods 
 Firearms 0 
 Games 0 
 Ore 0 
-Water 12 TotalPrice 30
+Water 11 TotalPrice 33
 Machines 0 
-Furs 6 TotalPrice 267
+Furs 8 TotalPrice 260
 Robots 0 
 Medicine 0 
-Food 0 
+Food 8 TotalPrice 112
 Narcotics 0 
 
 GalaxyDone
 
-GalaxyName Rowlinga
-TechLevel Hi-Tech
-Xcoordinate 500
-Ycoordinate 183
+GalaxyName Taiwan
+TechLevel Agriculture
+Xcoordinate 362
+Ycoordinate 385
 
-PlanetName Promentheria
-Resources Desert
-
-TradeGoods 
-Firearms 7 TotalPrice 1125
-Games 9 TotalPrice 215
-Ore 11 TotalPrice 460
-Water 10 TotalPrice 51
-Machines 8 TotalPrice 573
-Furs 11 TotalPrice 332
-Robots 4 TotalPrice 9750
-Medicine 9 TotalPrice 579
-Food 5 TotalPrice 148
-Narcotics 11 TotalPrice 3600
-
-GalaxyDone
-
-GalaxyName Tintiti
-TechLevel Pre-Agriculture
-Xcoordinate 532
-Ycoordinate 272
-
-PlanetName Benzoate
+PlanetName Laphroaig
 Resources Artistic
 
 TradeGoods 
 Firearms 0 
 Games 0 
 Ore 0 
-Water 6 TotalPrice 31
+Water 9 TotalPrice 33
 Machines 0 
-Furs 3 TotalPrice 262
+Furs 8 TotalPrice 267
+Robots 0 
+Medicine 0 
+Food 8 TotalPrice 120
+Narcotics 0 
+
+GalaxyDone
+
+GalaxyName Sector 17
+TechLevel Medieval
+Xcoordinate 399
+Ycoordinate 45
+
+PlanetName Buchantona
+Resources Lots of Water
+
+TradeGoods 
+Firearms 0 
+Games 0 
+Ore 11 TotalPrice 381
+Water 12 TotalPrice 36
+Machines 0 
+Furs 9 TotalPrice 295
+Robots 0 
+Medicine 0 
+Food 5 TotalPrice 125
+Narcotics 0 
+
+GalaxyDone
+
+GalaxyName Granzia
+TechLevel Renaissance
+Xcoordinate 428
+Ycoordinate 91
+
+PlanetName Drantofor
+Resources Warlike
+
+TradeGoods 
+Firearms 3 TotalPrice 1787
+Games 10 TotalPrice 250
+Ore 4 TotalPrice 384
+Water 11 TotalPrice 39
+Machines 0 
+Furs 10 TotalPrice 302
+Robots 0 
+Medicine 0 
+Food 11 TotalPrice 113
+Narcotics 0 
+
+GalaxyDone
+
+GalaxyName Baowaters
+TechLevel Industrial
+Xcoordinate 464
+Ycoordinate 228
+
+PlanetName Cardaliana
+Resources Poor Soil
+
+TradeGoods 
+Firearms 12 TotalPrice 2012
+Games 5 TotalPrice 232
+Ore 9 TotalPrice 413
+Water 9 TotalPrice 45
+Machines 4 TotalPrice 652
+Furs 11 TotalPrice 305
+Robots 0 
+Medicine 11 TotalPrice 639
+Food 3 TotalPrice 120
+Narcotics 9 TotalPrice 6230
+
+GalaxyDone
+
+GalaxyName Rowlinga
+TechLevel Pre-Agriculture
+Xcoordinate 495
+Ycoordinate 45
+
+PlanetName Promentheria
+Resources Weird Mushrooms
+
+TradeGoods 
+Firearms 0 
+Games 0 
+Ore 0 
+Water 12 TotalPrice 30
+Machines 0 
+Furs 8 TotalPrice 250
 Robots 0 
 Medicine 0 
 Food 0 
 Narcotics 0 
+
+GalaxyDone
+
+GalaxyName Tintiti
+TechLevel Industrial
+Xcoordinate 537
+Ycoordinate 67
+
+PlanetName Benzoate
+Resources Poor Soil
+
+TradeGoods 
+Firearms 4 TotalPrice 1200
+Games 12 TotalPrice 230
+Ore 10 TotalPrice 434
+Water 3 TotalPrice 45
+Machines 12 TotalPrice 626
+Furs 8 TotalPrice 305
+Robots 0 
+Medicine 3 TotalPrice 639
+Food 9 TotalPrice 139
+Narcotics 5 TotalPrice 8155
 
 GalaxyDone
 
 GalaxyName Atlanta
-TechLevel Post-Industrial
-Xcoordinate 567
+TechLevel Hi-Tech
+Xcoordinate 572
 Ycoordinate 272
 
 PlanetName Disodia
-Resources Mineral Poor
+Resources No Special Resources
 
 TradeGoods 
-Firearms 5 TotalPrice 1212
-Games 3 TotalPrice 232
-Ore 8 TotalPrice 461
-Water 11 TotalPrice 48
-Machines 4 TotalPrice 616
-Furs 9 TotalPrice 335
-Robots 7 TotalPrice 8300
-Medicine 10 TotalPrice 590
-Food 11 TotalPrice 130
-Narcotics 7 TotalPrice 5125
+Firearms 6 TotalPrice 1612
+Games 10 TotalPrice 217
+Ore 4 TotalPrice 457
+Water 8 TotalPrice 51
+Machines 5 TotalPrice 592
+Furs 3 TotalPrice 325
+Robots 12 TotalPrice 8800
+Medicine 10 TotalPrice 573
+Food 5 TotalPrice 147
+Narcotics 9 TotalPrice 5875
 
 GalaxyDone
 
 GalaxyName Wallaberlo
-TechLevel Pre-Agriculture
-Xcoordinate 602
-Ycoordinate 203
+TechLevel Hi-Tech
+Xcoordinate 593
+Ycoordinate 115
 
 PlanetName Rocalianda
-Resources Desert
+Resources Rich Soil
 
 TradeGoods 
-Firearms 0 
-Games 0 
-Ore 0 
-Water 4 TotalPrice 30
-Machines 0 
-Furs 9 TotalPrice 275
-Robots 0 
-Medicine 0 
-Food 0 
-Narcotics 0 
+Firearms 4 TotalPrice 1200
+Games 12 TotalPrice 220
+Ore 9 TotalPrice 478
+Water 10 TotalPrice 52
+Machines 6 TotalPrice 560
+Furs 6 TotalPrice 332
+Robots 9 TotalPrice 7600
+Medicine 3 TotalPrice 566
+Food 6 TotalPrice 138
+Narcotics 9 TotalPrice 8395
 
 GalaxyDone
 
 GalaxyName Fanta Pineapple
-TechLevel Agriculture
-Xcoordinate 637
-Ycoordinate 137
+TechLevel Renaissance
+Xcoordinate 631
+Ycoordinate 385
 
 PlanetName Esterora
-Resources Mineral Rich
+Resources Warlike
 
 TradeGoods 
-Firearms 0 
-Games 0 
-Ore 0 
-Water 10 TotalPrice 33
+Firearms 6 TotalPrice 1750
+Games 4 TotalPrice 255
+Ore 3 TotalPrice 401
+Water 7 TotalPrice 39
 Machines 0 
-Furs 6 TotalPrice 260
+Furs 4 TotalPrice 297
 Robots 0 
 Medicine 0 
-Food 10 TotalPrice 110
+Food 5 TotalPrice 126
 Narcotics 0 
 
 GalaxyDone

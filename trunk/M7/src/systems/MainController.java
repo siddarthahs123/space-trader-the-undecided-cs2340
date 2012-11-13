@@ -369,6 +369,7 @@ public class MainController {
 				}
 				
 				cargo.setTradeGoods(inventory);
+				playerShip.setRemSpace(playerShip.getCargo() - inventory.entrySet().size());
 			}
 			
 			while (!currentPositionSettingDone) {
@@ -1015,7 +1016,7 @@ public class MainController {
 //		for (Entry<String, ArrayList<TradeGood>> entry : iPlanet.entrySet()){
 //			System.out.println(entry.getKey() + " " + entry.getValue().size());
 //		}
-		
+		marketView.setPlanetName(curPlanet.getName());
 		marketView.setLblRemaining(""+playerShip.getRemSpace());
 
 		for(Entry entry : iPlanet.entrySet()) {
