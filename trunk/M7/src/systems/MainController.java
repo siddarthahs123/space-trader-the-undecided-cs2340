@@ -367,6 +367,8 @@ public class MainController {
 						inventory.get("Narcotics").add(new Narcotics());
 					playerCargoSettingDone = true;
 				}
+				
+				cargo.setTradeGoods(inventory);
 			}
 			
 			while (!currentPositionSettingDone) {
@@ -590,6 +592,7 @@ public class MainController {
 				for (Planet planet : galaxy.getPlanets()) {
 					if (planet.getName().equals(currentPlanet)) {
 						curPlanet = planet;
+						deflatedPrices = curPlanet.getDeflatedPrices();
 					}
 				}
 			}
@@ -655,6 +658,8 @@ public class MainController {
 				String name = startView.getTextField();
 				int difficulty = startView.getDifficulty();
 				System.out.println("Difficulty : " + difficulty);
+				
+				//refreshCargoGoods(); //!
 				
 				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
 				player.printData();
