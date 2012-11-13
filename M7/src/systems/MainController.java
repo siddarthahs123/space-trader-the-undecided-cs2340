@@ -44,6 +44,7 @@ import models.Spaceship;
 import models.TradeGood;
 import models.Universe;
 import models.Water;
+import views.EncounterView;
 import views.IntroView;
 import views.MarketView;
 import views.StartView;
@@ -62,6 +63,7 @@ public class MainController {
 	private final String INTRO = "Intro Screen";
 	private final String START = "Start Screen";
 	private final String UNIVERSE = "Universe Screen";
+	private final String ENCOUNTER = "Encounter Screen";
 	private final String MARKET = "Market Screen";
 	private final String curState = "";
 	
@@ -76,6 +78,7 @@ public class MainController {
 	private IntroView introView;
 	private StartView startView;
 	private MarketView marketView;
+	private EncounterView encounterView;
 	private UniverseView universeView;
 	private Cargo cargo;
 	private Spaceship playerShip;
@@ -136,6 +139,9 @@ public class MainController {
 		playerShip = new Flea();
 		refreshCargoGoods();
 		
+		encounterView = new EncounterView(new MarketListener());
+		JPanel encounterCard = encounterView.getPanel();
+		
 		marketView = new MarketView(new BuyListener(), new SellListener(), new MapListener(), new SaveGameListener());
 		JPanel marketCard = marketView.getPanel();
 		
@@ -144,11 +150,13 @@ public class MainController {
 		cards.add(introCard, INTRO);
 		cards.add(startCard, START);
 		cards.add(universeCard, UNIVERSE);
+		cards.add(encounterCard, ENCOUNTER);
 		cards.add(marketCard, MARKET);
 
         pane.add(cards, BorderLayout.CENTER);
 	}
 
+	
 	public void nextState(String next) {
 		CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, next);
@@ -165,6 +173,18 @@ public class MainController {
 	}
 	
 	/**
+<<<<<<< .mine
+	 * Listener class that continues to the marketplace
+	 * @author Bao
+	 *
+	 */
+	public class MarketListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			nextState(MARKET);
+		}
+	}
+	/**
+=======
 	 * Listener class for continuing game
 	 * @author Justin
 	 */
@@ -175,6 +195,7 @@ public class MainController {
 	}
 	
 	/**
+>>>>>>> .r127
 	 * Listener class for load game selection.
 	 * @author Samarth Agarwal
 	 */
@@ -665,6 +686,7 @@ public class MainController {
 				player = new Player(pilot, fighter, trader, engineer, difficulty, name);
 				player.printData();
 				nextState(UNIVERSE);
+//				universeView.repaint();
 			}
 		}
 	}
@@ -675,6 +697,7 @@ public class MainController {
 	 */
 	public class PlanetListener implements ActionListener { //make sure clicking on current planet doesn't add a turn
 		public void actionPerformed(ActionEvent e) {
+			
 			int distance = 0;
 			universeView.getFuelWarning().setVisible(false);
 			
@@ -692,6 +715,16 @@ public class MainController {
 			}
 			
 			if(player.getFuel() >= distance) {
+				if(distance !=0){
+					nextState(ENCOUNTER);
+					player.setCredits(player.getCredits() + encounterView.getCreditChange());
+					encounterView = new EncounterView(new MarketListener());
+					JPanel encounterCard = encounterView.getPanel();
+					cards.add(encounterCard, ENCOUNTER);
+				} else {
+					nextState(MARKET);
+				}
+				
 				curGalaxy = (SolarSystem)hash.get(e.getSource());
 				curPlanet = curGalaxy.getPlanets()[0];
 				
@@ -710,7 +743,7 @@ public class MainController {
 				showRange();
 				System.out.println("Fuel Remaining: "+player.getFuel()+"\n");
 				deflatedPrices = curPlanet.getDeflatedPrices();
-				nextState(MARKET);
+//				nextState(ENCOUNTER);
 			}
 			else {
 				System.out.println("Distance travelled : " + distance);
