@@ -5,6 +5,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import systems.MainController.BuyListener;
+import systems.MainController.FillTank;
 import systems.MainController.SaveGameListener;
 import systems.MainController.SellListener;
 import systems.MainController.MapListener;
@@ -22,7 +23,8 @@ public class MarketView extends MainView {
 	private JSpinner spinner;
 	private JButton btnSaveGame;
 
-	public MarketView(BuyListener buyListener, SellListener sellListener, MapListener mapListener, SaveGameListener saveGameListener) {
+	public MarketView(BuyListener buyListener, SellListener sellListener, MapListener mapListener, SaveGameListener saveGameListener,
+			FillTank fillTank) {
 		panel = new JPanel();
 		panel.setBounds(6, 6, 679, 473);
 		panel.setLayout(null);
@@ -379,6 +381,7 @@ public class MarketView extends MainView {
 		fuelBuy = new JButton("Buy");
 		fuelBuy.setEnabled(false);
 		fuelBuy.setBounds(151, 365, 115, 29);
+		fuelBuy.addActionListener(fillTank);
 		panel.add(fuelBuy);
 		
 		JLabel lblFuel = new JLabel("Fuel");
@@ -610,5 +613,19 @@ public class MarketView extends MainView {
 	
 	public JButton getBtnToMap() {
 		return btnToMap;
+	}
+	
+	
+//	************
+//	MY CHANGES
+//	************
+//	************
+//	MY CHANGES
+//	************
+//	************
+//	MY CHANGES
+//	************
+	public JButton getBuyFuel() {
+		return fuelBuy;
 	}
 }

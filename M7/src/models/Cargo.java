@@ -19,6 +19,10 @@ public class Cargo {
 		this.inventory = inventory;
 	}
 	
+	public void addTradeGood(String key, TradeGood obj) {
+		inventory.get(key).add(obj);
+	}
+	
 	public String toString() {
 		String str = "Cargo Inventory\n===============\n";
 		for(Entry<String, ArrayList<TradeGood>> entry : inventory.entrySet()) {
