@@ -142,7 +142,7 @@ public class MainController {
 		encounterView = new EncounterView(new MarketListener());
 		JPanel encounterCard = encounterView.getPanel();
 		
-		marketView = new MarketView(new BuyListener(), new SellListener(), new MapListener(), new SaveGameListener());
+		marketView = new MarketView(new BuyListener(), new SellListener(), new MapListener(), new SaveGameListener(), new FillTank());
 		JPanel marketCard = marketView.getPanel();
 		
 		//Add cards to card layout
@@ -396,11 +396,11 @@ public class MainController {
 			while (!currentPositionSettingDone) {
 				ret = scan.next();
 				if (ret.equals("CurrentGalaxy")) {
-					String galaxy = scan.next();
+					String galaxy = scan.nextLine().trim();
 					currentGalaxy = galaxy;
 				}
 				else if (ret.equals("CurrentPlanet")) {
-					String planet = scan.next();
+					String planet = scan.nextLine().trim();
 					currentPlanet = planet;
 					currentPositionSettingDone = true;
 				}
@@ -619,10 +619,8 @@ public class MainController {
 				}
 			}
 		}
-		for (SolarSystem galaxy : galaxies) {
-			System.out.println(galaxy.write());
-		}
-//		System.out.println("Current state : "+ curGalaxy.getName() + " " + curPlanet.getName());
+		System.out.println(currentGalaxy);
+		//System.out.println("Current state : "+ curGalaxy.getName() + " " + curPlanet.getName());
 		setMarketValues();
 		introView.getBtnContinueGame().setEnabled(true);
 		nextState(MARKET);
@@ -697,7 +695,18 @@ public class MainController {
 	 */
 	public class PlanetListener implements ActionListener { //make sure clicking on current planet doesn't add a turn
 		public void actionPerformed(ActionEvent e) {
-			
+//			************
+//			MY CHANGES
+//			************
+//			************
+//			MY CHANGES
+//			************
+//			************
+//			MY CHANGES
+//			************
+			if(player.getFuel() < 700) {
+				marketView.getBuyFuel().setEnabled(true);
+			}
 			int distance = 0;
 			universeView.getFuelWarning().setVisible(false);
 			
@@ -717,7 +726,12 @@ public class MainController {
 			if(player.getFuel() >= distance) {
 				if(distance !=0){
 					nextState(ENCOUNTER);
+					if(player.getCredits() + encounterView.getCreditChange() < 0)
+						player.setCredits(0);
 					player.setCredits(player.getCredits() + encounterView.getCreditChange());
+					if(encounterView.getTradeGood()!=null){
+						cargo.addTradeGood(encounterView.getTradeGoodKey(), encounterView.getTradeGood());
+					}
 					encounterView = new EncounterView(new MarketListener());
 					JPanel encounterCard = encounterView.getPanel();
 					cards.add(encounterCard, ENCOUNTER);
@@ -892,11 +906,30 @@ public class MainController {
 		}
 		
 	}
-	
-	
-	
-	
-	
+//	************
+//	MY CHANGES
+//	************
+//	************
+//	MY CHANGES
+//	************
+//	************
+//	MY CHANGES
+//	************
+	/**
+	 * Listener class that allows the player to buy fuel
+	 * @author Bao
+	 *
+	 */
+	public class FillTank implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			int cost = (700 - player.getFuel())/2;
+			player.setCredits(player.getCredits() - cost);
+			player.setFuel(700);
+			marketView.getBuyFuel().setEnabled(false);
+			marketView.getLblRemcredits().setText(""+player.getCredits());
+		}
+	}
 	/**
 	 * Method to generate all of the galaxies.
 	 * @return A list of galaxies in order to draw to map
