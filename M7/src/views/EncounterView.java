@@ -15,7 +15,8 @@ public class EncounterView extends JPanel {
 	private String[] randGoods = {"Water", "Furs", "Games", "Food", "Firearms", "Machines",
 			"Medicine", "Narcotics", "Ore", "Robots"};
 	private TradeGood randomGood;
-	private String randomGoodKey;
+	private String randomGoodKey; 
+	int random;
 	
 	public EncounterView(MarketListener ml) {
 		panel = new JPanel();
@@ -23,6 +24,7 @@ public class EncounterView extends JPanel {
 		panel.setBackground(Color.black);
 		selectEncounter();
 		cont.addActionListener(ml);
+		random = gen.nextInt(randGoods.length - 1);
 		message.setForeground(Color.white);
 		message.setHorizontalAlignment(SwingConstants.CENTER);
 		cont.setHorizontalAlignment(SwingConstants.CENTER);
@@ -47,7 +49,7 @@ public class EncounterView extends JPanel {
 			creditChange = Math.floor(gen.nextDouble()*100);
 			message.setText("You found " + creditChange + " credits!");
 		} else {
-			randomGood = randomTradeGood();
+			randomGood = randomTradeGood(random);
 			message.setText("You found " + randomGoodKey);
 		}
 	}
@@ -61,8 +63,7 @@ public class EncounterView extends JPanel {
 		message.setText("You have arrived at your destination safely.");
 	}
 	
-	public TradeGood randomTradeGood() {
-		int choice = gen.nextInt(randGoods.length - 1);
+	public TradeGood randomTradeGood(int choice) {
 		TradeGood newObj = null;
 		randomGoodKey = randGoods[choice]; 
 		if(randomGoodKey.equals("Water")) {
@@ -103,6 +104,10 @@ public class EncounterView extends JPanel {
 	
 	public String getTradeGoodKey() {
 		return randomGoodKey;
+	}
+	
+	public String[] getRandGoods() {
+		return randGoods;
 	}
 	
 }
