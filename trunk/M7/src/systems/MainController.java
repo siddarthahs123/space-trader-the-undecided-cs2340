@@ -1359,6 +1359,14 @@ public class MainController {
 	public static void main(String[] args) {
 		new MainController();
 	}
+	
+	public int frameWidth(){
+		return frameWidth;
+	}
+	
+	public int frameHeight() {
+		return frameHeight;
+	}
 }
 
 /**
