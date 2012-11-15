@@ -303,20 +303,20 @@ public class StartView extends MainView {
 			int remPoints = 16;
 			int placeHolder = 16;
 			int[] scores = new int[] { pScore, fScore, tScore, eScore };
-			boolean[] done = new boolean[] { false, false, false, false };
+			//boolean[] done = new boolean[] { false, false, false, false };
 			int tally = 0;
 			
 			while(remPoints > 0) {
 				int count = rand.nextInt(scores.length);
 				int score = rand.nextInt((remPoints/2)+2);
-				if(tally == 3 && done[count] == false) {
+				if(tally == 3 && scores[count] == 0) {
 					scores[count] = remPoints;
-					done[count] = true;
+					//done[count] = true;
 					remPoints -= remPoints;
 				}
-				else if(done[count] == false) {
+				else if(scores[count] == 0) {
 					scores[count] = score;
-					done[count] = true;
+					//done[count] = true;
 					remPoints -= score;
 					tally++;
 				}

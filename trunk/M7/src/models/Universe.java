@@ -1,7 +1,5 @@
 package models;
 
-import models.*;
-
 public class Universe {
 	
 	private String[] names;
