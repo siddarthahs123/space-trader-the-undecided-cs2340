@@ -206,7 +206,7 @@ public class MainController {
 					load();
 				} 
 				catch (FileNotFoundException e1) {
-					System.out.println("No such file found. Try again.");
+					System.out.println("No such file found. Try again: " + e1.getMessage());
 				}
 			}
 		}
@@ -226,6 +226,7 @@ public class MainController {
 			scan = new Scanner(f);
 		}
 		catch(NullPointerException e){
+			e.getMessage();
 			return;
 		}
 		
@@ -739,7 +740,7 @@ public class MainController {
 					nextState(MARKET);
 				}
 				
-				curGalaxy = (SolarSystem)hash.get(e.getSource());
+				curGalaxy = hash.get(e.getSource());
 				curPlanet = curGalaxy.getPlanets()[0];
 				
 				universe.setCurGalaxy(curGalaxy);
@@ -1089,7 +1090,7 @@ public class MainController {
 			ArrayList<TradeGood> mResource = (ArrayList<TradeGood>)entry.getValue();
 			int quantity = mResource.size();
 			
-			if((String)entry.getKey() == "Water") {
+			if(((String)entry.getKey()).equals("Water")) {
 				marketView.getLblMwater().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getWaterBuy().setEnabled(false);
@@ -1098,7 +1099,7 @@ public class MainController {
 					marketView.getWaterBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Furs") {
+			else if(((String)entry.getKey()).equals("Furs")) {
 				marketView.getLblMfurs().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getFursBuy().setEnabled(false);
@@ -1107,7 +1108,7 @@ public class MainController {
 					marketView.getFursBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Games") {
+			else if(((String)entry.getKey()).equals("Games")) {
 				marketView.getLblMgames().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getGamesBuy().setEnabled(false);
@@ -1116,7 +1117,7 @@ public class MainController {
 					marketView.getGamesBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Firearms") {
+			else if(((String)entry.getKey()).equals("Firearms")) {
 				marketView.getLblMfirearms().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getFirearmsBuy().setEnabled(false);
@@ -1125,7 +1126,7 @@ public class MainController {
 					marketView.getFirearmsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Food") {
+			else if(((String)entry.getKey()).equals("Food")) {
 				marketView.getLblMfood().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getFoodBuy().setEnabled(false);
@@ -1134,7 +1135,7 @@ public class MainController {
 					marketView.getFoodBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Machines") {
+			else if(((String)entry.getKey()).equals("Machines")) {
 				marketView.getLblMmachines().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getMachinesBuy().setEnabled(false);
@@ -1143,7 +1144,7 @@ public class MainController {
 					marketView.getMachinesBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Robots") {
+			else if(((String)entry.getKey()).equals("Robots")) {
 				marketView.getLblMrobots().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getRobotsBuy().setEnabled(false);
@@ -1152,7 +1153,7 @@ public class MainController {
 					marketView.getRobotsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Medicine") {
+			else if(((String)entry.getKey()).equals("Medicine")) {
 				marketView.getLblMmedicine().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getMedicineBuy().setEnabled(false);
@@ -1161,7 +1162,7 @@ public class MainController {
 					marketView.getMedicineBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Narcotics") {
+			else if(((String)entry.getKey()).equals("Narcotics")) {
 				marketView.getLblMnarcotics().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getNarcoticsBuy().setEnabled(false);
@@ -1170,7 +1171,7 @@ public class MainController {
 					marketView.getNarcoticsBuy().setText("Buy["+mResource.get(0).getTotalPrice()+"]");
 				}
 			}
-			else if((String)entry.getKey() == "Ore") {
+			else if(((String)entry.getKey()).equals("Ore")) {
 				marketView.getLblMore().setText(""+quantity);
 				if(quantity == 0)
 					marketView.getOreBuy().setEnabled(false);
@@ -1189,7 +1190,7 @@ public class MainController {
 			if(pResource.size() > 0 && curGalaxy.getTechLevelNum() < pResource.get(0).getMTLU())
 				disable = true;
 			
-			if((String)entry.getKey() == "Water") {
+			if(((String)entry.getKey()).equals("Water")) {
 				marketView.getLblCwater().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getWaterSell().setEnabled(false);
@@ -1201,7 +1202,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Furs") {
+			else if(((String)entry.getKey()).equals("Furs")) {
 				marketView.getLblCfurs().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getFursSell().setEnabled(false);
@@ -1213,7 +1214,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Games") {
+			else if(((String)entry.getKey()).equals("Games")) {
 				marketView.getLblCgames().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getGamesSell().setEnabled(false);
@@ -1225,7 +1226,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Firearms") {
+			else if(((String)entry.getKey()).equals("Firearms")) {
 				marketView.getLblCfirearms().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getFirearmsSell().setEnabled(false);
@@ -1237,7 +1238,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Food") {
+			else if(((String)entry.getKey()).equals("Food")) {
 				marketView.getLblCfood().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getFoodSell().setEnabled(false);
@@ -1249,7 +1250,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Machines") {
+			else if(((String)entry.getKey()).equals("Machines")) {
 				marketView.getLblCmachines().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getMachinesSell().setEnabled(false);
@@ -1261,7 +1262,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Robots") {
+			else if(((String)entry.getKey()).equals("Robots")) {
 				marketView.getLblCrobots().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getRobotsSell().setEnabled(false);
@@ -1273,7 +1274,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Medicine") {
+			else if(((String)entry.getKey()).equals("Medicine")) {
 				marketView.getLblCmedicine().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getMedicineSell().setEnabled(false);
@@ -1285,7 +1286,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Narcotics") {
+			else if(((String)entry.getKey()).equals("Narcotics")) {
 				marketView.getLblCnarcotics().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getNarcoticsSell().setEnabled(false);
@@ -1297,7 +1298,7 @@ public class MainController {
 					}
 				}
 			}
-			else if((String)entry.getKey() == "Ore") {
+			else if(((String)entry.getKey()).equals("Ore")) {
 				marketView.getLblCore().setText(""+quantity);
 				if(quantity == 0 || disable)
 					marketView.getOreSell().setEnabled(false);
@@ -1316,7 +1317,7 @@ public class MainController {
 	}
 	
 	public void showRange() {
-		JButton[] buttons = (JButton[])hash.keySet().toArray(new JButton[hash.size()]);
+		JButton[] buttons = hash.keySet().toArray(new JButton[hash.size()]);
 		Border closeBorder = new LineBorder(Color.YELLOW, 1);
 		Border farBorder = new LineBorder(Color.RED, 1);
 		Border curBorder = new LineBorder(Color.GREEN, 1);
@@ -1346,6 +1347,10 @@ public class MainController {
 			}
 		}
 		
+	}
+	
+	public SolarSystem[] getGalaxies() {
+		return galaxies;
 	}
 	
 	/**
