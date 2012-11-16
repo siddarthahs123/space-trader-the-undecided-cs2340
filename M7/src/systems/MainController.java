@@ -173,7 +173,6 @@ public class MainController {
 	}
 	
 	/**
-<<<<<<< .mine
 	 * Listener class that continues to the marketplace
 	 * @author Bao
 	 *
@@ -184,7 +183,6 @@ public class MainController {
 		}
 	}
 	/**
-=======
 	 * Listener class for continuing game
 	 * @author Justin
 	 */
@@ -195,7 +193,6 @@ public class MainController {
 	}
 	
 	/**
->>>>>>> .r127
 	 * Listener class for load game selection.
 	 * @author Samarth Agarwal
 	 */
@@ -609,6 +606,9 @@ public class MainController {
 				}
 			}
 		}
+//		for (SolarSystem galaxy : galaxies) {
+//			System.out.println(galaxy.write());
+//		}
 		for (SolarSystem galaxy : galaxies) {
 			if (galaxy.getName().equals(currentGalaxy)) {
 				curGalaxy = galaxy;
@@ -620,6 +620,7 @@ public class MainController {
 				}
 			}
 		}
+//		System.out.println("Current state : "+ curGalaxy.getName() + " " + curPlanet.getName());
 		System.out.println(currentGalaxy);
 		//System.out.println("Current state : "+ curGalaxy.getName() + " " + curPlanet.getName());
 		setMarketValues();
@@ -1080,9 +1081,6 @@ public class MainController {
 	public void setMarketValues() {
 		Hashtable<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Hashtable<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
-//		for (Entry<String, ArrayList<TradeGood>> entry : iPlanet.entrySet()){
-//			System.out.println(entry.getKey() + " " + entry.getValue().size());
-//		}
 		marketView.setPlanetName(curPlanet.getName());
 		marketView.setLblRemaining(""+playerShip.getRemSpace());
 
