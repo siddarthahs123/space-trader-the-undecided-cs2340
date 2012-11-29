@@ -1,12 +1,15 @@
 package systems;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
-import models.SolarSystem;
+import models.space.SolarSystem;
 
 import org.junit.Test;
+
+
 
 public class ChrisJUnit {
 	

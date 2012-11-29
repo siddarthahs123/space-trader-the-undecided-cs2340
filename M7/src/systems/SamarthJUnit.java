@@ -1,11 +1,12 @@
 package systems;
 
-import static org.junit.Assert.*;
-
-import models.Planet;
-import models.SolarSystem;
+import static org.junit.Assert.assertTrue;
+import models.space.Planet;
+import models.space.SolarSystem;
 
 import org.junit.Test;
+
+
 
 public class SamarthJUnit {
 	MainController mc = new MainController();
@@ -20,6 +21,7 @@ public class SamarthJUnit {
 		assertTrue("Correct number of galaxies generated", out);
 	}
 	
+	@Test
 	public void test1() {
 		
 		SolarSystem gal = new SolarSystem("Creynolds7", 10, 10);
@@ -32,6 +34,7 @@ public class SamarthJUnit {
 		assertTrue("Creynolds7 is generated", out);
 	}
 	
+	@Test
 	public void test2() {
 		SolarSystem gal = new SolarSystem("Fanta Pineapple", 10, 10);
 		boolean out = false;
@@ -43,6 +46,7 @@ public class SamarthJUnit {
 		assertTrue("Fanta Pineapple is generated", out);
 	}
 	
+	@Test
 	public void test3() {
 		boolean out = false;
 		if (galaxies[0].getPlanets()[0] instanceof Planet)
@@ -50,6 +54,7 @@ public class SamarthJUnit {
 		assertTrue("Universe contains Planets", out);
 	}
 	
+	@Test
 	public void test4() {
 		boolean out = false;
 		if (galaxies[0].getPlanets().length == 1)
@@ -57,6 +62,7 @@ public class SamarthJUnit {
 		assertTrue("One planet generated per galaxy", out);
 	}
 	
+	@Test
 	public void test5() {
 		boolean out = false;
 		if (galaxies[0] instanceof SolarSystem) {
@@ -65,6 +71,7 @@ public class SamarthJUnit {
 		assertTrue("Galaxy is correctly generated for first position", out);
 	}
 	
+	@Test
 	public void test6() {
 		boolean out = false;
 		if (galaxies[19] instanceof SolarSystem) {
@@ -73,6 +80,7 @@ public class SamarthJUnit {
 		assertTrue("Galaxy is correctly generated for last position", out);
 	}
 	
+	@Test
 	public void test7() {
 		boolean out = false;
 		if (galaxies != null)
@@ -80,6 +88,7 @@ public class SamarthJUnit {
 		assertTrue("Galaxy is generated", out);
 	}
 	
+	@Test
 	public void test8() {
 		boolean out = true;
 		for (SolarSystem gal : galaxies) {
@@ -95,6 +104,7 @@ public class SamarthJUnit {
 		assertTrue("Galaxy is generated in the dimensions of the window", out);
 	}
 	
+	@Test
 	public void test9() {
 		boolean out = true;
 		for (SolarSystem gal : galaxies) {
