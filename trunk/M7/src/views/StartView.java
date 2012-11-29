@@ -3,10 +3,15 @@
  */
 package views;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,11 +26,6 @@ import javax.swing.SwingConstants;
  * @version 1.0
  */
 public class StartView extends JPanel {
-
-	/**
-	 * JPanel
-	 */
-	private JPanel panel;
 
 	/**
 	 * Buttons for skill points
@@ -88,6 +88,8 @@ public class StartView extends JPanel {
 	 */
 	private int difficulty;
 
+	private BufferedImage image;
+
 	/**
 	 * Constructor
 	 */
@@ -95,73 +97,79 @@ public class StartView extends JPanel {
 	 * 
 	 */
 	public StartView() {
-		panel = new JPanel();
-		panel.setBounds(XCORD, YCORD, WIDTH, HEIGHT);
-		panel.setLayout(null);
+		File file = new File ("src/views/startscreen.jpg");
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
+		setLayout(null);
 
 		final JLabel lblWhatIsYour = new JLabel("What is your name?");
 		lblWhatIsYour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWhatIsYour.setBounds(78, 20, 121, 16);
-		panel.add(lblWhatIsYour);
+		add(lblWhatIsYour);
 
 		final JLabel lblPleaseAllocatePoints = new JLabel("Please allocate points:");
 		lblPleaseAllocatePoints.setBounds(59, 139, 140, 16);
-		panel.add(lblPleaseAllocatePoints);
+		add(lblPleaseAllocatePoints);
 
 		final JLabel lblPilot = new JLabel("Pilot");
 		lblPilot.setBounds(59, 196, 28, 16);
-		panel.add(lblPilot);
+		add(lblPilot);
 
 		final JLabel lblFighter = new JLabel("Fighter");
 		lblFighter.setBounds(59, 248, 44, 16);
-		panel.add(lblFighter);
+		add(lblFighter);
 
 		final JLabel lblTrader = new JLabel("Trader");
 		lblTrader.setBounds(59, 300, 40, 16);
-		panel.add(lblTrader);
+		add(lblTrader);
 
 		final JLabel lblEngineer = new JLabel("Engineer");
 		lblEngineer.setBounds(59, 353, 54, 16);
-		panel.add(lblEngineer);
+		add(lblEngineer);
 
 		textField = new JTextField();
 		textField.setBounds(42, 38, 191, 28);
-		panel.add(textField);
+		add(textField);
 		textField.setColumns(10);
 
 		final JLabel lblPointsLeft = new JLabel("Points left:");
 		lblPointsLeft.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPointsLeft.setBounds(289, 184, 68, 16);
-		panel.add(lblPointsLeft);
+		add(lblPointsLeft);
 
 		pointsLabel = new JLabel("16");
 		pointsLabel.setBounds(316, 209, 16, 16);
-		panel.add(pointsLabel);
+		add(pointsLabel);
 
 		btnDone = new JButton("Done");
 		btnDone.setBounds(431, 329, 95, 67);
-		panel.add(btnDone);
+		add(btnDone);
 
 		btnRoll = new JButton("Roll");
 		btnRoll.setBounds(278, 329, 95, 67);
-		panel.add(btnRoll);
+		add(btnRoll);
 		btnRoll.addActionListener(new RandomListener());
 
 		pPoints = new JLabel("0");
 		pPoints.setBounds(183, 196, 16, 16);
-		panel.add(pPoints);
+		add(pPoints);
 
 		fPoints = new JLabel("0");
 		fPoints.setBounds(183, 248, 16, 16);
-		panel.add(fPoints);
+		add(fPoints);
 
 		tPoints = new JLabel("0");
 		tPoints.setBounds(183, 300, 16, 16);
-		panel.add(tPoints);
+		add(tPoints);
 
 		ePoints = new JLabel("0");
 		ePoints.setBounds(183, 353, 16, 16);
-		panel.add(ePoints);
+		add(ePoints);
 
 		ActionListener plusListener = new PlusListener();
 		ActionListener minusListener = new MinusListener();
@@ -169,54 +177,54 @@ public class StartView extends JPanel {
 		pPlus = new JButton("+");
 		pPlus.setBounds(211, 184, 22, 16);
 		pPlus.addActionListener(plusListener);
-		panel.add(pPlus);
+		add(pPlus);
 
 		pMinus = new JButton("-");
 		pMinus.setBounds(211, 209, 22, 16);
 		pMinus.addActionListener(minusListener);
-		panel.add(pMinus);
+		add(pMinus);
 
 		fPlus = new JButton("+");
 		fPlus.setBounds(211, 237, 22, 16);
 		fPlus.addActionListener(plusListener);
-		panel.add(fPlus);
+		add(fPlus);
 
 		fMinus = new JButton("-");
 		fMinus.setBounds(211, 261, 22, 16);
 		fMinus.addActionListener(minusListener);
-		panel.add(fMinus);
+		add(fMinus);
 
 		tPlus = new JButton("+");
 		tPlus.setBounds(211, 289, 22, 16);
 		tPlus.addActionListener(plusListener);
-		panel.add(tPlus);
+		add(tPlus);
 
 		tMinus = new JButton("-");
 		tMinus.setBounds(211, 312, 22, 16);
 		tMinus.addActionListener(minusListener);
-		panel.add(tMinus);
+		add(tMinus);
 
 		ePlus = new JButton("+");
 		ePlus.setBounds(211, 340, 22, 16);
 		ePlus.addActionListener(plusListener);
-		panel.add(ePlus);
+		add(ePlus);
 
 		eMinus = new JButton("-");
 		eMinus.setBounds(211, 364, 22, 16);
 		eMinus.addActionListener(minusListener);
-		panel.add(eMinus);
+		add(eMinus);
 
 		disableMinusKeys();
 
 		nameWarning = new JLabel("Please enter a name!");
 		nameWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		nameWarning.setBounds(71, 67, 128, 16);
-		panel.add(nameWarning);
+		add(nameWarning);
 		nameWarning.setVisible(false);
 
 		final JPanel difficultyLabel = new JPanel();
 		difficultyLabel.setBounds(431, 113, 95, 112);
-		panel.add(difficultyLabel);
+		add(difficultyLabel);
 
 		final JLabel lblDifficulty = new JLabel("Difficulty:");
 		difficultyLabel.add(lblDifficulty);
@@ -244,15 +252,24 @@ public class StartView extends JPanel {
 
 		pointsWarning = new JLabel("Please allocate all points!");
 		pointsWarning.setBounds(59, 407, 159, 16);
-		panel.add(pointsWarning);
+		add(pointsWarning);
 
 		lblRandomly = new JLabel("Randomize:");
 		lblRandomly.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRandomly.setBounds(278, 311, 95, 16);
-		panel.add(lblRandomly);
+		add(lblRandomly);
 		pointsWarning.setVisible(false);
 	}
+	
+	/**
+	 * paints bg
+	 */
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, null);
+	}
 
+	
 	/**
 	 * Listener class for adding skill points
 	 * @author Bao
@@ -561,7 +578,7 @@ public class StartView extends JPanel {
 	 * @return The panel for the start view 
 	 */
 	public JPanel getPanel() {
-		return panel;
+		return this;
 	}
 
 	/**
