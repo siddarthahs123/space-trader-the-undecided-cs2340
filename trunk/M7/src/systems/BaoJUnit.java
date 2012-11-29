@@ -1,13 +1,15 @@
 package systems;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import models.Games;
-import models.TradeGood;
-import models.Water;
+import models.tradegood.Games;
+import models.tradegood.TradeGood;
+import models.tradegood.Water;
 
 import org.junit.Test;
 
@@ -22,10 +24,10 @@ public class BaoJUnit {
 	int choice = (new Random()).nextInt(10);
 	
 	ArrayList<TradeGood> list = new ArrayList<TradeGood>();
-	TradeGood a = encounter.randomTradeGood(2);
-	TradeGood b = encounter.randomTradeGood(4);
-	TradeGood c = encounter.randomTradeGood(9);
-	TradeGood d = encounter.randomTradeGood(7);
+	TradeGood first = encounter.randomTradeGood(2);
+	TradeGood second = encounter.randomTradeGood(4);
+	TradeGood third = encounter.randomTradeGood(9);
+	TradeGood fourth = encounter.randomTradeGood(7);
 	
 	@Test
 	public void test1() {
@@ -48,10 +50,10 @@ public class BaoJUnit {
 	
 	@Test
 	public void test3() {
-		list.add(a);
-		list.add(b);
-		list.add(c);
-		list.add(d);
+		list.add(first);
+		list.add(second);
+		list.add(third);
+		list.add(fourth);
 		assertEquals(4, list.size());
 	}
 	

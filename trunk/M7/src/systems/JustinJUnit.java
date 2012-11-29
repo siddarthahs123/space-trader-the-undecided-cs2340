@@ -1,16 +1,22 @@
 package systems;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+import models.space.Planet;
+import models.space.SolarSystem;
+import models.tradegood.TradeGood;
+import models.tradegood.Water;
 
 import org.junit.Test;
-import java.util.*;
 
-import models.*;
 
 public class JustinJUnit {
 	MainController main = new MainController();
 	SolarSystem[] galaxies = main.getGalaxies();
-	
+
 	@Test
 	public void test1() {
 		SolarSystem galaxy = galaxies[0];
@@ -20,7 +26,7 @@ public class JustinJUnit {
 		int list = planet.getTradeGoods().get("Food").size();
 		assertTrue("Pre-agricultural planet has no food", list == 0);
 	}
-	
+
 	@Test
 	public void test2() {
 		SolarSystem galaxy = galaxies[0];
@@ -30,7 +36,7 @@ public class JustinJUnit {
 		int list = planet.getTradeGoods().get("Robots").size();
 		assertTrue("Industrial planet has no robots", list == 0);
 	}
-	
+
 	@Test
 	public void test3() {
 		SolarSystem galaxy = galaxies[0];
@@ -38,17 +44,18 @@ public class JustinJUnit {
 		galaxy.setTech(7);
 		Hashtable<String, ArrayList<TradeGood>> tempGoods = new Hashtable<String, ArrayList<TradeGood>>();
 		ArrayList<TradeGood> goods = planet.getTradeGoods().get("Water");
-		goods.add(new Water()); //in case no water in first place
+		goods.add(new Water()); // in case no water in first place
 		tempGoods.put("Water", goods);
 		planet.setTradeGoods(tempGoods);
 		main.refreshTradeGoods();
 		goods = planet.getTradeGoods().get("Water");
-		TradeGood good = goods.get(0); //get first item
+		TradeGood good = goods.get(0); // get first item
 		int price = good.getTotalPrice();
 		int deflated = good.getDeflatedPrice();
-		assertTrue("Buying price is greater than selling price", price > deflated);
+		assertTrue("Buying price is greater than selling price",
+				price > deflated);
 	}
-	
+
 	@Test
 	public void test4() {
 		SolarSystem galaxy = galaxies[0];
@@ -58,7 +65,7 @@ public class JustinJUnit {
 		int list = planet.getTradeGoods().get("Games").size();
 		assertTrue("Medieval planet has no games", list == 0);
 	}
-	
+
 	@Test
 	public void test5() {
 		SolarSystem galaxy = galaxies[0];
