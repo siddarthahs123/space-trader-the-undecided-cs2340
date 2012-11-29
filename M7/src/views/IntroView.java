@@ -3,6 +3,12 @@
  */
 package views;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -14,11 +20,6 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class IntroView extends JPanel {
-
-	/**
-	 * JPanel
-	 */
-	private JPanel panel = null;
 
 	/**
 	 * X coordinate for panel
@@ -76,25 +77,34 @@ public class IntroView extends JPanel {
 	 */
 	private final JButton btnNewGame, btnLoadGame, btnContinueGame;
 
+	private BufferedImage image;
+
 	/**
 	 * Constructor
 	 */
 	public IntroView() {
-		panel = new JPanel();
-		panel.setBounds(XCORD, YCORD, WIDTH, HEIGHT);
-		panel.setLayout(null);
+		
+		File file = new File ("src/views/startscreen.png");
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
+		setLayout(null);
 
 		btnNewGame = new JButton("New Game");
 		btnNewGame.setBounds(BUTX, NEW_BUTY, BUT_WIDTH, BUT_HEIGHT);
-		panel.add(btnNewGame);
+		add(btnNewGame);
 
 		btnLoadGame = new JButton("Load Game");
 		btnLoadGame.setBounds(BUTX, LD_BUTY, BUT_WIDTH, BUT_HEIGHT);
-		panel.add(btnLoadGame);
+		add(btnLoadGame);
 
 		btnContinueGame = new JButton("Continue");
 		btnContinueGame.setBounds(BUTX, CON_BUTY, BUT_WIDTH, BUT_HEIGHT);
-		panel.add(btnContinueGame);
+		add(btnContinueGame);
 		btnContinueGame.setEnabled(false);
 	}
 
@@ -104,7 +114,7 @@ public class IntroView extends JPanel {
 	 * @return intro screen panel
 	 */
 	public JPanel getPanel() {
-		return panel;
+		return this;
 	}
 
 	/**
@@ -142,4 +152,13 @@ public class IntroView extends JPanel {
 	public String toString() {
 		return "";
 	}
+	
+	/**
+	 * paints bg
+	 */
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, null);
+	}
+
 }
