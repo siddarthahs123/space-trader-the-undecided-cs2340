@@ -101,7 +101,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 		}
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
-		setBackground(Color.black);
+		//setBackground(Color.black);
 
 		fuelWarning = new JLabel("Not enough fuel to reach destination!");
 		fuelWarning.setForeground(Color.WHITE);
