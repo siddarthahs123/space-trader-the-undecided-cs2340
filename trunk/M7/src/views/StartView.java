@@ -3,6 +3,7 @@
  */
 package views;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,7 +98,7 @@ public class StartView extends JPanel {
 	 * 
 	 */
 	public StartView() {
-		File file = new File ("src/views/startscreen.jpg");
+		File file = new File ("src/views/startscreen.png");
 		try {
 			image = ImageIO.read(file);
 		} catch (IOException e) {
@@ -108,27 +109,33 @@ public class StartView extends JPanel {
 		setLayout(null);
 
 		final JLabel lblWhatIsYour = new JLabel("What is your name?");
+		lblWhatIsYour.setForeground(Color.WHITE);
 		lblWhatIsYour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWhatIsYour.setBounds(78, 20, 121, 16);
 		add(lblWhatIsYour);
 
 		final JLabel lblPleaseAllocatePoints = new JLabel("Please allocate points:");
+		lblPleaseAllocatePoints.setForeground(Color.WHITE);
 		lblPleaseAllocatePoints.setBounds(59, 139, 140, 16);
 		add(lblPleaseAllocatePoints);
 
 		final JLabel lblPilot = new JLabel("Pilot");
+		lblPilot.setForeground(Color.WHITE);
 		lblPilot.setBounds(59, 196, 28, 16);
 		add(lblPilot);
 
 		final JLabel lblFighter = new JLabel("Fighter");
+		lblFighter.setForeground(Color.WHITE);
 		lblFighter.setBounds(59, 248, 44, 16);
 		add(lblFighter);
 
 		final JLabel lblTrader = new JLabel("Trader");
+		lblTrader.setForeground(Color.WHITE);
 		lblTrader.setBounds(59, 300, 40, 16);
 		add(lblTrader);
 
 		final JLabel lblEngineer = new JLabel("Engineer");
+		lblEngineer.setForeground(Color.WHITE);
 		lblEngineer.setBounds(59, 353, 54, 16);
 		add(lblEngineer);
 
@@ -138,12 +145,14 @@ public class StartView extends JPanel {
 		textField.setColumns(10);
 
 		final JLabel lblPointsLeft = new JLabel("Points left:");
+		lblPointsLeft.setForeground(Color.WHITE);
 		lblPointsLeft.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPointsLeft.setBounds(289, 184, 68, 16);
+		lblPointsLeft.setBounds(289, 240, 68, 16);
 		add(lblPointsLeft);
 
 		pointsLabel = new JLabel("16");
-		pointsLabel.setBounds(316, 209, 16, 16);
+		pointsLabel.setForeground(Color.WHITE);
+		pointsLabel.setBounds(316, 263, 16, 16);
 		add(pointsLabel);
 
 		btnDone = new JButton("Done");
@@ -156,18 +165,22 @@ public class StartView extends JPanel {
 		btnRoll.addActionListener(new RandomListener());
 
 		pPoints = new JLabel("0");
+		pPoints.setForeground(Color.WHITE);
 		pPoints.setBounds(183, 196, 16, 16);
 		add(pPoints);
 
 		fPoints = new JLabel("0");
+		fPoints.setForeground(Color.WHITE);
 		fPoints.setBounds(183, 248, 16, 16);
 		add(fPoints);
 
 		tPoints = new JLabel("0");
+		tPoints.setForeground(Color.WHITE);
 		tPoints.setBounds(183, 300, 16, 16);
 		add(tPoints);
 
 		ePoints = new JLabel("0");
+		ePoints.setForeground(Color.WHITE);
 		ePoints.setBounds(183, 353, 16, 16);
 		add(ePoints);
 
@@ -175,58 +188,61 @@ public class StartView extends JPanel {
 		ActionListener minusListener = new MinusListener();
 
 		pPlus = new JButton("+");
-		pPlus.setBounds(211, 184, 22, 16);
+		pPlus.setBounds(211, 184, 41, 16);
 		pPlus.addActionListener(plusListener);
 		add(pPlus);
 
 		pMinus = new JButton("-");
-		pMinus.setBounds(211, 209, 22, 16);
+		pMinus.setBounds(211, 209, 41, 16);
 		pMinus.addActionListener(minusListener);
 		add(pMinus);
 
 		fPlus = new JButton("+");
-		fPlus.setBounds(211, 237, 22, 16);
+		fPlus.setBounds(211, 237, 41, 16);
 		fPlus.addActionListener(plusListener);
 		add(fPlus);
 
 		fMinus = new JButton("-");
-		fMinus.setBounds(211, 261, 22, 16);
+		fMinus.setBounds(211, 261, 41, 16);
 		fMinus.addActionListener(minusListener);
 		add(fMinus);
 
 		tPlus = new JButton("+");
-		tPlus.setBounds(211, 289, 22, 16);
+		tPlus.setBounds(211, 289, 41, 16);
 		tPlus.addActionListener(plusListener);
 		add(tPlus);
 
 		tMinus = new JButton("-");
-		tMinus.setBounds(211, 312, 22, 16);
+		tMinus.setBounds(211, 312, 41, 16);
 		tMinus.addActionListener(minusListener);
 		add(tMinus);
 
 		ePlus = new JButton("+");
-		ePlus.setBounds(211, 340, 22, 16);
+		ePlus.setBounds(211, 340, 41, 16);
 		ePlus.addActionListener(plusListener);
 		add(ePlus);
 
 		eMinus = new JButton("-");
-		eMinus.setBounds(211, 364, 22, 16);
+		eMinus.setBounds(211, 364, 41, 16);
 		eMinus.addActionListener(minusListener);
 		add(eMinus);
 
 		disableMinusKeys();
 
 		nameWarning = new JLabel("Please enter a name!");
+		nameWarning.setForeground(Color.WHITE);
 		nameWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		nameWarning.setBounds(71, 67, 128, 16);
 		add(nameWarning);
 		nameWarning.setVisible(false);
 
 		final JPanel difficultyLabel = new JPanel();
-		difficultyLabel.setBounds(431, 113, 95, 112);
+		difficultyLabel.setBackground(Color.BLACK);
+		difficultyLabel.setBounds(500, 160, 95, 112);
 		add(difficultyLabel);
 
 		final JLabel lblDifficulty = new JLabel("Difficulty:");
+		lblDifficulty.setForeground(Color.WHITE);
 		difficultyLabel.add(lblDifficulty);
 
 		// DifficultyListener dListener = new DifficultyListener();
@@ -251,10 +267,12 @@ public class StartView extends JPanel {
 		// rdbtnHard.addActionListener(dListener);
 
 		pointsWarning = new JLabel("Please allocate all points!");
+		pointsWarning.setForeground(Color.WHITE);
 		pointsWarning.setBounds(59, 407, 159, 16);
 		add(pointsWarning);
 
 		lblRandomly = new JLabel("Randomize:");
+		lblRandomly.setForeground(Color.WHITE);
 		lblRandomly.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRandomly.setBounds(278, 311, 95, 16);
 		add(lblRandomly);
