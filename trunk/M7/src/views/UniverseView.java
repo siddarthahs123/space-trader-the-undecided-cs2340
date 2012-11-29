@@ -4,9 +4,14 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,7 +34,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 	/**
 	 * Panel for universe view
 	 */
-	private JPanel panel = null;
+	//private JPanel panel = null;
 
 	/**
 	 * X coordinate for panel
@@ -62,6 +67,8 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 */
 	private JLabel fuelWarning = null;
 
+	private BufferedImage image;
+
 	/**
 	 * X coordinate for warning
 	 */
@@ -86,17 +93,22 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 * Constructor for this class.
 	 */
 	public UniverseView() {
-		panel = new JPanel();
-		panel.setBounds(XCORD, YCORD, WIDTH, HEIGHT);
-		panel.setLayout(null);
-		panel.setBackground(Color.black);
+		File file = new File ("src/views/galaxyBackground.png");
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
+		setLayout(null);
+		setBackground(Color.black);
 
 		fuelWarning = new JLabel("Not enough fuel to reach destination!");
 		fuelWarning.setForeground(Color.WHITE);
 		fuelWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		fuelWarning.setBounds(WARN_X, WARN_Y, WARN_WIDTH, WARN_HEIGHT);
 		fuelWarning.setVisible(false);
-		panel.add(fuelWarning);
+		add(fuelWarning);
 
 	}
 
@@ -123,7 +135,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 					+ "<br>Coordinates: " + galaxies[i].getX() + ", "
 					+ galaxies[i].getY() + "</html>");
 			tempHash.put(galaxyButton, galaxies[i]);
-			panel.add(galaxyButton);
+			add(galaxyButton);
 		}
 
 		return tempHash;
@@ -135,7 +147,12 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 * @return The panel
 	 */
 	public JPanel getPanel() {
-		return panel;
+		return this;
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, null);
 	}
 
 	/**
