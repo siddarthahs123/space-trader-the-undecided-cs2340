@@ -107,33 +107,33 @@ public class StartView extends JPanel {
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
-		final JLabel lblWhatIsYour = new JLabel("What is your name?");
+		JLabel lblWhatIsYour = new JLabel("What is your name?");
 		lblWhatIsYour.setForeground(Color.WHITE);
 		lblWhatIsYour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWhatIsYour.setBounds(78, 20, 121, 16);
 		add(lblWhatIsYour);
 
-		final JLabel lblPleaseAllocatePoints = new JLabel("Please allocate points:");
+		JLabel lblPleaseAllocatePoints = new JLabel("Please allocate points:");
 		lblPleaseAllocatePoints.setForeground(Color.WHITE);
 		lblPleaseAllocatePoints.setBounds(59, 139, 140, 16);
 		add(lblPleaseAllocatePoints);
 
-		final JLabel lblPilot = new JLabel("Pilot");
+		JLabel lblPilot = new JLabel("Pilot");
 		lblPilot.setForeground(Color.WHITE);
 		lblPilot.setBounds(59, 196, 28, 16);
 		add(lblPilot);
 
-		final JLabel lblFighter = new JLabel("Fighter");
+		JLabel lblFighter = new JLabel("Fighter");
 		lblFighter.setForeground(Color.WHITE);
 		lblFighter.setBounds(59, 248, 44, 16);
 		add(lblFighter);
 
-		final JLabel lblTrader = new JLabel("Trader");
+		JLabel lblTrader = new JLabel("Trader");
 		lblTrader.setForeground(Color.WHITE);
 		lblTrader.setBounds(59, 300, 40, 16);
 		add(lblTrader);
 
-		final JLabel lblEngineer = new JLabel("Engineer");
+		JLabel lblEngineer = new JLabel("Engineer");
 		lblEngineer.setForeground(Color.WHITE);
 		lblEngineer.setBounds(59, 353, 54, 16);
 		add(lblEngineer);
@@ -235,12 +235,12 @@ public class StartView extends JPanel {
 		add(nameWarning);
 		nameWarning.setVisible(false);
 
-		final JPanel difficultyLabel = new JPanel();
+		JPanel difficultyLabel = new JPanel();
 		difficultyLabel.setBackground(Color.BLACK);
 		difficultyLabel.setBounds(500, 160, 95, 112);
 		add(difficultyLabel);
 
-		final JLabel lblDifficulty = new JLabel("Difficulty:");
+		JLabel lblDifficulty = new JLabel("Difficulty:");
 		lblDifficulty.setForeground(Color.WHITE);
 		difficultyLabel.add(lblDifficulty);
 
@@ -299,7 +299,7 @@ public class StartView extends JPanel {
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e) {
-			int pScore = 0;
+			int pScore = Integer.parseInt(pPoints.getText());
 			try {
 				pScore = Integer.parseInt(pPoints.getText());
 			} catch(NumberFormatException a) {
@@ -308,21 +308,21 @@ public class StartView extends JPanel {
 			
 			int fScore = 0;
 			try {
-				pScore = Integer.parseInt(fPoints.getText());
+				fScore = Integer.parseInt(fPoints.getText());
 			} catch(NumberFormatException b) {
 				System.out.println("Wrong format " + b.getMessage());
 			}
 			
 			int tScore = 0;
 			try {
-				pScore = Integer.parseInt(tPoints.getText());
+				tScore = Integer.parseInt(tPoints.getText());
 			} catch(NumberFormatException c) {
 				System.out.println("Wrong format " + c.getMessage());
 			}
 			
 			int eScore = 0;
 			try {
-				pScore = Integer.parseInt(ePoints.getText());
+				eScore = Integer.parseInt(ePoints.getText());
 			} catch(NumberFormatException d) {
 				System.out.println("Wrong format " + d.getMessage());
 			}
