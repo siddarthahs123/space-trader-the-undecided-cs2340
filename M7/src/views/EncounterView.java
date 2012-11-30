@@ -51,7 +51,7 @@ public class EncounterView extends JPanel {
 	/**
 	 * continue button
 	 */
-	private static final JButton CONT = new JButton("continue");
+	private final JButton CONT = new JButton("Continue");
 
 	/**
 	 * Random generator
@@ -125,16 +125,16 @@ public class EncounterView extends JPanel {
 	 * @param ml
 	 */
 	public EncounterView(MarketListener ml) {
-		panel = new JPanel();
-		panel.setBounds(XCORD, YCORD, WIDTH, HEIGHT);
-		panel.setBackground(Color.black);
+		new JPanel();
+		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
+		setBackground(Color.black);
 		selectEncounter();
 		CONT.addActionListener(ml);
 		message.setForeground(Color.white);
 		message.setHorizontalAlignment(SwingConstants.CENTER);
 		CONT.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(message);
-		panel.add(CONT);
+		add(message);
+		add(CONT);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class EncounterView extends JPanel {
 	 * @return panel
 	 */
 	public JPanel getPanel() {
-		return panel;
+		return this;
 	}
 
 	/**

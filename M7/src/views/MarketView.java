@@ -507,6 +507,7 @@ public class MarketView extends JPanel {
 		add(fuelBuy);
 
 		JLabel lblFuel = new JLabel("Fuel");
+		lblFuel.setForeground(Color.WHITE);
 		lblFuel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFuel.setBounds(55, 372, 61, 16);
 		add(lblFuel);
