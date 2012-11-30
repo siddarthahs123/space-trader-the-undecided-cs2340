@@ -3,6 +3,13 @@
  */
 package views;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -20,10 +27,6 @@ import systems.MainController.MapListener;
  */
 public class MarketView extends JPanel {
 
-	/**
-	 * JPanel
-	 */
-	private JPanel panel = null;
 
 	/**
 	 * X coordinate for panel
@@ -83,6 +86,8 @@ public class MarketView extends JPanel {
 	 */
 	private JButton btnSaveGame;
 
+	private BufferedImage image;
+
 	/**
 	 * Constructor
 	 * @param buyListener
@@ -94,292 +99,334 @@ public class MarketView extends JPanel {
 	public MarketView(BuyListener buyListener, SellListener sellListener,
 			MapListener mapListener, SaveGameListener saveGameListener,
 			FillTank fillTank) {
-		panel = new JPanel();
-		panel.setBounds(XCORD, YCORD, WIDTH, HEIGHT);
-		panel.setLayout(null);
+		
+		File file = new File ("src/views/marketBackground.png");
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
+		setLayout(null);
+		
+		
 
 		planetName = new JLabel("Planet");
+		planetName.setForeground(Color.WHITE);
 		planetName.setHorizontalAlignment(SwingConstants.CENTER);
 		planetName.setBounds(250, 25, 174, 16);
-		panel.add(planetName);
+		add(planetName);
 
 		JLabel lblCargo = new JLabel("Cargo");
+		lblCargo.setForeground(Color.WHITE);
 		lblCargo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCargo.setBounds(175, 75, 61, 16);
-		panel.add(lblCargo);
+		add(lblCargo);
 
 		JLabel lblMarket = new JLabel("Market");
+		lblMarket.setForeground(Color.WHITE);
 		lblMarket.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMarket.setBounds(300, 75, 61, 16);
-		panel.add(lblMarket);
+		add(lblMarket);
 
 		JLabel lblWater = new JLabel("Water");
+		lblWater.setForeground(Color.WHITE);
 		lblWater.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWater.setBounds(50, 100, 70, 14);
-		panel.add(lblWater);
+		add(lblWater);
 
 		JLabel lblFurs = new JLabel("Furs");
+		lblFurs.setForeground(Color.WHITE);
 		lblFurs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFurs.setBounds(50, 125, 70, 14);
-		panel.add(lblFurs);
+		add(lblFurs);
 
 		JLabel lblGames = new JLabel("Games");
+		lblGames.setForeground(Color.WHITE);
 		lblGames.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGames.setBounds(50, 150, 70, 14);
-		panel.add(lblGames);
+		add(lblGames);
 
 		JLabel lblFood = new JLabel("Food");
+		lblFood.setForeground(Color.WHITE);
 		lblFood.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFood.setBounds(50, 175, 70, 14);
-		panel.add(lblFood);
+		add(lblFood);
 
 		JLabel lblFirearms = new JLabel("Firearms");
+		lblFirearms.setForeground(Color.WHITE);
 		lblFirearms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirearms.setBounds(50, 200, 70, 14);
-		panel.add(lblFirearms);
+		add(lblFirearms);
 
 		JLabel lblMachines = new JLabel("Machines");
+		lblMachines.setForeground(Color.WHITE);
 		lblMachines.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMachines.setBounds(50, 225, 70, 14);
-		panel.add(lblMachines);
+		add(lblMachines);
 
 		JLabel lblMedicine = new JLabel("Medicine");
+		lblMedicine.setForeground(Color.WHITE);
 		lblMedicine.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMedicine.setBounds(50, 250, 70, 14);
-		panel.add(lblMedicine);
+		add(lblMedicine);
 
 		JLabel lblNarcotics = new JLabel("Narcotics");
+		lblNarcotics.setForeground(Color.WHITE);
 		lblNarcotics.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNarcotics.setBounds(50, 275, 70, 14);
-		panel.add(lblNarcotics);
+		add(lblNarcotics);
 
 		JLabel lblOre = new JLabel("Ore");
+		lblOre.setForeground(Color.WHITE);
 		lblOre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOre.setBounds(50, 300, 70, 14);
-		panel.add(lblOre);
+		add(lblOre);
 
 		JLabel lblRobots = new JLabel("Robots");
+		lblRobots.setForeground(Color.WHITE);
 		lblRobots.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRobots.setBounds(50, 325, 70, 14);
-		panel.add(lblRobots);
+		add(lblRobots);
 
 		lblCwater = new JLabel("cWater");
+		lblCwater.setForeground(Color.WHITE);
 		lblCwater.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCwater.setBounds(175, 100, 61, 14);
-		panel.add(lblCwater);
+		add(lblCwater);
 
 		lblCfurs = new JLabel("cFurs");
+		lblCfurs.setForeground(Color.WHITE);
 		lblCfurs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCfurs.setBounds(175, 125, 61, 14);
-		panel.add(lblCfurs);
+		add(lblCfurs);
 
 		lblCgames = new JLabel("cGames");
+		lblCgames.setForeground(Color.WHITE);
 		lblCgames.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCgames.setBounds(175, 150, 61, 14);
-		panel.add(lblCgames);
+		add(lblCgames);
 
 		lblCfood = new JLabel("cFood");
+		lblCfood.setForeground(Color.WHITE);
 		lblCfood.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCfood.setBounds(175, 175, 61, 14);
-		panel.add(lblCfood);
+		add(lblCfood);
 
 		lblCfirearms = new JLabel("cFirearms");
+		lblCfirearms.setForeground(Color.WHITE);
 		lblCfirearms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCfirearms.setBounds(175, 200, 61, 14);
-		panel.add(lblCfirearms);
+		add(lblCfirearms);
 
 		lblCmachines = new JLabel("cMachines");
+		lblCmachines.setForeground(Color.WHITE);
 		lblCmachines.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCmachines.setBounds(175, 225, 61, 14);
-		panel.add(lblCmachines);
+		add(lblCmachines);
 
 		lblCmedicine = new JLabel("cMedicine");
+		lblCmedicine.setForeground(Color.WHITE);
 		lblCmedicine.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCmedicine.setBounds(175, 250, 61, 14);
-		panel.add(lblCmedicine);
+		add(lblCmedicine);
 
 		lblCnarcotics = new JLabel("cNarcotics");
+		lblCnarcotics.setForeground(Color.WHITE);
 		lblCnarcotics.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCnarcotics.setBounds(175, 275, 61, 14);
-		panel.add(lblCnarcotics);
+		add(lblCnarcotics);
 
 		lblCore = new JLabel("cOre");
+		lblCore.setForeground(Color.WHITE);
 		lblCore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCore.setBounds(175, 300, 61, 14);
-		panel.add(lblCore);
+		add(lblCore);
 
 		lblCrobots = new JLabel("cRobots");
+		lblCrobots.setForeground(Color.WHITE);
 		lblCrobots.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCrobots.setBounds(175, 325, 61, 14);
-		panel.add(lblCrobots);
+		add(lblCrobots);
 
 		lblMwater = new JLabel("mWater");
+		lblMwater.setForeground(Color.WHITE);
 		lblMwater.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMwater.setBounds(300, 100, 61, 14);
-		panel.add(lblMwater);
+		add(lblMwater);
 
 		lblMfurs = new JLabel("mFurs");
+		lblMfurs.setForeground(Color.WHITE);
 		lblMfurs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMfurs.setBounds(300, 125, 61, 14);
-		panel.add(lblMfurs);
+		add(lblMfurs);
 
 		lblMgames = new JLabel("mGames");
+		lblMgames.setForeground(Color.WHITE);
 		lblMgames.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMgames.setBounds(300, 150, 61, 14);
-		panel.add(lblMgames);
+		add(lblMgames);
 
 		lblMfood = new JLabel("mFood");
+		lblMfood.setForeground(Color.WHITE);
 		lblMfood.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMfood.setBounds(300, 175, 61, 14);
-		panel.add(lblMfood);
+		add(lblMfood);
 
 		lblMfirearms = new JLabel("mFirearms");
+		lblMfirearms.setForeground(Color.WHITE);
 		lblMfirearms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMfirearms.setBounds(300, 200, 61, 14);
-		panel.add(lblMfirearms);
+		add(lblMfirearms);
 
 		lblMmachines = new JLabel("mMachines");
+		lblMmachines.setForeground(Color.WHITE);
 		lblMmachines.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMmachines.setBounds(300, 225, 61, 14);
-		panel.add(lblMmachines);
+		add(lblMmachines);
 
 		lblMmedicine = new JLabel("mMedicine");
+		lblMmedicine.setForeground(Color.WHITE);
 		lblMmedicine.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMmedicine.setBounds(300, 250, 61, 14);
-		panel.add(lblMmedicine);
+		add(lblMmedicine);
 
 		lblMnarcotics = new JLabel("mNarcotics");
+		lblMnarcotics.setForeground(Color.WHITE);
 		lblMnarcotics.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMnarcotics.setBounds(300, 275, 61, 14);
-		panel.add(lblMnarcotics);
+		add(lblMnarcotics);
 
 		lblMore = new JLabel("mOre");
+		lblMore.setForeground(Color.WHITE);
 		lblMore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMore.setBounds(300, 300, 61, 14);
-		panel.add(lblMore);
+		add(lblMore);
 
 		lblMrobots = new JLabel("mRobots");
+		lblMrobots.setForeground(Color.WHITE);
 		lblMrobots.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMrobots.setBounds(300, 325, 61, 14);
-		panel.add(lblMrobots);
+		add(lblMrobots);
 
 		waterBuy = new JButton("Buy");
 		waterBuy.setBounds(367, 95, 115, 29);
-		panel.add(waterBuy);
+		add(waterBuy);
 		waterBuy.addActionListener(buyListener);
 		waterBuy.setEnabled(false);
 
 		fursBuy = new JButton("Buy");
 		fursBuy.setBounds(367, 120, 115, 29);
-		panel.add(fursBuy);
+		add(fursBuy);
 		fursBuy.addActionListener(buyListener);
 		fursBuy.setEnabled(false);
 
 		gamesBuy = new JButton("Buy");
 		gamesBuy.setBounds(367, 145, 115, 29);
-		panel.add(gamesBuy);
+		add(gamesBuy);
 		gamesBuy.addActionListener(buyListener);
 		gamesBuy.setEnabled(false);
 
 		foodBuy = new JButton("Buy");
 		foodBuy.setBounds(367, 170, 115, 29);
-		panel.add(foodBuy);
+		add(foodBuy);
 		foodBuy.addActionListener(buyListener);
 		foodBuy.setEnabled(false);
 
 		firearmsBuy = new JButton("Buy");
 		firearmsBuy.setBounds(367, 195, 115, 29);
-		panel.add(firearmsBuy);
+		add(firearmsBuy);
 		firearmsBuy.addActionListener(buyListener);
 		firearmsBuy.setEnabled(false);
 
 		machinesBuy = new JButton("Buy");
 		machinesBuy.setBounds(367, 220, 115, 29);
-		panel.add(machinesBuy);
+		add(machinesBuy);
 		machinesBuy.addActionListener(buyListener);
 		machinesBuy.setEnabled(false);
 
 		medicineBuy = new JButton("Buy");
 		medicineBuy.setBounds(367, 245, 115, 29);
-		panel.add(medicineBuy);
+		add(medicineBuy);
 		medicineBuy.addActionListener(buyListener);
 		medicineBuy.setEnabled(false);
 
 		narcoticsBuy = new JButton("Buy");
 		narcoticsBuy.setBounds(367, 270, 115, 29);
-		panel.add(narcoticsBuy);
+		add(narcoticsBuy);
 		narcoticsBuy.addActionListener(buyListener);
 		narcoticsBuy.setEnabled(false);
 
 		oreBuy = new JButton("Buy");
 		oreBuy.setBounds(367, 295, 115, 29);
-		panel.add(oreBuy);
+		add(oreBuy);
 		oreBuy.addActionListener(buyListener);
 		oreBuy.setEnabled(false);
 
 		robotsBuy = new JButton("Buy");
 		robotsBuy.setBounds(367, 320, 115, 29);
-		panel.add(robotsBuy);
+		add(robotsBuy);
 		robotsBuy.addActionListener(buyListener);
 		robotsBuy.setEnabled(false);
 
 		waterSell = new JButton("Sell");
 		waterSell.setBounds(476, 95, 115, 29);
-		panel.add(waterSell);
+		add(waterSell);
 		waterSell.addActionListener(sellListener);
 		waterSell.setEnabled(false);
 
 		fursSell = new JButton("Sell");
 		fursSell.setBounds(476, 120, 115, 29);
-		panel.add(fursSell);
+		add(fursSell);
 		fursSell.addActionListener(sellListener);
 		fursSell.setEnabled(false);
 
 		gamesSell = new JButton("Sell");
 		gamesSell.setBounds(476, 145, 115, 29);
-		panel.add(gamesSell);
+		add(gamesSell);
 		gamesSell.addActionListener(sellListener);
 		gamesSell.setEnabled(false);
 
 		foodSell = new JButton("Sell");
 		foodSell.setBounds(476, 170, 115, 29);
-		panel.add(foodSell);
+		add(foodSell);
 		foodSell.addActionListener(sellListener);
 		foodSell.setEnabled(false);
 
 		firearmsSell = new JButton("Sell");
 		firearmsSell.setBounds(476, 195, 115, 29);
-		panel.add(firearmsSell);
+		add(firearmsSell);
 		firearmsSell.addActionListener(sellListener);
 		firearmsSell.setEnabled(false);
 
 		machinesSell = new JButton("Sell");
 		machinesSell.setBounds(476, 220, 115, 29);
-		panel.add(machinesSell);
+		add(machinesSell);
 		machinesSell.addActionListener(sellListener);
 		machinesSell.setEnabled(false);
 
 		medicineSell = new JButton("Sell");
 		medicineSell.setBounds(476, 245, 115, 29);
-		panel.add(medicineSell);
+		add(medicineSell);
 		medicineSell.addActionListener(sellListener);
 		medicineSell.setEnabled(false);
 
 		narcoticsSell = new JButton("Sell");
 		narcoticsSell.setBounds(476, 270, 115, 29);
-		panel.add(narcoticsSell);
+		add(narcoticsSell);
 		narcoticsSell.addActionListener(sellListener);
 		narcoticsSell.setEnabled(false);
 
 		oreSell = new JButton("Sell");
 		oreSell.setBounds(476, 295, 115, 29);
-		panel.add(oreSell);
+		add(oreSell);
 		oreSell.addActionListener(sellListener);
 		oreSell.setEnabled(false);
 
 		robotsSell = new JButton("Sell");
 		robotsSell.setBounds(476, 320, 115, 29);
-		panel.add(robotsSell);
+		add(robotsSell);
 		robotsSell.addActionListener(sellListener);
 		robotsSell.setEnabled(false);
 
@@ -408,59 +455,65 @@ public class MarketView extends JPanel {
 		sellGroup.add(robotsSell);
 
 		spaceWarning = new JLabel("No space remaining in cargo hold!");
+		spaceWarning.setForeground(Color.WHITE);
 		spaceWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		spaceWarning.setBounds(354, 361, 237, 16);
-		panel.add(spaceWarning);
+		add(spaceWarning);
 		spaceWarning.setVisible(false);
 
 		lblremaining = new JLabel("[remaining]");
+		lblremaining.setForeground(Color.WHITE);
 		lblremaining.setBounds(227, 75, 61, 16);
-		panel.add(lblremaining);
+		add(lblremaining);
 
 		spinner = new JSpinner();
 		spinner.setBounds(592, 211, 61, 28);
-		panel.add(spinner);
+		add(spinner);
 		spinner.setValue(1);
 		spinner.addChangeListener(new SpinListener());
 
 		JLabel lblAmount = new JLabel("Amount:");
+		lblAmount.setForeground(Color.WHITE);
 		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmount.setBounds(592, 194, 61, 16);
-		panel.add(lblAmount);
+		add(lblAmount);
 
 		JLabel lblCredits = new JLabel("Credits:");
+		lblCredits.setForeground(Color.WHITE);
 		lblCredits.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCredits.setBounds(565, 25, 61, 16);
-		panel.add(lblCredits);
+		add(lblCredits);
 
 		lblRemcredits = new JLabel("remCredits");
+		lblRemcredits.setForeground(Color.WHITE);
 		lblRemcredits.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRemcredits.setBounds(565, 46, 61, 16);
-		panel.add(lblRemcredits);
+		add(lblRemcredits);
 
 		creditWarning = new JLabel("Not enough credits remaining!");
+		creditWarning.setForeground(Color.WHITE);
 		creditWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		creditWarning.setBounds(364, 381, 227, 16);
-		panel.add(creditWarning);
+		add(creditWarning);
 
 		btnToMap = new JButton("To Map");
 		btnToMap.setBounds(6, 20, 117, 29);
-		panel.add(btnToMap);
+		add(btnToMap);
 
 		fuelBuy = new JButton("Buy");
 		fuelBuy.setEnabled(false);
 		fuelBuy.setBounds(151, 365, 115, 29);
 		fuelBuy.addActionListener(fillTank);
-		panel.add(fuelBuy);
+		add(fuelBuy);
 
 		JLabel lblFuel = new JLabel("Fuel");
 		lblFuel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFuel.setBounds(55, 372, 61, 16);
-		panel.add(lblFuel);
+		add(lblFuel);
 
 		btnSaveGame = new JButton("Save Game");
 		btnSaveGame.setBounds(543, 414, 104, 29);
-		panel.add(btnSaveGame);
+		add(btnSaveGame);
 		btnSaveGame.addActionListener(saveGameListener);
 
 		creditWarning.setVisible(false);
@@ -479,6 +532,14 @@ public class MarketView extends JPanel {
 				spinner.setValue(1);
 			}
 		}
+	}
+	
+	/**
+	 * paints bg
+	 */
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, null);
 	}
 
 	/**
@@ -846,7 +907,7 @@ public class MarketView extends JPanel {
 	 * @return market view panel
 	 */
 	public JPanel getPanel() {
-		return panel;
+		return this;
 	}
 
 	/**

@@ -107,7 +107,6 @@ public class StartView extends JPanel {
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
-
 		final JLabel lblWhatIsYour = new JLabel("What is your name?");
 		lblWhatIsYour.setForeground(Color.WHITE);
 		lblWhatIsYour.setHorizontalAlignment(SwingConstants.CENTER);
