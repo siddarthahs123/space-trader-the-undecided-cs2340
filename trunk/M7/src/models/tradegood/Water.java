@@ -16,7 +16,7 @@ public class Water extends TradeGood{
 	/**
 	 * Price
 	 */
-	private static final int BASEPRICE = 1250;
+	private static int BASEPRICE = 25;
 	
 	/**
 	 * Name of trade good
