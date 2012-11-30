@@ -248,7 +248,7 @@ public class TradeGood {
 	 */
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
-		this.deflatedPrice = (totalPrice - (totalPrice >> 1));
+		this.deflatedPrice = (int) (totalPrice - (totalPrice*0.05));
 	}
 
 	/**
