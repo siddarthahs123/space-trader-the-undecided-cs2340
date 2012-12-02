@@ -979,20 +979,18 @@ public class MainController {
 				universe.setCurPlanet(curPlanet);
 
 				System.out.println(curGalaxy.toString());
-
+				
+				deflatedPrices = curPlanet.getDeflatedPrices();
 				setMarketValues();
 				marketView.setPlanetName(curPlanet.getName());
 				if (!curButton.equals(prevButton)) { // if selecting a different
 														// galaxy
 					player.setTurn(player.getTurn() + 1);
-					System.out.println(distance);
 					player.setFuel(player.getFuel() - distance);
 				}
 				showRange();
 				System.out
 						.println("Fuel Remaining: " + player.getFuel() + "\n");
-				deflatedPrices = curPlanet.getDeflatedPrices();
-				// nextState(ENCOUNTER);
 			} else {
 				System.out.println("Distance travelled : " + distance);
 				universeView.getFuelWarning().setVisible(true);
@@ -1476,7 +1474,9 @@ public class MainController {
 			if (pResource.size() > 0
 					&& curGalaxy.getTechLevelNum() < pResource.get(0).getMTLU())
 				disable = true;
-
+			
+			
+			
 			if (((String) entry.getKey()).equals("Water")) {
 				marketView.getLblCwater().setText("" + quantity);
 				if (quantity == 0 || disable)
