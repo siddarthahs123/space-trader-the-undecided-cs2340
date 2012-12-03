@@ -14,6 +14,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -89,8 +90,10 @@ public class StartView extends JPanel {
 	 */
 	private int difficulty;
 
-	private BufferedImage image;
+	//private BufferedImage image;
 
+	private ImageIcon image1;
+	
 	/**
 	 * Constructor
 	 */
@@ -98,12 +101,14 @@ public class StartView extends JPanel {
 	 * 
 	 */
 	public StartView() {
-		File file = new File ("src/views/startscreen.png");
+		/*File file = new File ("src/views/startscreen.png");
 		try {
 			image = ImageIO.read(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		image1 = new ImageIcon(getClass().getResource("/views/startscreen.png"));
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
@@ -283,7 +288,8 @@ public class StartView extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(image, 0, 0, null);
+		//g.drawImage(image, 0, 0, null);
+		image1.paintIcon(this, g, 0, 0);
 	}
 
 	

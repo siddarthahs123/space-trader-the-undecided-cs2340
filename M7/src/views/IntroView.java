@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -77,19 +78,23 @@ public class IntroView extends JPanel {
 	 */
 	private final JButton btnNewGame, btnLoadGame, btnContinueGame;
 
-	private BufferedImage image;
+	//private BufferedImage image;
 
+	private ImageIcon image1;
+	
 	/**
 	 * Constructor
 	 */
 	public IntroView() {
 		
-		File file = new File ("src/views/startscreen.png");
+		/*File file = new File ("src/views/startscreen.png");
 		try {
 			image = ImageIO.read(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		image1 = new ImageIcon(getClass().getResource("/views/startscreen.png"));
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
@@ -158,7 +163,8 @@ public class IntroView extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(image, 0, 0, null);
+		//g.drawImage(image, 0, 0, null);
+		image1.paintIcon(this, g, 0, 0);
 	}
 
 }

@@ -67,7 +67,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 */
 	private JLabel fuelWarning = null;
 
-	private BufferedImage image;
+	//private BufferedImage image;
 	
 	private ImageIcon image1;
 
@@ -95,12 +95,12 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 * Constructor for this class.
 	 */
 	public UniverseView() {
-		File file = new File ("src/views/galaxyBackground.png");
+		/*File file = new File ("src/views/galaxyBackground.png");
 		try {
 			image = ImageIO.read(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		image1 = new ImageIcon(getClass().getResource("/views/galaxyBackground.png"));
 		
