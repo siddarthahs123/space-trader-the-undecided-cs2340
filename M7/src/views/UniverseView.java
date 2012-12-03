@@ -68,6 +68,8 @@ public class UniverseView extends JPanel { // maybe implement main view
 	private JLabel fuelWarning = null;
 
 	private BufferedImage image;
+	
+	private ImageIcon image1;
 
 	/**
 	 * X coordinate for warning
@@ -99,6 +101,9 @@ public class UniverseView extends JPanel { // maybe implement main view
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		image1 = new ImageIcon(getClass().getResource("/views/galaxyBackground.png"));
+		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
 		//setBackground(Color.black);
@@ -152,7 +157,8 @@ public class UniverseView extends JPanel { // maybe implement main view
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(image, 0, 0, null);
+		//g.drawImage(image, 0, 0, null);
+		image1.paintIcon(this, g, 0, 0);
 	}
 
 	/**
