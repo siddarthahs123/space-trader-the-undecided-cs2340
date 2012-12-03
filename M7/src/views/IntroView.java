@@ -80,7 +80,7 @@ public class IntroView extends JPanel {
 
 	//private BufferedImage image;
 
-	private ImageIcon image1;
+	private ImageIcon image1, title1, newgame, loadgame, contgame;
 	
 	/**
 	 * Constructor
@@ -95,20 +95,27 @@ public class IntroView extends JPanel {
 		}*/
 		
 		image1 = new ImageIcon(getClass().getResource("/views/startscreen.png"));
+		title1 = new ImageIcon(getClass().getResource("/views/title1.png"));
+		
+		newgame = new ImageIcon(getClass().getResource("/views/newgame.png"));
+		loadgame = new ImageIcon(getClass().getResource("/views/loadgame.png"));
+		contgame = new ImageIcon(getClass().getResource("/views/continuegame.png"));
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
-
+		
+		
+		
 		btnNewGame = new JButton("New Game");
-		btnNewGame.setBounds(BUTX, NEW_BUTY, BUT_WIDTH, BUT_HEIGHT);
+		btnNewGame.setBounds(277, 253, BUT_WIDTH, BUT_HEIGHT);
 		add(btnNewGame);
 
 		btnLoadGame = new JButton("Load Game");
-		btnLoadGame.setBounds(BUTX, LD_BUTY, BUT_WIDTH, BUT_HEIGHT);
+		btnLoadGame.setBounds(277, 305, BUT_WIDTH, BUT_HEIGHT);
 		add(btnLoadGame);
 
 		btnContinueGame = new JButton("Continue");
-		btnContinueGame.setBounds(BUTX, CON_BUTY, BUT_WIDTH, BUT_HEIGHT);
+		btnContinueGame.setBounds(277, 358, BUT_WIDTH, BUT_HEIGHT);
 		add(btnContinueGame);
 		btnContinueGame.setEnabled(false);
 	}
@@ -165,6 +172,7 @@ public class IntroView extends JPanel {
 		super.paintComponent(g);
 		//g.drawImage(image, 0, 0, null);
 		image1.paintIcon(this, g, 0, 0);
+		title1.paintIcon(this, g, 140, 20);
 	}
 
 }
