@@ -78,6 +78,12 @@ public class TitleView extends JPanel {
 		lblNewLabel_3.setBounds(114, 178, 431, 16);
 		add(lblNewLabel_3);
 		
+		JLabel lblNewLabel_4 = new JLabel("[click to continue]");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setForeground(Color.WHITE);
+		lblNewLabel_4.setBounds(114, 418, 431, 16);
+		add(lblNewLabel_4);
+		
 		
 	}
 	
