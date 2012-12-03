@@ -987,6 +987,7 @@ public class MainController {
 														// galaxy
 					player.setTurn(player.getTurn() + 1);
 					player.setFuel(player.getFuel() - distance);
+					marketView.setFuelLabel(player.getFuel());
 				}
 				showRange();
 				System.out
@@ -1214,6 +1215,7 @@ public class MainController {
 			player.setFuel(700);
 			marketView.getBuyFuel().setEnabled(false);
 			marketView.getLblRemcredits().setText("" + player.getCredits());
+			marketView.setFuelLabel(player.getFuel());
 		}
 	}
 

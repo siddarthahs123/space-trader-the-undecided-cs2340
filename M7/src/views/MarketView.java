@@ -60,7 +60,7 @@ public class MarketView extends JPanel {
 			lblMfurs, lblMwater, lblCrobots, lblCore, lblCnarcotics,
 			lblCmedicine, lblCmachines, lblCfirearms, lblCfood, lblCgames,
 			lblCfurs, lblCwater, spaceWarning, lblremaining, creditWarning,
-			lblRemcredits;
+			lblRemcredits, fuelLabel;
 	
 	/**
 	 * Group of buttons
@@ -515,6 +515,18 @@ public class MarketView extends JPanel {
 		btnSaveGame = new JButton("Save Game");
 		btnSaveGame.setBounds(543, 414, 104, 29);
 		add(btnSaveGame);
+		
+		JLabel lblFuelRemaining = new JLabel("Fuel Remaining:");
+		lblFuelRemaining.setForeground(Color.WHITE);
+		lblFuelRemaining.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFuelRemaining.setBounds(35, 419, 109, 16);
+		add(lblFuelRemaining);
+		
+		fuelLabel = new JLabel("");
+		fuelLabel.setForeground(Color.WHITE);
+		fuelLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		fuelLabel.setBounds(151, 419, 47, 16);
+		add(fuelLabel);
 		btnSaveGame.addActionListener(saveGameListener);
 
 		creditWarning.setVisible(false);
@@ -973,5 +985,9 @@ public class MarketView extends JPanel {
 	 */
 	public String toString() {
 		return "";
+	}
+	
+	public void setFuelLabel(int fuel) {
+		fuelLabel.setText(""+fuel);
 	}
 }
