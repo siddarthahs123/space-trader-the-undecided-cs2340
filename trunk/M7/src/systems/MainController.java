@@ -237,12 +237,12 @@ public class MainController {
 		JPanel titleCard = titleView.getPanel();
 		
 		// Generate intro view
-		introView = new IntroView();
+		introView = new IntroView(new IntroListener());
 		JPanel introCard = introView.getPanel();
-		introView.getBtnNewGame().addActionListener(new NewGameListener());
+		/*introView.getBtnNewGame().addActionListener(new NewGameListener());
 		introView.getBtnLoadGame().addActionListener(new LoadGameListener());
 		introView.getBtnContinueGame().addActionListener(
-				new ContinueGameListener());
+				new ContinueGameListener());*/
 
 		// Generate start view
 		startView = new StartView();
@@ -295,6 +295,39 @@ public class MainController {
 	public void nextState(String next) {
 		CardLayout cl = (CardLayout) (cards.getLayout());
 		cl.show(cards, next);
+	}
+	
+	public class IntroListener implements MouseListener {
+		public void mouseClicked(MouseEvent e) {
+			if(e.getSource().equals(introView.getNewGame()))
+				nextState(titleScreen);
+			else if(e.getSource().equals(introView.getLoadGame())) {
+				try {
+					load();
+				} catch (FileNotFoundException e1) {
+					System.out.println("No such file found. Try again: "+ e1.getMessage());
+				}
+			}
+			else if(e.getSource().equals(introView.getContGame())) {
+				nextState(marketScreen);
+			}
+		}
+
+		public void mouseEntered(MouseEvent e) {
+
+		}
+
+		public void mouseExited(MouseEvent e) {
+
+		}
+
+		public void mousePressed(MouseEvent e) {
+			
+		}
+
+		public void mouseReleased(MouseEvent e) {
+			
+		}
 	}
 
 	/**
@@ -364,7 +397,7 @@ public class MainController {
 	 * 
 	 * @author Justin
 	 */
-	public class ContinueGameListener implements ActionListener {
+	//public class ContinueGameListener implements ActionListener {
 		/**
 		 * Method actionPerformed.
 		 * 
@@ -372,17 +405,17 @@ public class MainController {
 		 *            ActionEvent
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
-		public void actionPerformed(ActionEvent e) {
+		/*public void actionPerformed(ActionEvent e) {
 			nextState(marketScreen);
 		}
-	}
+	}*/
 
 	/**
 	 * Listener class for load game selection.
 	 * 
 	 * @author Samarth Agarwal
 	 */
-	public class LoadGameListener implements ActionListener {
+	//public class LoadGameListener implements ActionListener {
 		/**
 		 * Method actionPerformed.
 		 * 
@@ -390,7 +423,7 @@ public class MainController {
 		 *            ActionEvent
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
-		public void actionPerformed(ActionEvent e) {
+		/*public void actionPerformed(ActionEvent e) {
 			if (e.getSource().equals(introView.getBtnLoadGame())) {
 				try {
 					load();
@@ -400,7 +433,7 @@ public class MainController {
 				}
 			}
 		}
-	}
+	}*/
 
 	/**
 	 * Helper method to load game
@@ -411,7 +444,7 @@ public class MainController {
 	 */
 	public void load() throws FileNotFoundException {
 		JFileChooser choose = new JFileChooser();
-		// choose.showOpenDialog(introView.getPanel());
+		choose.showOpenDialog(introView.getPanel());
 		File f = choose.getSelectedFile();
 		Scanner scan;
 		try {
@@ -853,7 +886,7 @@ public class MainController {
 		// System.out.println("Current state : "+ curGalaxy.getName() + " " +
 		// curPlanet.getName());
 		setMarketValues();
-		introView.getBtnContinueGame().setEnabled(true);
+		//introView.getBtnContinueGame().setEnabled(true);
 		nextState(marketScreen);
 		// System.out.println("Number of galaxies : " + galaxies.length);
 	}

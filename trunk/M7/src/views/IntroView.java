@@ -3,6 +3,7 @@
  */
 package views;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,6 +13,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import systems.MainController.IntroListener;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  * Screen for starting the game
@@ -73,19 +78,17 @@ public class IntroView extends JPanel {
 
 	private static final int BUT_HEIGHT = 29;
 	
-	/**
-	 * Buttons for new/load/continue game
-	 */
-	private final JButton btnNewGame, btnLoadGame, btnContinueGame;
 
 	//private BufferedImage image;
 
 	private ImageIcon image1, title1, newgame, loadgame, contgame;
 	
+	private JLabel newLabel, loadLabel, contLabel;
+	
 	/**
 	 * Constructor
 	 */
-	public IntroView() {
+	public IntroView(IntroListener introListener) {
 		
 		/*File file = new File ("src/views/startscreen.png");
 		try {
@@ -104,20 +107,27 @@ public class IntroView extends JPanel {
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
 		
+		newLabel = new JLabel("");
+		newLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		newLabel.setIcon(newgame);
+		newLabel.setBounds(248, 247, 170, 36);
+		newLabel.addMouseListener(introListener);
+		add(newLabel);
 		
+		loadLabel = new JLabel("");
+		loadLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		loadLabel.setIcon(loadgame);
+		loadLabel.setBounds(248, 295, 170, 36);
+		loadLabel.addMouseListener(introListener);
+		add(loadLabel);
 		
-		btnNewGame = new JButton("New Game");
-		btnNewGame.setBounds(277, 253, BUT_WIDTH, BUT_HEIGHT);
-		add(btnNewGame);
-
-		btnLoadGame = new JButton("Load Game");
-		btnLoadGame.setBounds(277, 305, BUT_WIDTH, BUT_HEIGHT);
-		add(btnLoadGame);
-
-		btnContinueGame = new JButton("Continue");
-		btnContinueGame.setBounds(277, 358, BUT_WIDTH, BUT_HEIGHT);
-		add(btnContinueGame);
-		btnContinueGame.setEnabled(false);
+		contLabel = new JLabel("");
+		contLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		contLabel.setIcon(contgame);
+		contLabel.setBounds(248, 343, 170, 36);
+		contLabel.addMouseListener(introListener);
+		
+		add(contLabel);
 	}
 
 	/**
@@ -130,39 +140,24 @@ public class IntroView extends JPanel {
 	}
 
 	/**
-	 * Returns new game button
-	 * 
-	 * @return new game button
-	 */
-	public JButton getBtnNewGame() {
-		return btnNewGame;
-	}
-
-	/**
-	 * Returns load game button
-	 * 
-	 * @return load game button
-	 */
-	public JButton getBtnLoadGame() {
-		return btnLoadGame;
-	}
-
-	/**
-	 * Returns continue game button
-	 * 
-	 * @return continue game button
-	 */
-	public JButton getBtnContinueGame() {
-		return btnContinueGame;
-	}
-
-	/**
 	 * The toString method
 	 * 
 	 * @return nothing
 	 */
 	public String toString() {
 		return "";
+	}
+	
+	public JLabel getNewGame() {
+		return newLabel;
+	}
+	
+	public JLabel getLoadGame() {
+		return loadLabel;
+	}
+	
+	public JLabel getContGame() {
+		return contLabel;
 	}
 	
 	/**
@@ -174,5 +169,4 @@ public class IntroView extends JPanel {
 		image1.paintIcon(this, g, 0, 0);
 		title1.paintIcon(this, g, 140, 20);
 	}
-
 }

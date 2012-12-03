@@ -109,7 +109,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 		//setBackground(Color.black);
 
 		fuelWarning = new JLabel("Not enough fuel to reach destination!");
-		fuelWarning.setForeground(Color.WHITE);
+		fuelWarning.setForeground(Color.RED);
 		fuelWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		fuelWarning.setBounds(WARN_X, WARN_Y, WARN_WIDTH, WARN_HEIGHT);
 		fuelWarning.setVisible(false);
@@ -159,6 +159,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 		super.paintComponent(g);
 		//g.drawImage(image, 0, 0, null);
 		image1.paintIcon(this, g, 0, 0);
+		//g.drawOval();
 	}
 
 	/**
