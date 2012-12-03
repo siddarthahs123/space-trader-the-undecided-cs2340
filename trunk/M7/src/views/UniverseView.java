@@ -130,7 +130,7 @@ public class UniverseView extends JPanel { // maybe implement main view
 			PlanetListener listener) {
 		Map<JButton, SolarSystem> tempHash = new Hashtable<JButton, SolarSystem>();
 		for (int i = 0; i < galaxies.length; i++) {
-			ImageIcon icon = new ImageIcon("src/views/galaxy.png");
+			ImageIcon icon = new ImageIcon(getClass().getResource("/views/galaxy.png"));
 			JButton galaxyButton = new JButton(icon);
 			galaxyButton.setBounds(galaxies[i].getX(), galaxies[i].getY(), BUTTON_BOUNDS,
 					BUTTON_BOUNDS);
