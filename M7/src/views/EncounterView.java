@@ -129,10 +129,13 @@ public class EncounterView extends JPanel {
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setBackground(Color.black);
 		selectEncounter();
+		CONT.setBounds(289, 42, 101, 29);
 		CONT.addActionListener(ml);
+		message.setBounds(6, 6, 667, 29);
 		message.setForeground(Color.white);
 		message.setHorizontalAlignment(SwingConstants.CENTER);
 		CONT.setHorizontalAlignment(SwingConstants.CENTER);
+		setLayout(null);
 		add(message);
 		add(CONT);
 	}

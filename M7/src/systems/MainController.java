@@ -1220,6 +1220,7 @@ public class MainController {
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
 		public void actionPerformed(ActionEvent e) {
+			showRange();
 			nextState(universeScreen);
 		}
 
