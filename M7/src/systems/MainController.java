@@ -973,6 +973,9 @@ public class MainController {
 				player = new Player(pilot, fighter, trader, engineer,
 						difficulty, name);
 				player.printData();
+				
+				universeView.setPlayer(player);
+				
 				nextState(universeScreen);
 				// universeView.repaint();
 			}
@@ -1041,6 +1044,8 @@ public class MainController {
 
 				curGalaxy = hash.get(e.getSource());
 				curPlanet = curGalaxy.getPlanets()[0];
+				
+				universeView.setCurGalaxy(curGalaxy);
 
 				universe.setCurGalaxy(curGalaxy);
 				universe.setCurPlanet(curPlanet);
