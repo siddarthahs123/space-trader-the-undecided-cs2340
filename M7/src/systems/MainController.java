@@ -10,6 +10,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -231,7 +233,7 @@ public class MainController {
 	 *            Container
 	 */
 	public void addViews(Container pane) {
-		titleView = new TitleView();
+		titleView = new TitleView(new TitleListener());
 		JPanel titleCard = titleView.getPanel();
 		
 		// Generate intro view
@@ -274,8 +276,8 @@ public class MainController {
 
 		// Add cards to card layout
 		cards = new JPanel(new CardLayout());
-		//cards.add(titleCard, titleScreen);
 		cards.add(introCard, introScreen);
+		cards.add(titleCard, titleScreen);
 		cards.add(startCard, startScreen);
 		cards.add(universeCard, universeScreen);
 		cards.add(encounterCard, encounterScreen);
@@ -310,9 +312,31 @@ public class MainController {
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
 		public void actionPerformed(ActionEvent e) {
-			//nextState(titleScreen);
+			nextState(titleScreen);
 			
+			//nextState(startScreen);
+		}
+	}
+	
+	public class TitleListener implements MouseListener {
+		public void mouseClicked(MouseEvent e) {
 			nextState(startScreen);
+		}
+		
+		public void mouseEntered(MouseEvent e) {
+			
+		}
+		
+		public void mouseExited(MouseEvent e) {
+			
+		}
+		
+		public void mouseReleased(MouseEvent e) {
+			
+		}
+		
+		public void mousePressed(MouseEvent e) {
+			
 		}
 	}
 
