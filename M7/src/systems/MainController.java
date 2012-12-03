@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -53,6 +54,7 @@ import views.EncounterView;
 import views.IntroView;
 import views.MarketView;
 import views.StartView;
+import views.TitleView;
 import views.UniverseView;
 
 /**
@@ -117,6 +119,8 @@ public class MainController {
 	 * 
 	 */
 	private String marketScreen = "Market Screen";
+	
+	private String titleScreen = "Title Screen";
 
 	/**
 	 * 
@@ -158,6 +162,8 @@ public class MainController {
 	 */
 	private SolarSystem[] galaxies;
 
+	private TitleView titleView;
+	
 	/**
 	 * 
 	 */
@@ -225,6 +231,9 @@ public class MainController {
 	 *            Container
 	 */
 	public void addViews(Container pane) {
+		titleView = new TitleView();
+		JPanel titleCard = titleView.getPanel();
+		
 		// Generate intro view
 		introView = new IntroView();
 		JPanel introCard = introView.getPanel();
@@ -265,6 +274,7 @@ public class MainController {
 
 		// Add cards to card layout
 		cards = new JPanel(new CardLayout());
+		//cards.add(titleCard, titleScreen);
 		cards.add(introCard, introScreen);
 		cards.add(startCard, startScreen);
 		cards.add(universeCard, universeScreen);
@@ -291,6 +301,7 @@ public class MainController {
 	 * @author Justin
 	 */
 	public class NewGameListener implements ActionListener {
+		
 		/**
 		 * Method actionPerformed.
 		 * 
@@ -299,6 +310,8 @@ public class MainController {
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
 		public void actionPerformed(ActionEvent e) {
+			//nextState(titleScreen);
+			
 			nextState(startScreen);
 		}
 	}
