@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 import systems.MainController.PlanetListener;
 
+import models.player.Player;
 import models.space.SolarSystem;
 
 /**
@@ -91,6 +92,9 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 */
 	private static final int WARN_HEIGHT = 16;
 	
+	private Player player;
+	private SolarSystem curGalaxy;
+	
 	/**
 	 * Constructor for this class.
 	 */
@@ -157,9 +161,14 @@ public class UniverseView extends JPanel { // maybe implement main view
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		g.setColor(Color.blue);
 		//g.drawImage(image, 0, 0, null);
 		image1.paintIcon(this, g, 0, 0);
-		//g.drawOval();
+		if(curGalaxy != null) {
+			System.out.println(player.getFuel());
+			System.out.println(curGalaxy.getX());
+			g.drawOval(curGalaxy.getX()-player.getFuel(), curGalaxy.getY()-player.getFuel(), player.getFuel()*2, player.getFuel()*2);
+		}
 	}
 
 	/**
@@ -168,6 +177,14 @@ public class UniverseView extends JPanel { // maybe implement main view
 	 */
 	public JLabel getFuelWarning() {
 		return fuelWarning;
+	}
+	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	
+	public void setCurGalaxy(SolarSystem curGalaxy) {
+		this.curGalaxy = curGalaxy;
 	}
 	
 	/**
