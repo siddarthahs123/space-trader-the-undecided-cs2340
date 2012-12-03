@@ -936,9 +936,6 @@ public class MainController {
 			// ************
 			// MY CHANGES
 			// ************
-			if (player.getFuel() < 700) {
-				marketView.getBuyFuel().setEnabled(true);
-			}
 			int distance = 0;
 			universeView.getFuelWarning().setVisible(false);
 
@@ -983,17 +980,23 @@ public class MainController {
 				deflatedPrices = curPlanet.getDeflatedPrices();
 				setMarketValues();
 				marketView.setPlanetName(curPlanet.getName());
+				
 				if (!curButton.equals(prevButton)) { // if selecting a different
 														// galaxy
 					player.setTurn(player.getTurn() + 1);
 					player.setFuel(player.getFuel() - distance);
 					marketView.setFuelLabel(player.getFuel());
 				}
+				
+				if (player.getFuel() < 700) {
+					marketView.getBuyFuel().setEnabled(true);
+				}
+				
 				showRange();
 				System.out
 						.println("Fuel Remaining: " + player.getFuel() + "\n");
 			} else {
-				System.out.println("Distance travelled : " + distance);
+				System.out.println("Distance travelled: " + distance);
 				universeView.getFuelWarning().setVisible(true);
 			}
 		}
