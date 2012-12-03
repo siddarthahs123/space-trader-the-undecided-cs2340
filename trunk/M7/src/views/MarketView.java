@@ -87,6 +87,8 @@ public class MarketView extends JPanel {
 	private JButton btnSaveGame;
 
 	private BufferedImage image;
+	
+	private ImageIcon image1;
 
 	/**
 	 * Constructor
@@ -106,6 +108,8 @@ public class MarketView extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		image1 = new ImageIcon(getClass().getResource("/views/marketBackground.png"));
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
@@ -552,7 +556,8 @@ public class MarketView extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(image, 0, 0, null);
+		//g.drawImage(image, 0, 0, null);
+		image1.paintIcon(this, g, 0, 0);
 	}
 
 	/**
