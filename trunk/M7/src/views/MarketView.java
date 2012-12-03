@@ -522,10 +522,10 @@ public class MarketView extends JPanel {
 		lblFuelRemaining.setBounds(35, 419, 109, 16);
 		add(lblFuelRemaining);
 		
-		fuelLabel = new JLabel("");
+		fuelLabel = new JLabel("xxx");
 		fuelLabel.setForeground(Color.WHITE);
 		fuelLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		fuelLabel.setBounds(151, 419, 47, 16);
+		fuelLabel.setBounds(151, 419, 48, 16);
 		add(fuelLabel);
 		btnSaveGame.addActionListener(saveGameListener);
 
