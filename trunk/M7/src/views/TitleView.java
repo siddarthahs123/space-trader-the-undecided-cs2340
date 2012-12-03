@@ -16,6 +16,9 @@ import systems.MainController.FillTank;
 import systems.MainController.SaveGameListener;
 import systems.MainController.SellListener;
 import systems.MainController.MapListener;
+import systems.MainController.TitleListener;
+
+import systems.*;
 
 
 public class TitleView extends JPanel {
@@ -44,10 +47,12 @@ public class TitleView extends JPanel {
 	/**
 	 * Create the application.
 	 */
-	public TitleView() {
+	public TitleView(TitleListener titleListener) {
 		setBackground(Color.BLACK);
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
+		
+		this.addMouseListener(titleListener);
 		
 		JLabel lblNewLabel = new JLabel("\"And then, the Earth being small, mankind will migrate into space, ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
