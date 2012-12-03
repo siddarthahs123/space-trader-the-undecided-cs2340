@@ -86,7 +86,7 @@ public class MarketView extends JPanel {
 	 */
 	private JButton btnSaveGame;
 
-	private BufferedImage image;
+	//private BufferedImage image;
 	
 	private ImageIcon image1;
 
@@ -102,12 +102,12 @@ public class MarketView extends JPanel {
 			MapListener mapListener, SaveGameListener saveGameListener,
 			FillTank fillTank) {
 		
-		File file = new File ("src/views/marketBackground.png");
+		/*File file = new File ("src/views/marketBackground.png");
 		try {
 			image = ImageIO.read(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		image1 = new ImageIcon(getClass().getResource("/views/marketBackground.png"));
 		
