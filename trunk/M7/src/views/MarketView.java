@@ -459,7 +459,7 @@ public class MarketView extends JPanel {
 		sellGroup.add(robotsSell);
 
 		spaceWarning = new JLabel("No space remaining in cargo hold!");
-		spaceWarning.setForeground(Color.WHITE);
+		spaceWarning.setForeground(Color.RED);
 		spaceWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		spaceWarning.setBounds(354, 361, 237, 16);
 		add(spaceWarning);
@@ -495,7 +495,7 @@ public class MarketView extends JPanel {
 		add(lblRemcredits);
 
 		creditWarning = new JLabel("Not enough credits remaining!");
-		creditWarning.setForeground(Color.WHITE);
+		creditWarning.setForeground(Color.RED);
 		creditWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		creditWarning.setBounds(364, 381, 227, 16);
 		add(creditWarning);

@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 /**
  * Screen for creating player
@@ -234,13 +235,14 @@ public class StartView extends JPanel {
 		disableMinusKeys();
 
 		nameWarning = new JLabel("Please enter a name!");
-		nameWarning.setForeground(Color.WHITE);
+		nameWarning.setForeground(Color.RED);
 		nameWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		nameWarning.setBounds(71, 67, 128, 16);
 		add(nameWarning);
 		nameWarning.setVisible(false);
 
 		JPanel difficultyLabel = new JPanel();
+		difficultyLabel.setForeground(Color.BLACK);
 		difficultyLabel.setBackground(Color.BLACK);
 		difficultyLabel.setBounds(500, 160, 95, 112);
 		add(difficultyLabel);
@@ -252,13 +254,16 @@ public class StartView extends JPanel {
 		// DifficultyListener dListener = new DifficultyListener();
 
 		rdbtnEasy = new JRadioButton("Easy");
+		rdbtnEasy.setForeground(Color.WHITE);
 		difficultyLabel.add(rdbtnEasy);
 
 		rdbtnMedium = new JRadioButton("Medium");
+		rdbtnMedium.setForeground(Color.WHITE);
 		difficultyLabel.add(rdbtnMedium);
 		rdbtnMedium.setSelected(true);
 
 		rdbtnHard = new JRadioButton("Hard");
+		rdbtnHard.setForeground(Color.WHITE);
 		difficultyLabel.add(rdbtnHard);
 
 		difficultyGroup = new ButtonGroup();
@@ -271,7 +276,7 @@ public class StartView extends JPanel {
 		// rdbtnHard.addActionListener(dListener);
 
 		pointsWarning = new JLabel("Please allocate all points!");
-		pointsWarning.setForeground(Color.WHITE);
+		pointsWarning.setForeground(Color.RED);
 		pointsWarning.setBounds(59, 407, 159, 16);
 		add(pointsWarning);
 
