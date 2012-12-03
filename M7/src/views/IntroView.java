@@ -99,7 +99,7 @@ public class IntroView extends JPanel {
 		
 		newgame = new ImageIcon(getClass().getResource("/views/newgame.png"));
 		loadgame = new ImageIcon(getClass().getResource("/views/loadgame.png"));
-		contgame = new ImageIcon(getClass().getResource("/views/continuegame.png"));
+		contgame = new ImageIcon(getClass().getResource("/views/continue.png"));
 		
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setLayout(null);
