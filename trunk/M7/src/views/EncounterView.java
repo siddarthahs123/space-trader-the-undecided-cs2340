@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import models.player.Player;
 import models.tradegood.Firearms;
 import models.tradegood.Food;
 import models.tradegood.Furs;
@@ -119,6 +120,8 @@ public class EncounterView extends JPanel {
 	 */
 	private static final int CHOICE_GOOD = 2;
 	
+	private Player player;
+	
 	/**
 	 * Constructor
 	 * 
@@ -174,7 +177,12 @@ public class EncounterView extends JPanel {
 	 */
 	public void badEncounter() {
 		creditChange = -1 * Math.floor(GEN.nextDouble() * BADFACTOR);
-		message.setText("Pirates stole " + -1 * creditChange
+		if(player.getCredits()+creditChange < 0) {
+			creditChange = -1 * player.getCredits();
+			message.setText("Pirates stole all of your credits...");
+		}
+		else 
+			message.setText("Pirates stole " + -1 * creditChange
 				+ " credits from you...");
 	}
 
@@ -261,6 +269,10 @@ public class EncounterView extends JPanel {
 	 */
 	public String[] getRandGoods() {
 		return randGoods;
+	}
+	
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 }
