@@ -54,6 +54,7 @@ import models.tradegood.TradeGood;
 import models.tradegood.Water;
 import views.EncounterView;
 import views.IntroView;
+import views.LanderView;
 import views.MarketView;
 import views.StartView;
 import views.TitleView;
@@ -116,6 +117,8 @@ public class MainController {
 	 * 
 	 */
 	private String encounterScreen = "Encounter Screen";
+	
+	private String landerScreen = "Lander Screen";
 
 	/**
 	 * 
@@ -185,6 +188,8 @@ public class MainController {
 	 * 
 	 */
 	private EncounterView encounterView;
+	
+	private LanderView landerView;
 
 	/**
 	 * 
@@ -239,10 +244,6 @@ public class MainController {
 		// Generate intro view
 		introView = new IntroView(new IntroListener());
 		JPanel introCard = introView.getPanel();
-		/*introView.getBtnNewGame().addActionListener(new NewGameListener());
-		introView.getBtnLoadGame().addActionListener(new LoadGameListener());
-		introView.getBtnContinueGame().addActionListener(
-				new ContinueGameListener());*/
 
 		// Generate start view
 		startView = new StartView();
@@ -252,12 +253,7 @@ public class MainController {
 		// Generate galaxy map
 		universe = new Universe();
 		generateGalaxies();
-		// FOR DEBUGGIN ONLY
-		/*
-		 * for(int i = 0; i < galaxies.length; i++) {
-		 * System.out.println(galaxies[i].toString()); }
-		 */
-		// /////////////////
+
 		universeView = new UniverseView();
 		hash = universeView.drawGalaxies(galaxies, new PlanetListener());
 		JPanel universeCard = universeView.getPanel();
@@ -329,27 +325,6 @@ public class MainController {
 			
 		}
 	}
-
-	/**
-	 * Listener class for new game selection.
-	 * 
-	 * @author Justin
-	 */
-	public class NewGameListener implements ActionListener {
-		
-		/**
-		 * Method actionPerformed.
-		 * 
-		 * @param e
-		 *            ActionEvent
-		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-		 */
-		public void actionPerformed(ActionEvent e) {
-			nextState(titleScreen);
-			
-			//nextState(startScreen);
-		}
-	}
 	
 	public class TitleListener implements MouseListener {
 		public void mouseClicked(MouseEvent e) {
@@ -391,49 +366,6 @@ public class MainController {
 			nextState(marketScreen);
 		}
 	}
-
-	/**
-	 * Listener class for continuing game
-	 * 
-	 * @author Justin
-	 */
-	//public class ContinueGameListener implements ActionListener {
-		/**
-		 * Method actionPerformed.
-		 * 
-		 * @param e
-		 *            ActionEvent
-		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-		 */
-		/*public void actionPerformed(ActionEvent e) {
-			nextState(marketScreen);
-		}
-	}*/
-
-	/**
-	 * Listener class for load game selection.
-	 * 
-	 * @author Samarth Agarwal
-	 */
-	//public class LoadGameListener implements ActionListener {
-		/**
-		 * Method actionPerformed.
-		 * 
-		 * @param e
-		 *            ActionEvent
-		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-		 */
-		/*public void actionPerformed(ActionEvent e) {
-			if (e.getSource().equals(introView.getBtnLoadGame())) {
-				try {
-					load();
-				} catch (FileNotFoundException e1) {
-					System.out.println("No such file found. Try again: "
-							+ e1.getMessage());
-				}
-			}
-		}
-	}*/
 
 	/**
 	 * Helper method to load game
@@ -1026,6 +958,8 @@ public class MainController {
 
 			if (player.getFuel() >= distance) {
 				if (distance != 0) {
+					encounterView.setPlayer(player); //might not need
+					encounterView.selectEncounter();
 					nextState(encounterScreen);
 					if (player.getCredits() + encounterView.getCreditChange() < 0)
 						player.setCredits(0);
@@ -1035,7 +969,17 @@ public class MainController {
 						cargo.addTradeGood(encounterView.getTradeGoodKey(),
 								encounterView.getTradeGood());
 					}
+					
+					if(encounterView.isLander()) {
+						landerView = new LanderView(playerShip.getName());
+						JPanel landerCard = landerView.getPanel();
+						cards.add(landerCard, landerScreen);
+						nextState(landerScreen);
+					}
+					
 					encounterView = new EncounterView(new MarketListener());
+					encounterView.setPlayer(player);
+					//encounterView.selectEncounter();
 					JPanel encounterCard = encounterView.getPanel();
 					cards.add(encounterCard, encounterScreen);
 				} else {

@@ -113,7 +113,7 @@ public class EncounterView extends JPanel {
 	/**
 	 * Total options for encounters
 	 */
-	private static final int TOTAL_CHOICES = 3;
+	private static final int TOTAL_CHOICES = 4; //was 3
 	
 	/**
 	 * Total options for good encounters
@@ -121,6 +121,8 @@ public class EncounterView extends JPanel {
 	private static final int CHOICE_GOOD = 2;
 	
 	private Player player;
+	private double credits;
+	private boolean lander;
 	
 	/**
 	 * Constructor
@@ -128,10 +130,11 @@ public class EncounterView extends JPanel {
 	 * @param ml
 	 */
 	public EncounterView(MarketListener ml) {
+		
 		new JPanel();
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setBackground(Color.black);
-		selectEncounter();
+		//selectEncounter();
 		CONT.setBounds(289, 42, 101, 29);
 		CONT.addActionListener(ml);
 		message.setBounds(6, 6, 667, 29);
@@ -141,6 +144,8 @@ public class EncounterView extends JPanel {
 		setLayout(null);
 		add(message);
 		add(CONT);
+		
+		lander = false;
 	}
 
 	/**
@@ -148,13 +153,16 @@ public class EncounterView extends JPanel {
 	 */
 	public void selectEncounter() {
 		final int chance = GEN.nextInt(TOTAL_CHOICES);
+		
 		if (chance == 0) {
 			goodEncounter();
 		} else if (chance == 1) {
 			badEncounter();
-		} else {
+		} else if (chance == 2) {
+			//lander = true;
 			noEncounter();
-		}
+		} else
+			noEncounter();
 	}
 
 	/**
@@ -177,8 +185,8 @@ public class EncounterView extends JPanel {
 	 */
 	public void badEncounter() {
 		creditChange = -1 * Math.floor(GEN.nextDouble() * BADFACTOR);
-		if(player.getCredits()+creditChange < 0) {
-			creditChange = -1 * player.getCredits();
+		if(credits+creditChange < 0) {
+			creditChange = -1 * credits;
 			message.setText("Pirates stole all of your credits...");
 		}
 		else 
@@ -271,8 +279,12 @@ public class EncounterView extends JPanel {
 		return randGoods;
 	}
 	
-	public void setPlayer(Player player) {
-		this.player = player;
+	public boolean isLander() {
+		return lander;
 	}
 
+	public void setPlayer(Player player) {
+		this.player = player;
+		this.credits = player.getCredits();
+	}
 }
