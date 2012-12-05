@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -35,7 +34,6 @@ public class LanderView extends JPanel {
 	private static final int HEIGHT = 473;
 	
 	private ImageIcon ship;
-	private int pos, len;
 	private double x, y;
 	private Timer timer;
 	private Pad landerPad;
@@ -88,9 +86,7 @@ public class LanderView extends JPanel {
 	
 	public LanderView(String playerShip) {
 		setBackground(Color.black);
-		setLayout(null);
-		
-		setFocusable(true);
+
 		landerPad = new Pad(0, 0);
 		timer = new Timer(20, new TimeListener());
 		x = WIDTH/2;
@@ -98,11 +94,9 @@ public class LanderView extends JPanel {
 		
 		ship = new ImageIcon(getClass().getResource("/views/ships/"+playerShip+".png"));
 		
-		len = 40;
-		Random rand = new Random();
-		pos = rand.nextInt(WIDTH-len);
-
 		addKeyListener(new KeyController());
+		setFocusable(true);
+		setLayout(null);
 		timer.start();
 	}
 	

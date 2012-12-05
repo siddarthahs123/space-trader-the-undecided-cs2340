@@ -165,8 +165,8 @@ public class UniverseView extends JPanel { // maybe implement main view
 		//g.drawImage(image, 0, 0, null);
 		image1.paintIcon(this, g, 0, 0);
 		if(curGalaxy != null) {
-			System.out.println(player.getFuel());
-			System.out.println(curGalaxy.getX());
+//			System.out.println(player.getFuel());
+//			System.out.println(curGalaxy.getX());
 			g.drawOval(curGalaxy.getX()-player.getFuel(), curGalaxy.getY()-player.getFuel(), player.getFuel()*2, player.getFuel()*2);
 		}
 	}
