@@ -460,7 +460,6 @@ public class MainController {
 					turn = scan.nextInt();
 				} else if (ret.equals("PoliceRecord")) {
 					policeRecord = scan.nextBoolean();
-					// System.out.println(policeRecord);
 					player = new Player(pilot, fighter, trader, engineer,
 							difficulty, playerName);
 					player.setCredits(credits);
@@ -468,7 +467,6 @@ public class MainController {
 					player.setFuel(fuel);
 					player.setTurn(turn);
 					player.setPoliceRecord(policeRecord);
-					// System.out.println(player.write());
 					playerSettingDone = true;
 				}
 			}
@@ -480,7 +478,6 @@ public class MainController {
 					if (shipType.equals("Flea")) {
 						playerShip = new Flea();
 						playerShipSettingDone = true;
-						// System.out.println(playerShip.write());
 					}
 				}
 			}
@@ -564,15 +561,11 @@ public class MainController {
 					currentPositionSettingDone = true;
 				}
 			}
-			// System.out.println(universe.getNames().length);
 			while (!universeSettingDone) {
 				ret = scan.next();
 				if (ret.equals("GalaxyName")) {
 
 					galaxyName = scan.nextLine().trim();
-					// System.out.println("GalaxyName " + galaxyName);
-					// String techLevel = "";
-					// int x = 0, y = 0;
 
 					if (scan.next().equals("TechLevel"))
 						techLevel = scan.nextLine().trim();
@@ -580,8 +573,6 @@ public class MainController {
 						x = scan.nextInt();
 					if (scan.next().equals("Ycoordinate"))
 						y = scan.nextInt();
-					// System.out.println("TechLevel " + techLevel + "X " + x +
-					// "Y " + y);
 					galaxies[galaxyCounter] = new SolarSystem(galaxyName, x, y);
 					galaxies[galaxyCounter].setTechLevel(techLevel);
 					// galaxyCounter++;
@@ -591,7 +582,6 @@ public class MainController {
 					while (!galaxyDone) {
 						if (scan.next().equals("PlanetName")) {
 							planetName = scan.next();
-							// System.out.println(planetName);
 							planets[0] = new Planet(planetName);
 						}
 						if (scan.next().equals("Resources")) {
@@ -755,8 +745,6 @@ public class MainController {
 								}
 								if (ret.equals("Narcotics")) {
 									int narcotics = scan.nextInt();
-									// System.out.println("Narcotics " +
-									// narcotics);
 									planetGoods.put("Narcotics",
 											new ArrayList<TradeGood>());
 									for (int i = 0; i < narcotics; i++)
@@ -767,8 +755,6 @@ public class MainController {
 										List<TradeGood> narcoticsList = planetGoods
 												.get("Narcotics");
 										int totalPrice = scan.nextInt();
-										// System.out.println("Price " +
-										// totalPrice);
 										for (TradeGood item : narcoticsList) {
 											item.setTotalPrice(totalPrice);
 										}
@@ -778,29 +764,20 @@ public class MainController {
 								}
 							}
 							planets[0].setTradeGoods(planetGoods);
-							// System.out.println(planets[0].write());
 						}
 						if (ret.equals("GalaxyDone")) {
-							// System.out.println("Galaxy done for planet " +
-							// planets[0].getName());
 							galaxies[galaxyCounter].setPlanets(planets);
-							// System.out.println(galaxies[galaxyCounter].write());
 							galaxyCounter++;
-							// System.out.println(galaxyCounter);
 							galaxyDone = true;
 						}
 					}
 				}
 				if (ret.equals("GalaxySettingDone")) {
-					// System.out.println("Done");
 					universeSettingDone = true;
 					loadingDone = true;
 				}
 			}
 		}
-		// for (SolarSystem galaxy : galaxies) {
-		// System.out.println(galaxy.write());
-		// }
 		for (SolarSystem galaxy : galaxies) {
 			if (galaxy.getName().equals(currentGalaxy)) {
 				curGalaxy = galaxy;
@@ -812,15 +789,8 @@ public class MainController {
 				}
 			}
 		}
-		// System.out.println("Current state : "+ curGalaxy.getName() + " " +
-		// curPlanet.getName());
-		System.out.println(currentGalaxy);
-		// System.out.println("Current state : "+ curGalaxy.getName() + " " +
-		// curPlanet.getName());
 		setMarketValues();
-		//introView.getBtnContinueGame().setEnabled(true);
 		nextState(marketScreen);
-		// System.out.println("Number of galaxies : " + galaxies.length);
 	}
 
 	/**
@@ -843,8 +813,6 @@ public class MainController {
 			PrintWriter out = null;
 			if (e.getSource().equals(marketView.getSaveButton())) {
 				try {
-					System.out.println("Number of galaxies : "
-							+ galaxies.length);
 					String f = (String) JOptionPane.showInputDialog(null,
 							"Enter file name : ", "Save",
 							JOptionPane.PLAIN_MESSAGE, null, null, "");
@@ -898,13 +866,12 @@ public class MainController {
 				int trader = startView.getTPoints();
 				String name = startView.getTextField();
 				int difficulty = startView.getDifficulty();
-				System.out.println("Difficulty : " + difficulty);
 
 				// refreshCargoGoods(); //!
 
 				player = new Player(pilot, fighter, trader, engineer,
 						difficulty, name);
-				player.printData();
+				//player.printData();
 				
 				universeView.setPlayer(player);
 				
@@ -994,7 +961,7 @@ public class MainController {
 				universe.setCurGalaxy(curGalaxy);
 				universe.setCurPlanet(curPlanet);
 
-				System.out.println(curGalaxy.toString());
+				//System.out.println(curGalaxy.toString());
 				
 				deflatedPrices = curPlanet.getDeflatedPrices();
 				setMarketValues();
@@ -1012,10 +979,7 @@ public class MainController {
 				}
 				
 				showRange();
-				System.out
-						.println("Fuel Remaining: " + player.getFuel() + "\n");
 			} else {
-				System.out.println("Distance travelled: " + distance);
 				universeView.getFuelWarning().setVisible(true);
 			}
 		}
@@ -1108,7 +1072,6 @@ public class MainController {
 				marketView.getSpaceWarning().setVisible(true);
 			}
 
-			System.out.println(cargo.toString());
 		}
 
 	}
@@ -1184,7 +1147,6 @@ public class MainController {
 				marketView.getSpaceWarning().setVisible(true);
 			}
 
-			System.out.println(cargo.toString());
 		}
 	}
 
@@ -1306,7 +1268,6 @@ public class MainController {
 	public void refreshTradeGoods() {
 		Random rand = new Random();
 
-		// System.out.println(galaxies.length);
 		for (int i = 0; i < galaxies.length; i++) {
 			SolarSystem galaxy = galaxies[i];
 			Planet[] planets = galaxy.getPlanets();
@@ -1316,8 +1277,6 @@ public class MainController {
 
 			for (int j = 0; j < planets.length; j++) {
 
-				// System.out.println("Galaxy: "+galaxies[i].name()+" Planet: "+planets[j].getName());
-				// //!
 
 				Planet planet = planets[j];
 				Map<String, ArrayList<TradeGood>> tempGoods =
@@ -1345,10 +1304,6 @@ public class MainController {
 					//	price -= 0.3*price;
 					
 					tempResource.setTotalPrice(price);
-					// System.out.println(price);
-
-					// System.out.println("Resource: "+resource.getName()+" Price: "+price);
-					// //!
 
 					List<TradeGood> list = new ArrayList<TradeGood>(quantity);
 					for (int n = 0; n < quantity; n++) {
@@ -1670,9 +1625,6 @@ public class MainController {
 
 				hash.get(buttons[i]).setDistanceTo(distance); // set distance to
 																// galaxy
-
-				System.out.println(hash.get(buttons[i]).name() + ": "
-						+ distance);
 
 				if (distance <= player.getFuel() >> 1) { // yellow means close
 															// range

@@ -102,12 +102,6 @@ public class StartView extends JPanel {
 	 * 
 	 */
 	public StartView() {
-		/*File file = new File ("src/views/startscreen.png");
-		try {
-			image = ImageIO.read(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 		
 		image1 = new ImageIcon(getClass().getResource("/views/startscreen.png"));
 		
