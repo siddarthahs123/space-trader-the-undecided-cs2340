@@ -13,27 +13,6 @@ import javax.swing.Timer;
 
 public class LanderView extends JPanel {
 	
-
-	/**
-	 * X coordinate for panel
-	 */
-	private static final int XCORD = 6;
-	
-	/**
-	 * Y coordinate for panel
-	 */
-	private static final int YCORD = 6;
-	
-	/**
-	 * Width for panel
-	 */
-	private static final int WIDTH = 679;
-	
-	/**
-	 * Height for panel
-	 */
-	private static final int HEIGHT = 473;
-	
 	private ImageIcon ship;
 	private double x, y;
 	private Timer timer;
