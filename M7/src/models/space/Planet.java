@@ -180,7 +180,7 @@ public class Planet { // somehow extends SolarSystem
 			resources = "Lots of Water";
 			break;
 		case FIVE:
-			resources = "Rich Soil";
+			resources = "Artistic";
 			break;
 		case SIX:
 			resources = "Rich Soil";
@@ -196,9 +196,6 @@ public class Planet { // somehow extends SolarSystem
 			break;
 		case TEN:
 			resources = "Lots of Herbs";
-			break;
-		case ELEVEN:
-			resources = "Artistic";
 			break;
 		default:
 			resources = "Warlike";
