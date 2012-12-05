@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 public class LanderView extends JPanel {
 	
+
 	/**
 	 * X coordinate for panel
 	 */
@@ -85,7 +86,10 @@ public class LanderView extends JPanel {
 	}
 	
 	public LanderView(String playerShip) {
+		
 		setBackground(Color.black);
+		setFocusable(true);
+		addKeyListener(new KeyController());
 
 		landerPad = new Pad(0, 0);
 		timer = new Timer(20, new TimeListener());
@@ -94,9 +98,6 @@ public class LanderView extends JPanel {
 		
 		ship = new ImageIcon(getClass().getResource("/views/ships/"+playerShip+".png"));
 		
-		addKeyListener(new KeyController());
-		setFocusable(true);
-		setLayout(null);
 		timer.start();
 	}
 	
@@ -105,12 +106,11 @@ public class LanderView extends JPanel {
 		super.paintComponent(g);
 		ship.paintIcon(this, g, (int)x, (int)y);
 		landerPad.draw(g);
-		//ship.paintIcon(this, g2d, (int)20, (int)20);
 	}
 	
-	private class KeyController extends KeyAdapter {
+	private class KeyController implements KeyListener {
 		
-		public void keyPressed(final KeyEvent key) {
+		public void keyPressed(KeyEvent key) {
 			System.out.println("Got here");
 			switch (key.getKeyCode()) {
 				case KeyEvent.VK_RIGHT:
@@ -124,6 +124,12 @@ public class LanderView extends JPanel {
 			}
 			repaint(); 
         }
+
+		@Override
+		public void keyReleased(KeyEvent e) {}
+
+		@Override
+		public void keyTyped(KeyEvent e) {}
 	}
 	
 	private class TimeListener implements ActionListener {

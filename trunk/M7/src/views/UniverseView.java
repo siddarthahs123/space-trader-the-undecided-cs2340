@@ -33,11 +33,6 @@ import models.space.SolarSystem;
 public class UniverseView extends JPanel { // maybe implement main view
 
 	/**
-	 * Panel for universe view
-	 */
-	//private JPanel panel = null;
-
-	/**
 	 * X coordinate for panel
 	 */
 	private static final int XCORD = 6;
