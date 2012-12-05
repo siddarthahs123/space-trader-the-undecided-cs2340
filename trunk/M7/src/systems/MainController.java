@@ -998,7 +998,7 @@ public class MainController {
 				
 				deflatedPrices = curPlanet.getDeflatedPrices();
 				setMarketValues();
-				marketView.setPlanetName(curPlanet.getName());
+				marketView.setPlanetName(curPlanet.getName()+" ["+curPlanet.getResources()+"]");
 				
 				if (!curButton.equals(prevButton)) { // if selecting a different
 														// galaxy
@@ -1340,6 +1340,10 @@ public class MainController {
 							* (galaxies[i].getTechLevelNum() - resource
 									.getMTLP());
 					int price = resource.getPrice() + flux + offset;
+					
+					//if(planet.getResources().equals("Lots of Water") && resource.getName().equals("Water"))
+					//	price -= 0.3*price;
+					
 					tempResource.setTotalPrice(price);
 					// System.out.println(price);
 
@@ -1390,7 +1394,7 @@ public class MainController {
 	public void setMarketValues() {
 		Map<String, ArrayList<TradeGood>> iPlanet = curPlanet.getTradeGoods();
 		Map<String, ArrayList<TradeGood>> iPlayer = cargo.getTradeGoods();
-		marketView.setPlanetName(curPlanet.getName());
+		marketView.setPlanetName(curPlanet.getName()+" ["+curPlanet.getResources()+"]"); //SET RESOURCES EARLIER!!!
 		marketView.setLblRemaining("" + playerShip.getRemSpace());
 
 		for (Entry entry : iPlanet.entrySet()) {
