@@ -31,7 +31,6 @@ import systems.MainController.MarketListener;
  * @author Bao
  * @version 1.0
  */
-@SuppressWarnings("serial")
 public class EncounterView extends JPanel {
 
 	/**
