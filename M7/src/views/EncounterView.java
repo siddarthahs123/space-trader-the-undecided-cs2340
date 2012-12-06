@@ -154,17 +154,14 @@ public class EncounterView extends JPanel {
 		final int chance = GEN.nextInt(TOTAL_CHOICES);
 		
 		if (chance == 0) {
-			//goodEncounter();
-			lander = true;
+			goodEncounter();
 		} else if (chance == 1) {
-			//badEncounter();
-			lander = true;
+			badEncounter();
 		} else if (chance == 2) {
 			lander = true;
 			//noEncounter();
 		} else
-			lander = true;
-			//noEncounter();
+			noEncounter();
 	}
 
 	/**
