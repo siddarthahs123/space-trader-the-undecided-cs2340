@@ -173,10 +173,10 @@ public class FighterView extends JPanel {
 			} else if (y > HEIGHT) {
 				
 				if (credits + creditChange < 0) {
-					message.setText("Pirates stole all of your credits...");
+					message.setText("Pirates stole all of your credits");
 				} else
 					message.setText("Pirates stole " + -1 * creditChange
-							+ " credits from you...");
+							+ " credits from you");
 
 				timer.stop();
 				cont.setEnabled(true);
