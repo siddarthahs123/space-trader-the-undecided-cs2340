@@ -13,8 +13,29 @@ import javax.swing.Timer;
 
 public class LanderView extends JPanel {
 	
+
+	/**
+	 * X coordinate for panel
+	 */
+	private static final int XCORD = 6;
+	
+	/**
+	 * Y coordinate for panel
+	 */
+	private static final int YCORD = 6;
+	
+	/**
+	 * Width for panel
+	 */
+	private static final int WIDTH = 679;
+	
+	/**
+	 * Height for panel
+	 */
+	private static final int HEIGHT = 473;
+	
 	private ImageIcon ship;
-	private double x, y;
+	private int x, y;
 	private Timer timer;
 	private Pad landerPad;
 	
@@ -67,12 +88,13 @@ public class LanderView extends JPanel {
 	public LanderView(String playerShip) {
 		
 		setBackground(Color.black);
+		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setFocusable(true);
 		addKeyListener(new KeyController());
 
 		landerPad = new Pad(0, 0);
 		timer = new Timer(20, new TimeListener());
-		x = WIDTH/2;
+		x = getWidth()/2;
 		y = 0;
 		
 		ship = new ImageIcon(getClass().getResource("/views/ships/"+playerShip+".png"));
@@ -83,7 +105,7 @@ public class LanderView extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		ship.paintIcon(this, g, (int)x, (int)y);
+		ship.paintIcon(this, g, x, y);
 		landerPad.draw(g);
 	}
 	
