@@ -47,6 +47,8 @@ public class LanderView extends JPanel {
 	private boolean win = false;
 	private JButton cont;
 	private JLabel status;
+
+	private ImageIcon image;
 	
 	private class Pad {
 		private int x, y, width, height;
@@ -89,7 +91,7 @@ public class LanderView extends JPanel {
 	}
 	
 	public LanderView(String playerShip, MarketListener ml) {
-		
+		image = new ImageIcon(getClass().getResource("/views/encounter.png"));
 		setBackground(Color.black);
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setFocusable(true);
@@ -114,6 +116,7 @@ public class LanderView extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		image.paintIcon(this, g, 0, 0);
 		g.setColor(Color.WHITE);
 		g.drawString("Land the ship on the pad", 400, 20);
 		g.drawString("Click on the right side of the ship to move right", 400, 35);
@@ -181,6 +184,7 @@ public class LanderView extends JPanel {
 			repaint();
 		}
 	}
+	
 	
 	public JPanel getPanel() {
 		return this;

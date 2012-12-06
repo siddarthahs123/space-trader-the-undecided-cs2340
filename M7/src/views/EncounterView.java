@@ -4,8 +4,10 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -121,6 +123,8 @@ public class EncounterView extends JPanel {
 	 */
 	private static final int CHOICE_GOOD = 2;
 	
+	private ImageIcon image;
+	
 	@SuppressWarnings("unused")
 	private Player player;
 	private double credits;
@@ -133,14 +137,14 @@ public class EncounterView extends JPanel {
 	 * @param ml
 	 */
 	public EncounterView(MarketListener ml) {
-		
+		image = new ImageIcon(getClass().getResource("/views/encounter.png"));
 		new JPanel();
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setBackground(Color.black);
 		//selectEncounter();
-		CONT.setBounds(289, 42, 101, 29);
+		CONT.setBounds(289, 242, 101, 29);
 		CONT.addActionListener(ml);
-		message.setBounds(6, 6, 667, 29);
+		message.setBounds(6, 206, 667, 29);
 		message.setForeground(Color.white);
 		message.setHorizontalAlignment(SwingConstants.CENTER);
 		CONT.setHorizontalAlignment(SwingConstants.CENTER);
@@ -289,6 +293,11 @@ public class EncounterView extends JPanel {
 	
 	public boolean isLander() {
 		return lander;
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		image.paintIcon(this, g, 0, 0);
 	}
 
 	public void setPlayer(Player player) {
