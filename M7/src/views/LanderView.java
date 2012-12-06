@@ -10,8 +10,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import systems.MainController.MarketListener;
 
 public class LanderView extends JPanel {
 	
@@ -40,6 +44,9 @@ public class LanderView extends JPanel {
 	private int x, y;
 	private Timer timer;
 	private Pad landerPad;
+	private boolean win = false;
+	private JButton cont;
+	private JLabel status;
 	
 	private class Pad {
 		private int x, y, width, height;
@@ -81,21 +88,25 @@ public class LanderView extends JPanel {
 		}
 	}
 	
-	public LanderView(String playerShip) {
+	public LanderView(String playerShip, MarketListener ml) {
 		
 		setBackground(Color.black);
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setFocusable(true);
 		addKeyListener(new KeyController());
 		addMouseListener(new MouseController());
+		cont = new JButton("Back");
+		cont.setLocation(500, 120);
+		cont.addActionListener(ml);
+		cont.setEnabled(false);
+		add(cont);
 		landerPad = new Pad();
-
+		
 		timer = new Timer(20, new TimeListener());
 		x = getWidth()/2;
 		y = 0;
 		
 		ship = new ImageIcon(getClass().getResource("/views/ships/"+playerShip+".png"));
-		System.out.println(ship.getIconWidth() + "w h" + ship.getIconHeight());
 		
 		timer.start();
 	}
@@ -103,6 +114,10 @@ public class LanderView extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		g.setColor(Color.WHITE);
+		g.drawString("Land the ship on the pad", 400, 10);
+		g.drawString("Click on the right side of the ship to move right", 400, 20);
+		g.drawString("Click on the left side of the ship to move left" , 400, 30);
 		ship.paintIcon(this, g, x, y);
 		landerPad.draw(g);
 	}
@@ -155,9 +170,13 @@ public class LanderView extends JPanel {
 			landerPad.move();
 			if (x >= landerPad.getX() && x < landerPad.getX() + landerPad.width && y + ship.getIconHeight() + landerPad.height*2 + 10 >= landerPad.getY()) {
 				timer.stop();
+				win = true;
+				cont.setEnabled(true);
 			}
 			else if (y + ship.getIconHeight() + landerPad.height*2 > landerPad.getY()) {
 				timer.stop();
+				win = false;
+				cont.setEnabled(true);
 			}
 			repaint();
 		}
