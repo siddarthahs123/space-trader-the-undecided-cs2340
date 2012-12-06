@@ -132,7 +132,7 @@ public class LanderView extends JPanel {
 		add(cont);
 		landerPad = new Pad();
 		
-		timer = new Timer(16, new TimeListener());
+		timer = new Timer(15, new TimeListener());
 		x = getWidth()/2;
 		y = 0;
 		
