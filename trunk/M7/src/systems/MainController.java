@@ -934,6 +934,13 @@ public class MainController {
 						JPanel landerCard = landerView.getPanel();
 						cards.add(landerCard, landerScreen);
 						nextState(landerScreen);
+						if(player.getFuel() - landerView.getFuelLost() < 0) {
+							player.setFuel(0);
+							marketView.setFuelLabel(player.getFuel());
+						}else {
+							player.setFuel(player.getFuel() - landerView.getFuelLost());
+							marketView.setFuelLabel(player.getFuel());
+						}
 					} else if(encounterView.isFight()) {
 						fighterView = new FighterView(new MarketListener());
 						fighterView.setCurrCredits(player);
