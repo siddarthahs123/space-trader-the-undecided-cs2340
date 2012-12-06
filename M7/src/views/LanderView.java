@@ -104,17 +104,17 @@ public class LanderView extends JPanel {
 		setLayout(null);
 		image = new ImageIcon(getClass().getResource("/views/encounter.png"));
 		
-		LOSE.setBounds(316, 160, 100, 20);
+		LOSE.setBounds(302, 160, 100, 20);
 		LOSE.setForeground(Color.RED);
 		LOSE.setVisible(false);
 		add(LOSE);
 
-		WIN.setBounds(317, 160, 100, 20);
+		WIN.setBounds(308, 180, 100, 20);
 		WIN.setForeground(Color.GREEN);
 		WIN.setVisible(false);
 		add(WIN);
 		
-		message.setBounds(307, 240, 300, 20);
+		message.setBounds(302, 240, 300, 20);
 		message.setForeground(Color.RED);
 		message.setVisible(false);
 		add(message);
@@ -124,8 +124,8 @@ public class LanderView extends JPanel {
 		addKeyListener(new KeyController());
 		mouse = new MouseController();
 		addMouseListener(mouse);
-		cont = new JButton("Back");
-		cont.setBounds(295, 200, 100, 30);
+		cont = new JButton("Continue");
+		cont.setBounds(295, 200, 100, 20);
 		cont.addActionListener(ml);
 		cont.setVisible(false);
 		cont.setEnabled(false);
@@ -146,9 +146,9 @@ public class LanderView extends JPanel {
 		super.paintComponent(g);
 		image.paintIcon(this, g, 0, 0);
 		g.setColor(Color.WHITE);
-		g.drawString("Land the ship on the pad or you will lose fuel!", 380, 20);
-		g.drawString("Click on the right side of the ship to move right", 380, 35);
-		g.drawString("Click on the left side of the ship to move left" , 380, 50);
+		g.drawString("Land the ship on the pad or you will lose fuel!", 223, 20);
+		g.drawString("Click on the right side of the ship to move right", 223, 35);
+		g.drawString("Click on the left side of the ship to move left" , 223, 50);
 		ship.paintIcon(this, g, x, y);
 		landerPad.draw(g);
 	}
