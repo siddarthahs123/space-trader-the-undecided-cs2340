@@ -31,11 +31,13 @@ import systems.MainController.MarketListener;
  * @author Bao
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class EncounterView extends JPanel {
 
 	/**
 	 * Panel
 	 */
+	@SuppressWarnings("unused")
 	private JPanel panel = null;
 
 	/**
@@ -119,9 +121,11 @@ public class EncounterView extends JPanel {
 	 */
 	private static final int CHOICE_GOOD = 2;
 	
+	@SuppressWarnings("unused")
 	private Player player;
 	private double credits;
 	private boolean lander;
+	private boolean fight;
 	
 	/**
 	 * Constructor
@@ -145,6 +149,7 @@ public class EncounterView extends JPanel {
 		add(CONT);
 		
 		lander = false;
+		fight = false;
 	}
 
 	/**
@@ -159,7 +164,6 @@ public class EncounterView extends JPanel {
 			badEncounter();
 		} else if (chance == 2) {
 			lander = true;
-			//noEncounter();
 		} else
 			noEncounter();
 	}
@@ -183,16 +187,21 @@ public class EncounterView extends JPanel {
 	 * Entails what a bad encounter may be
 	 */
 	public void badEncounter() {
+		fight = true;
 		creditChange = -1 * Math.floor(GEN.nextDouble() * BADFACTOR);
 		if(credits+creditChange < 0) {
 			creditChange = -1 * credits;
-			message.setText("Pirates stole all of your credits...");
+//			message.setText("Pirates stole all of your credits...");
 		}
-		else 
-			message.setText("Pirates stole " + -1 * creditChange
-				+ " credits from you...");
+//		else 
+//			message.setText("Pirates stole " + -1 * creditChange
+//				+ " credits from you...");*/
 	}
 
+	public boolean isFight() {
+		return fight;
+	}
+	
 	/**
 	 * Nothing happens
 	 */
