@@ -47,7 +47,7 @@ public class LanderView extends JPanel {
 	private boolean win = false;
 	private JButton cont;
 	private JLabel status;
-
+	private MouseListener mouse;
 	private ImageIcon image;
 	
 	private class Pad {
@@ -96,7 +96,8 @@ public class LanderView extends JPanel {
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setFocusable(true);
 		addKeyListener(new KeyController());
-		addMouseListener(new MouseController());
+		mouse = new MouseController();
+		addMouseListener(mouse);
 		cont = new JButton("Back");
 		cont.setBounds(15, 200, 100, 30);
 		cont.addActionListener(ml);
@@ -172,11 +173,13 @@ public class LanderView extends JPanel {
 			y += 1;
 			landerPad.move();
 			if (x >= landerPad.getX() && x < landerPad.getX() + landerPad.width && y + ship.getIconHeight() + landerPad.height*2 + 10 >= landerPad.getY()) {
+				getPanel().removeMouseListener(mouse);
 				timer.stop();
 				win = true;
 				cont.setEnabled(true);
 			}
 			else if (y + ship.getIconHeight() + landerPad.height*2 > landerPad.getY()) {
+				getPanel().removeMouseListener(mouse);
 				timer.stop();
 				win = false;
 				cont.setEnabled(true);
