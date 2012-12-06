@@ -96,7 +96,7 @@ public class LanderView extends JPanel {
 		addKeyListener(new KeyController());
 		addMouseListener(new MouseController());
 		cont = new JButton("Back");
-		cont.setLocation(500, 120);
+		cont.setBounds(15, 200, 100, 30);
 		cont.addActionListener(ml);
 		cont.setEnabled(false);
 		add(cont);
@@ -115,9 +115,9 @@ public class LanderView extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
-		g.drawString("Land the ship on the pad", 400, 10);
-		g.drawString("Click on the right side of the ship to move right", 400, 20);
-		g.drawString("Click on the left side of the ship to move left" , 400, 30);
+		g.drawString("Land the ship on the pad", 400, 20);
+		g.drawString("Click on the right side of the ship to move right", 400, 35);
+		g.drawString("Click on the left side of the ship to move left" , 400, 50);
 		ship.paintIcon(this, g, x, y);
 		landerPad.draw(g);
 	}

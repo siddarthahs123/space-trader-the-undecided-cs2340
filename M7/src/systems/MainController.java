@@ -53,6 +53,7 @@ import models.tradegood.Robots;
 import models.tradegood.TradeGood;
 import models.tradegood.Water;
 import views.EncounterView;
+import views.FighterView;
 import views.IntroView;
 import views.LanderView;
 import views.MarketView;
@@ -119,6 +120,8 @@ public class MainController {
 	private String encounterScreen = "Encounter Screen";
 	
 	private String landerScreen = "Lander Screen";
+	
+	private String fighterScreen = "Fighter Screen";
 
 	/**
 	 * 
@@ -223,7 +226,7 @@ public class MainController {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(dim);
 		frame.setResizable(false);
-
+		frame.setFocusable(true);
 		addViews(frame.getContentPane());
 
 		frame.setVisible(true);
@@ -883,6 +886,8 @@ public class MainController {
 															// current planet
 															// doesn't add a
 															// turn
+		private FighterView fighterView;
+
 		/**
 		 * Method actionPerformed.
 		 * 
@@ -891,15 +896,7 @@ public class MainController {
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
 		public void actionPerformed(ActionEvent e) {
-			// ************
-			// MY CHANGES
-			// ************
-			// ************
-			// MY CHANGES
-			// ************
-			// ************
-			// MY CHANGES
-			// ************
+
 			int distance = 0;
 			universeView.getFuelWarning().setVisible(false);
 
@@ -920,10 +917,13 @@ public class MainController {
 					encounterView.setPlayer(player); //might not need
 					encounterView.selectEncounter();
 					nextState(encounterScreen);
-					if (player.getCredits() + encounterView.getCreditChange() < 0)
+					if (player.getCredits() + encounterView.getCreditChange() < 0){
 						player.setCredits(0);
-					player.setCredits(player.getCredits()
-							+ encounterView.getCreditChange());
+						marketView.getLblRemcredits().setText("" + player.getCredits());
+					} else {
+						player.setCredits(player.getCredits() + encounterView.getCreditChange());
+						marketView.getLblRemcredits().setText("" + player.getCredits());
+					}
 					if (encounterView.getTradeGood() != null) {
 						cargo.addTradeGood(encounterView.getTradeGoodKey(),
 								encounterView.getTradeGood());
@@ -934,6 +934,13 @@ public class MainController {
 						JPanel landerCard = landerView.getPanel();
 						cards.add(landerCard, landerScreen);
 						nextState(landerScreen);
+					} else if(encounterView.isFight()) {
+						fighterView = new FighterView(new MarketListener());
+						fighterView.setCurrCredits(player);
+						fighterView.setCreditChange(encounterView.getCreditChange());
+						JPanel fightCard = fighterView.getPanel();
+						cards.add(fightCard, fighterScreen);
+						nextState(fighterScreen);
 					}
 					
 					encounterView = new EncounterView(new MarketListener());
