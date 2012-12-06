@@ -930,7 +930,7 @@ public class MainController {
 					}
 					
 					if(encounterView.isLander()) {
-						landerView = new LanderView(playerShip.getName(), new MarketListener());
+						landerView = new LanderView(playerShip.getName(), new MarketListener(), player.getFuel());
 						JPanel landerCard = landerView.getPanel();
 						cards.add(landerCard, landerScreen);
 						nextState(landerScreen);

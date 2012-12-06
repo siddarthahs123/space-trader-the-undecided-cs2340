@@ -42,7 +42,7 @@ public class LanderView extends JPanel {
 	 */
 	private static final int HEIGHT = 473;
 	private Random gen = new Random();
-	private final int FUELFACTOR = 200;
+	private final int FUELFACTOR;
 	private int fuelLost = 0;
 	private ImageIcon ship;
 	private int x, y;
@@ -100,7 +100,8 @@ public class LanderView extends JPanel {
 		}
 	}
 	
-	public LanderView(String playerShip, MarketListener ml) {
+	public LanderView(String playerShip, MarketListener ml, int fuel) {
+		FUELFACTOR = fuel/3;
 		setLayout(null);
 		image = new ImageIcon(getClass().getResource("/views/encounter.png"));
 		
@@ -132,7 +133,7 @@ public class LanderView extends JPanel {
 		add(cont);
 		landerPad = new Pad();
 		
-		timer = new Timer(15, new TimeListener());
+		timer = new Timer(25, new TimeListener());
 		x = getWidth()/2;
 		y = 0;
 		
@@ -199,7 +200,7 @@ public class LanderView extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			y += 1;
 			landerPad.move();
-			if (x >= landerPad.getX() && x < landerPad.getX() + landerPad.width && y + ship.getIconHeight() + landerPad.height*2 + 10 >= landerPad.getY()) {
+			if (x >= landerPad.getX() && x + ship.getIconWidth() < landerPad.getX() + landerPad.width && y + ship.getIconHeight() + landerPad.height*2 + 10 >= landerPad.getY()) {
 				getPanel().removeMouseListener(mouse);
 				timer.stop();
 				win = true;
