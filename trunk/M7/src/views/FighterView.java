@@ -77,7 +77,7 @@ public class FighterView extends JPanel {
 		setLayout(null);
 		health = 100;
 		damage = 0;
-		image = new ImageIcon(getClass().getResource("/views/starfield.png"));
+		image = new ImageIcon(getClass().getResource("/views/encounter.png"));
 
 		pirate = new Pirate();
 
@@ -111,7 +111,7 @@ public class FighterView extends JPanel {
 		x = gen.nextInt(WIDTH - pirate.getImage().getIconWidth() + 1);
 		y = 50;
 
-		timer = new Timer(25, new TimeListener());
+		timer = new Timer(23, new TimeListener());
 		timer.start();
 	}
 
