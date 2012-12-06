@@ -54,9 +54,9 @@ public class LanderView extends JPanel {
 	private MouseListener mouse;
 	private ImageIcon image;
 	
-	private final JLabel LOSE = new JLabel("YOU LOSE...");
+	private final JLabel LOSE = new JLabel("YOU CRASHED!");
 
-	private final JLabel WIN = new JLabel("YOU WIN!");
+	private final JLabel WIN = new JLabel("YOU LANDED");
 
 	private JLabel message = new JLabel("");
 	

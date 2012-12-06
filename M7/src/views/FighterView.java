@@ -61,7 +61,7 @@ public class FighterView extends JPanel {
 
 	private boolean result = false;
 
-	private final JLabel LOSE = new JLabel("YOU LOSE...");
+	private final JLabel LOSE = new JLabel("YOU LOSE");
 
 	private final JLabel WIN = new JLabel("YOU WIN!");
 
@@ -72,15 +72,25 @@ public class FighterView extends JPanel {
 	private double creditChange;
 
 	private static final int BADFACTOR = 200;
+	
+	private int choice;
+	
+	private ImageIcon ship;
 
 	public FighterView(MarketListener marketListener) {
 		setLayout(null);
 		health = 100;
 		damage = 0;
+		
 		image = new ImageIcon(getClass().getResource("/views/encounter.png"));
-
+		
+		choice = gen.nextInt(2);
 		pirate = new Pirate();
-
+		if(choice == 0)
+			ship = new ImageIcon(getClass().getResource("/views/enemy.png"));
+		else
+			ship = new ImageIcon(getClass().getResource("/views/enemy2.png"));
+		pirate.setImage(ship);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(Color.black);
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
@@ -93,7 +103,7 @@ public class FighterView extends JPanel {
 		cont.setVisible(false);
 		add(cont);
 
-		LOSE.setBounds(316, 180, 100, 20);
+		LOSE.setBounds(317, 180, 100, 20);
 		LOSE.setForeground(Color.RED);
 		LOSE.setVisible(false);
 		add(LOSE);
@@ -161,8 +171,10 @@ public class FighterView extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 
 			if (health == 0) {
-				pirate.image = new ImageIcon(getClass().getResource(
-						"/views/destroyed.png"));
+				if(choice == 0)
+					pirate.image = new ImageIcon(getClass().getResource("/views/destroyed.png"));
+				else
+					pirate.image = new ImageIcon(getClass().getResource("/views/destroyed2.png"));
 				getPanel().removeMouseListener(getMouse());
 				timer.stop();
 				cont.setEnabled(true);
@@ -225,7 +237,7 @@ public class FighterView extends JPanel {
 		private boolean shot;
 
 		public Pirate() {
-			image = new ImageIcon(getClass().getResource("/views/enemy.png"));
+//			image = new ImageIcon(getClass().getResource("/views/enemy.png"));
 		}
 
 		public ImageIcon getImage() {
@@ -241,6 +253,9 @@ public class FighterView extends JPanel {
 				shot = false;
 			}
 			return shot;
+		}
+		public void setImage(ImageIcon image) {
+			this.image = image;
 		}
 	}
 
