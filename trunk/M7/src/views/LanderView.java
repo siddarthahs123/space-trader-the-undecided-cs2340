@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -43,19 +45,13 @@ public class LanderView extends JPanel {
 		private int x, y, width, height;
 		boolean side = true; //true for left movement, false for right
 		
-		public Pad(int x, int y) {
-			this.x = x;
-			this.y = y;
+		public Pad() {
+			x = 0;
 			width = 100;
 			height = 10;
+			y = getHeight() - height;
 		}
 		
-		public void setX(int newX) {
-			x = newX;
-		}
-		public void setY(int newY) {
-			y = newY;
-		}
 		public int getX() {
 			return x;
 		}
@@ -91,13 +87,15 @@ public class LanderView extends JPanel {
 		setBounds(XCORD, YCORD, WIDTH, HEIGHT);
 		setFocusable(true);
 		addKeyListener(new KeyController());
+		addMouseListener(new MouseController());
+		landerPad = new Pad();
 
-		landerPad = new Pad(0, 0);
 		timer = new Timer(20, new TimeListener());
 		x = getWidth()/2;
 		y = 0;
 		
 		ship = new ImageIcon(getClass().getResource("/views/ships/"+playerShip+".png"));
+		System.out.println(ship.getIconWidth() + "w h" + ship.getIconHeight());
 		
 		timer.start();
 	}
@@ -133,10 +131,34 @@ public class LanderView extends JPanel {
 		public void keyTyped(KeyEvent e) {}
 	}
 	
+	private class MouseController implements MouseListener {
+		public void mouseClicked(MouseEvent arg0) {}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent e) {
+			
+			if (e.getPoint().x > x && e.getPoint().x < getWidth()) {
+				if (x + ship.getIconWidth() <= getWidth())
+					x = x + 15;
+			}
+			else if (e.getPoint().x > 0 && e.getPoint().x < x) {
+				x = x - 15;
+			}
+			repaint();
+		}
+		public void mouseReleased(MouseEvent arg0) {}
+		
+	}
 	private class TimeListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			y += 1;
 			landerPad.move();
+			if (x >= landerPad.getX() && x < landerPad.getX() + landerPad.width && y + ship.getIconHeight() + landerPad.height*2 + 10 >= landerPad.getY()) {
+				timer.stop();
+			}
+			else if (y + ship.getIconHeight() + landerPad.height*2 > landerPad.getY()) {
+				timer.stop();
+			}
 			repaint();
 		}
 	}
