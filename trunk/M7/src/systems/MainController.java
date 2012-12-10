@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -163,6 +162,7 @@ public class MainController {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private Planet[] planetList;
 
 	/**
@@ -369,6 +369,7 @@ public class MainController {
 	 * 
 	 * @throws FileNotFoundException
 	 */
+	@SuppressWarnings("resource")
 	public void load() throws FileNotFoundException {
 		JFileChooser choose = new JFileChooser();
 		choose.showOpenDialog(introView.getPanel());
@@ -1358,7 +1359,8 @@ public class MainController {
 		marketView.setPlanetName(curPlanet.getName()+" ["+curPlanet.getResources()+"]"); //SET RESOURCES EARLIER!!!
 		marketView.setLblRemaining("" + playerShip.getRemSpace());
 
-		for (Entry entry : iPlanet.entrySet()) {
+		for (@SuppressWarnings("rawtypes") Entry entry : iPlanet.entrySet()) {
+			@SuppressWarnings("unchecked")
 			List<TradeGood> mResource = (ArrayList<TradeGood>) entry.getValue();
 			int quantity = mResource.size();
 
@@ -1455,8 +1457,9 @@ public class MainController {
 			}
 		}
 
-		for (Entry entry : iPlayer.entrySet()) { // deflated price working for
+		for (@SuppressWarnings("rawtypes") Entry entry : iPlayer.entrySet()) { // deflated price working for
 													// only one planet!
+			@SuppressWarnings("unchecked")
 			List<TradeGood> pResource = (ArrayList<TradeGood>) entry.getValue();
 			int quantity = pResource.size();
 			boolean disable = false;

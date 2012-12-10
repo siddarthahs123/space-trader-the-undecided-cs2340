@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +18,7 @@ import javax.swing.Timer;
 
 import systems.MainController.MarketListener;
 
+@SuppressWarnings("serial")
 public class LanderView extends JPanel {
 	
 
@@ -50,6 +50,7 @@ public class LanderView extends JPanel {
 	private Pad landerPad;
 	private boolean win = false;
 	private JButton cont;
+	@SuppressWarnings("unused")
 	private JLabel status;
 	private MouseListener mouse;
 	private ImageIcon image;

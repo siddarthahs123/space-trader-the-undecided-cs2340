@@ -5,23 +5,18 @@ package views;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import systems.MainController.PlanetListener;
-
 import models.player.Player;
 import models.space.SolarSystem;
+import systems.MainController.PlanetListener;
 
 /**
  * This class represents the Long-Range map for the game and displays all Solar
@@ -30,6 +25,7 @@ import models.space.SolarSystem;
  * @author Justin
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class UniverseView extends JPanel { // maybe implement main view
 
 	/**

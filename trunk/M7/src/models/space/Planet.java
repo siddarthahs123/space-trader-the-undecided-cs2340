@@ -104,6 +104,7 @@ public class Planet { // somehow extends SolarSystem
 	/**
 	 * Constant for position in array
 	 */
+	@SuppressWarnings("unused")
 	private static final int ELEVEN = 11;
 
 	/**
