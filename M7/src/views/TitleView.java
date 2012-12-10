@@ -1,26 +1,15 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-import systems.MainController.BuyListener;
-import systems.MainController.FillTank;
-import systems.MainController.SaveGameListener;
-import systems.MainController.SellListener;
-import systems.MainController.MapListener;
 import systems.MainController.TitleListener;
 
-import systems.*;
 
-
+@SuppressWarnings("serial")
 public class TitleView extends JPanel {
 
 	/**

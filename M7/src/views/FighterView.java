@@ -19,6 +19,7 @@ import javax.swing.Timer;
 import models.player.Player;
 import systems.MainController.MarketListener;
 
+@SuppressWarnings("serial")
 public class FighterView extends JPanel {
 
 	/**
@@ -71,6 +72,7 @@ public class FighterView extends JPanel {
 	
 	private double creditChange;
 
+	@SuppressWarnings("unused")
 	private static final int BADFACTOR = 200;
 	
 	private int choice;

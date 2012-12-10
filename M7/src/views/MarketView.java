@@ -5,26 +5,29 @@ package views;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import systems.MainController.BuyListener;
 import systems.MainController.FillTank;
+import systems.MainController.MapListener;
 import systems.MainController.SaveGameListener;
 import systems.MainController.SellListener;
-import systems.MainController.MapListener;
 
 /**
  * Screen for markets
  * @author Bao
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class MarketView extends JPanel {
 
 

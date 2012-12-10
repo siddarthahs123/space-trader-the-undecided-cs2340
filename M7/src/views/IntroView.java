@@ -3,20 +3,14 @@
  */
 package views;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import systems.MainController.IntroListener;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 /**
  * Screen for starting the game
@@ -50,32 +44,38 @@ public class IntroView extends JPanel {
 	/**
 	 * X coordinate for button
 	 */
+	@SuppressWarnings("unused")
 	private static final int BUTX = 264;
 
 	/**
 	 * Y coordinate for new game button
 	 */
+	@SuppressWarnings("unused")
 	private static final int NEW_BUTY = 161;
 
 	/**
 	 * Y coordinate for new game button
 	 */
+	@SuppressWarnings("unused")
 	private static final int LD_BUTY = 231;
 
 	/**
 	 * Y coordinate for new game button
 	 */
+	@SuppressWarnings("unused")
 	private static final int CON_BUTY = 302;
 
 	/**
 	 * Width for button
 	 */
+	@SuppressWarnings("unused")
 	private static final int BUT_WIDTH = 117;
 
 	/**
 	 * Height for button
 	 */
 
+	@SuppressWarnings("unused")
 	private static final int BUT_HEIGHT = 29;
 	
 
